@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5E406EE0-D1D1-4B18-BF01-599C0032CC52}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Oereb.Report</RootNamespace>
+    <AssemblyName>Oereb.Report</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GhostscriptSharp, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GhostScriptSharp.1.3.1.4\lib\net40\GhostscriptSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=10.2.16.1025, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helper\Geometry.cs" />
+    <Compile Include="Helper\HImage.cs" />
+    <Compile Include="Helper\Pdf.cs" />
+    <Compile Include="Helper\LocalisedMText.cs" />
+    <Compile Include="Helper\LocalisedText.cs" />
+    <Compile Include="Helper\LocalisedUri.cs" />
+    <Compile Include="Helper\PreProcessing.cs" />
+    <Compile Include="Helper\Report.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportAppendix.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportAppendix.Designer.cs">
+      <DependentUpon>ReportAppendix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBuilder.cs" />
+    <Compile Include="ReportExtract.cs" />
+    <Compile Include="ReportToc.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportToc.Designer.cs">
+      <DependentUpon>ReportToc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBody.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportBody.Designer.cs">
+      <DependentUpon>ReportBody.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportGlossary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportGlossary.Designer.cs">
+      <DependentUpon>ReportGlossary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTitle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTitle.Designer.cs">
+      <DependentUpon>ReportTitle.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="ReportAppendix.resx">
+      <DependentUpon>ReportAppendix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportToc.resx">
+      <DependentUpon>ReportToc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBody.resx">
+      <DependentUpon>ReportBody.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportGlossary.resx">
+      <DependentUpon>ReportGlossary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTitle.resx">
+      <DependentUpon>ReportTitle.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Oereb.Service.DataContracts\Oereb.Service.DataContracts.csproj">
+      <Project>{fab01dc5-36f6-44c8-9999-c7767a313b20}</Project>
+      <Name>Oereb.Service.DataContracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "ls '$(SolutionDir)\packages\GhostScriptSharp.*\Tools\gsdll32.dll' | Sort -Descending | Select -First 1 | cp -Destination '$(TargetDir)'; exit 0"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
