@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("geocentrale")]
 [assembly: AssemblyProduct("Oereb.Service.Tests")]
-[assembly: AssemblyCopyright("Copyright © geocentrale 2016")]
+[assembly: AssemblyCopyright("-")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
