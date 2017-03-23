@@ -205,6 +205,14 @@ namespace Oereb.Report
             return imageExtension;
         }
 
+        public static GeometryExtension GetGeometryExtension(XElement extension)
+        {
+            return new GeometryExtension
+            {
+                Type = extension.Element("Type") == null ? "Unknown" : extension.Element("Type").Value
+            };
+        }
+
         public class DescriptionExtension
         {
             public int Seq { get; set; }
@@ -233,6 +241,11 @@ namespace Oereb.Report
                 Transparency = georeferenceExtension.Transparency;
                 Seq = georeferenceExtension.Seq;
             }
+        }
+
+        public class GeometryExtension
+        {
+            public string Type { get; set; }
         }
 
         public class Extent
@@ -276,6 +289,11 @@ namespace Oereb.Report
                     {
                         foreach (var legalProvision in item.LegalProvisions)
                         {
+                            if (string.IsNullOrEmpty(legalProvision.Url))
+                            {
+                                continue; //an empty url is possible
+                            }
+
                             var tocAppendix = new TocAppendix()
                             {
                                 Key = legalProvision.Title,
@@ -291,21 +309,28 @@ namespace Oereb.Report
                                 continue;
                             }
 
-                            var urlPdf = tocAppendix.Url;
-                            var directory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+                            var urlFile = tocAppendix.Url;
+                            var directory = Path.Combine(Path.GetTempPath(), $"_TempFile_{Guid.NewGuid()}");
 
                             Directory.CreateDirectory(directory);
 
-                            var filepath = Path.Combine(directory, "output.pdf");
+                            var filepath = Path.Combine(directory, "output.bin");
                             tocAppendix.Filename = filepath;
 
-                            var check = Oereb.Report.Helper.Pdf.GetFromUrl(urlPdf, filepath);
+                            var result = Oereb.Report.Helper.Content.GetFromUrl(urlFile, filepath);
 
-                            if (AttacheFiles)
+                            tocAppendix.ContentType = result.ContentType;
+                            tocAppendix.State = result.Successful;
+
+                            if (AttacheFiles && result.Successful)
                             {
-                                tocAppendix.Description += "(siehe im PDF Anhang)";
+                                tocAppendix.Description += "(siehe im Anhang)";
                             }
-                            else
+                            else if (AttacheFiles && !result.Successful)
+                            {
+                                tocAppendix.Description += "(nicht anhängbar)";
+                            }
+                            else if (result.Successful)
                             {
                                 var files = Oereb.Report.Helper.Pdf.GetImagesFromPpdf(filepath);
                                 tocAppendix.Pages.AddRange(files);
@@ -378,6 +403,8 @@ namespace Oereb.Report
             public List<byte[]> Pages { get; set; }
             public string Filename { get; set; }
             public string Key { get; set; }
+            public bool State { get; set; }
+            public string ContentType { get; set; }
 
             public TocAppendix()
             {
@@ -546,15 +573,42 @@ namespace Oereb.Report
 
                     var legendItemCatched = LegendItems.FirstOrDefault(x => x.TypeCode == restriction.TypeCode);
 
+                    var geometryExtension = restriction.Geometry.First().extensions.Any.FirstOrDefault(x => x.LocalName == "GeometryExtension");
+                    var type = "NoExtension";
+
+                    if (geometryExtension != null)
+                    {
+                        var geometryExtentionElement = XElement.Parse(geometryExtension.OuterXml);
+                        var geometryExtention = GetGeometryExtension(geometryExtentionElement);
+                        type = geometryExtention.Type;
+                    }
+
                     if (legendItemCatched != null)
                     {
+                        var area = "";
+                        var partInPercent = "";
+
+                        if (type == "Polygon" || type == "NoExtension")
+                        {
+                            area = restriction.Area + " m²";
+
+                            if (restriction.PartInPercent == "0")
+                            {
+                                partInPercent = "< 1 %";
+                            }
+                            else
+                            {
+                                partInPercent = restriction.PartInPercent + " %";
+                            }
+                        }
+                        
                         var legendInvolved = new LegendItemInvolved()
                         {
                             Symbol = legendItemCatched.Symbol,
                             TypeCode = legendItemCatched.TypeCode,
                             Label = legendItemCatched.Label,
-                            Area = restriction.Area,
-                            PartInPercent = restriction.PartInPercent
+                            Area = area,
+                            PartInPercent = partInPercent
                         };
 
                         LegendItemsInvolved.Add(legendInvolved);

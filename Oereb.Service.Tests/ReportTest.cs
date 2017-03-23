@@ -74,7 +74,7 @@ namespace Oereb.Service.Tests
 
             var filepath = Path.Combine(directory, "output.pdf");
 
-            var check = Oereb.Report.Helper.Pdf.GetFromUrl(urlPdf, filepath);
+            var check = Oereb.Report.Helper.Content.GetFromUrl(urlPdf, filepath);
 
             var fileArrays = Oereb.Report.Helper.Pdf.GetImagesFromPpdf(filepath);
 
@@ -91,7 +91,7 @@ namespace Oereb.Service.Tests
 
             var filepath = Path.Combine(directory, "output.pdf");
 
-            var check = Oereb.Report.Helper.Pdf.GetFromUrl(urlPdf, filepath);
+            var check = Oereb.Report.Helper.Content.GetFromUrl(urlPdf, filepath);
 
             var packages = new Dictionary<string, string>();
 

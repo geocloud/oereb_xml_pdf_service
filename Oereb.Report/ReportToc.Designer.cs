@@ -473,6 +473,7 @@ namespace Oereb.Report
             this.MoreInformation.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.9000000953674316D), Telerik.Reporting.Drawing.Unit.Cm(0.70000088214874268D));
             this.MoreInformation.Style.Font.Bold = true;
             this.MoreInformation.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            this.MoreInformation.Style.Visible = false;
             resources.ApplyResources(this.MoreInformation, "MoreInformation");
             // 
             // QrCode

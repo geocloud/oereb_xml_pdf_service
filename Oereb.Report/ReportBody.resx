@@ -124,10 +124,10 @@
     <value>= Fields.Label</value>
   </data>
   <data name="LIArea.Value" xml:space="preserve">
-    <value>= Fields.Area +" m²"</value>
+    <value>= Fields.Area</value>
   </data>
   <data name="LIPartIn.Value" xml:space="preserve">
-    <value>= Fields.PartInPercent+ " %"</value>
+    <value>= Fields.PartInPercent</value>
   </data>
   <data name="LITitle.Value" xml:space="preserve">
     <value>Legende beteiligter Objekte</value>

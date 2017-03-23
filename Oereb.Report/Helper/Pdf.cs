@@ -13,59 +13,6 @@ namespace Oereb.Report.Helper
 {
     public static class Pdf
     {
-        public static bool GetFromUrl(string url, string file)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
-            request.Method = "GET";
-            request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-gb,en;q=0.5");
-            request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
-
-            request.Accept = "application/pdf";
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0";
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            try
-            {
-                using (var stream = File.Create(file))
-                {
-                    response.GetResponseStream().CopyTo(stream);
-                }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public static byte[] GetFromUrl(string url)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
-            request.Method = "GET";
-            request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-gb,en;q=0.5");
-            request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
-
-            request.Accept = "application/pdf";
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0";
-
-            var response = (HttpWebResponse)request.GetResponse();
-
-            if (response.GetResponseStream() == null)
-            {
-                return null;
-            }
-
-            using (var stream = new MemoryStream())
-            {
-                response.GetResponseStream().CopyTo(stream);
-                return stream.ToArray();
-            }
-        }
-
         public static List<byte[]> GetImagesFromPpdf(string file)
         {
             var files = new List<byte[]>();

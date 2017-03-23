@@ -125,6 +125,11 @@ namespace Oereb.Report
 
                 foreach (var tocAppendix in reportExtract.TocAppendixes)
                 {
+                    if (!tocAppendix.State)
+                    {
+                        continue; //todo what happen if this is not a pdf
+                    }
+
                     files.Add(tocAppendix.Shortname + " " + tocAppendix.Description, tocAppendix.Filename);
                 }
 

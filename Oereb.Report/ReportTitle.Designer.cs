@@ -463,6 +463,7 @@ namespace Oereb.Report
             this.Attestation.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.7999997138977051D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Attestation.Style.Font.Bold = true;
             this.Attestation.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            this.Attestation.Style.Visible = false;
             resources.ApplyResources(this.Attestation, "Attestation");
             // 
             // AttestationInfo
@@ -471,6 +472,7 @@ namespace Oereb.Report
             this.AttestationInfo.Name = "AttestationInfo";
             this.AttestationInfo.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.390523910522461D), Telerik.Reporting.Drawing.Unit.Cm(0.30000001192092896D));
             this.AttestationInfo.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            this.AttestationInfo.Style.Visible = false;
             resources.ApplyResources(this.AttestationInfo, "AttestationInfo");
             // 
             // Stamp
@@ -480,6 +482,7 @@ namespace Oereb.Report
             this.Stamp.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Stamp.Style.Font.Bold = false;
             this.Stamp.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            this.Stamp.Style.Visible = false;
             resources.ApplyResources(this.Stamp, "Stamp");
             // 
             // Date
@@ -489,6 +492,7 @@ namespace Oereb.Report
             this.Date.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Date.Style.Font.Bold = false;
             this.Date.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            this.Date.Style.Visible = false;
             resources.ApplyResources(this.Date, "Date");
             // 
             // Signature
@@ -498,6 +502,7 @@ namespace Oereb.Report
             this.Signature.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Signature.Style.Font.Bold = false;
             this.Signature.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            this.Signature.Style.Visible = false;
             resources.ApplyResources(this.Signature, "Signature");
             // 
             // pageFooterSection1
