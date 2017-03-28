@@ -121,7 +121,7 @@ namespace Oereb.Report
                     fileStream.Write(result.DocumentBytes, 0, result.DocumentBytes.Length);
                 }
 
-                var files = new Dictionary<string, string>();
+                var fileContainers = new List<FileContainer>();
 
                 foreach (var tocAppendix in reportExtract.TocAppendixes)
                 {
@@ -130,10 +130,15 @@ namespace Oereb.Report
                         continue; //todo what happen if this is not a pdf
                     }
 
-                    files.Add(tocAppendix.Shortname + " " + tocAppendix.Description, tocAppendix.Filename);
+                    fileContainers.Add( new FileContainer()
+                    {
+                        FilePath = tocAppendix.Filename,
+                        Description = $"{tocAppendix.Shortname}_{tocAppendix.FileDescription}",
+                        ContentType = tocAppendix.ContentType
+                    });
                 }
 
-                Oereb.Report.Helper.Pdf.AddAttachments(pdfFile, pdfFileAttached, files);
+                Oereb.Report.Helper.Pdf.AddAttachments(pdfFile, pdfFileAttached, fileContainers);
 
                 return File.ReadAllBytes(pdfFileAttached);
             }

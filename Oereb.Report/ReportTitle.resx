@@ -130,9 +130,7 @@
     <value>= Fields.Extract.ExtractIdentifier</value>
   </data>
   <data name="Title.Value" xml:space="preserve">
-    <value>Auszug aus dem Kataster der 
-öffentlich-rechtlichen Eigentumsbeschränkungen
-(ÖREB-Kataster)</value>
+    <value>= Fields.Title</value>
   </data>
   <data name="EGRID.Value" xml:space="preserve">
     <value>E-GRID</value>
@@ -144,7 +142,7 @@
     <value>Gemeinde (BFS-Nr.)</value>
   </data>
   <data name="MunicipalityFosValue.Value" xml:space="preserve">
-    <value>= Fields.Extract.RealEstate.Municipality + "("+ Fields.Extract.RealEstate.FosNr+")"</value>
+    <value>= Fields.Extract.RealEstate.Municipality + " ("+ Fields.Extract.RealEstate.FosNr+")"</value>
   </data>
   <data name="SubunitOfLandRegister.Value" xml:space="preserve">
     <value>Grundbuchkreis</value>
@@ -156,7 +154,7 @@
     <value>Fläche</value>
   </data>
   <data name="LandRegistryAreaValue.Value" xml:space="preserve">
-    <value>= Fields.Extract.RealEstate.LandRegistryArea</value>
+    <value>= Fields.Extract.RealEstate.LandRegistryArea + " m²"</value>
   </data>
   <data name="CreationDate.Value" xml:space="preserve">
     <value>Erstellungsdatum des Auszugs</value>

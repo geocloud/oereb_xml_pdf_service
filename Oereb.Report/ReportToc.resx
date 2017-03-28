@@ -121,7 +121,7 @@
     <value>Übersicht ÖREB-Themen</value>
   </data>
   <data name="textBox2.Value" xml:space="preserve">
-    <value>= "Eigentumsbeschränkungen, welche das Grundstück " + Fields.Extract.RealEstate.Number + " in " + Fields.Extract.RealEstate.Municipality + " betreffen"</value>
+    <value>= "Öffentlich-rechtliche Eigentumsbeschränkungen, welche das Grundstück " + Fields.Extract.RealEstate.Number + " in " + Fields.Extract.RealEstate.Municipality + " betreffen"</value>
   </data>
   <data name="Page.Value" xml:space="preserve">
     <value>= Fields.Page</value>
@@ -142,10 +142,10 @@
     <value>Seite</value>
   </data>
   <data name="LabelThemeNotConcerned.Value" xml:space="preserve">
-    <value>Eigentumsbeschränkungen, welche das Grundstück nicht betreffen</value>
+    <value>Öffentlich-rechtliche Eigentumsbeschränkungen, welche das Grundstück nicht betreffen</value>
   </data>
   <data name="LabelThemeWithoutData.Value" xml:space="preserve">
-    <value>Allfällige Eigentumsbeschränkungen, zu denen noch keine Daten vorhanden sind</value>
+    <value>Öffentlich-rechtliche Eigentumsbeschränkungen, zu denen noch keine Daten vorhanden sind</value>
   </data>
   <data name="TNotCLabel.Value" xml:space="preserve">
     <value>= Fields.Label</value>

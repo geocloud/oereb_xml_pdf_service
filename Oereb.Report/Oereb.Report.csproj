@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\Content.cs" />
+    <Compile Include="Helper\FileContainer.cs" />
     <Compile Include="Helper\Geometry.cs" />
     <Compile Include="Helper\HImage.cs" />
     <Compile Include="Helper\Pdf.cs" />
@@ -129,7 +130,9 @@
       <Name>Oereb.Service.DataContracts</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Software\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

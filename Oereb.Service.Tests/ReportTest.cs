@@ -18,6 +18,7 @@ namespace Oereb.Service.Tests
         [TestMethod]
         public void CreateReport()
         {
+            //var file = Path.GetFullPath("../../Testfiles/CH607705073442_nw.xml");
             var file = Path.GetFullPath("../../Testfiles/CH710574347858_nw.xml");
 
             var source =  XElement.Load(file);
@@ -93,9 +94,13 @@ namespace Oereb.Service.Tests
 
             var check = Oereb.Report.Helper.Content.GetFromUrl(urlPdf, filepath);
 
-            var packages = new Dictionary<string, string>();
+            var packages = new List<FileContainer>();
 
-            packages.Add("Anhang 1", filepath);
+            packages.Add(new FileContainer()
+            {
+                Description = "Anhang 1",
+                FilePath = filepath
+            });
 
             Oereb.Report.Helper.Pdf.AddAttachments(filepath, Path.Combine(directory, "output_attached.pdf"),packages);
         }

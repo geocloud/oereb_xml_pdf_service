@@ -28,6 +28,14 @@ namespace Oereb.Report
 
         public bool ExtractComplete { get; set; } = true;
 
+        public string Title {
+            get
+            {
+                var postfix = !ExtractComplete ? " mit reduzierter Information" : string.Empty;
+                return $"Auszug aus dem Kataster der\nöffentlich-rechtlichen Eigentumsbeschränkungen \n(ÖREB - Kataster){postfix}";
+            }
+        }
+
         public bool AttacheFiles { get; set; } = false;
 
         public List<BodyItem> ReportBodyItems { get; set; }
@@ -299,6 +307,7 @@ namespace Oereb.Report
                                 Key = legalProvision.Title,
                                 Shortname = $"A{AppendixCounter}",
                                 Description = legalProvision.Title,
+                                FileDescription = legalProvision.Title,
                                 Url = legalProvision.Url
                             };
 
@@ -405,6 +414,7 @@ namespace Oereb.Report
             public string Key { get; set; }
             public bool State { get; set; }
             public string ContentType { get; set; }
+            public string FileDescription { get; set; }
 
             public TocAppendix()
             {

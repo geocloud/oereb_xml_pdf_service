@@ -61,7 +61,7 @@ namespace Oereb.Report.Helper
             return files;
         }
 
-        public static void AddAttachments(string fileSource, string fileOutput, Dictionary<string,string> packageitems)
+        public static void AddAttachments(string fileSource, string fileOutput, List<FileContainer> fileContainers)
         {
             try
             {
@@ -74,11 +74,27 @@ namespace Oereb.Report.Helper
 
                 PdfWriter attachment = stamp.Writer;
 
-                foreach (var packageItem in packageitems)
+                foreach (var fileContainer in fileContainers)
                 {
-                    var filename = $"{packageItem.Key}.pdf".Replace("(siehe im PDF Anhang)",""); //todo remove
-                    PdfFileSpecification pdfAttachent = PdfFileSpecification.FileEmbedded(attachment, packageItem.Value, filename, null, "application/pdf",new PdfDictionary() {}, 0 );
-                    stamp.AddFileAttachment(packageItem.Key, pdfAttachent);
+                    var index = ".bin";
+
+                    switch (fileContainer.ContentType.ToLower())
+                    {
+                        case "application/pdf":
+
+                            index = ".pdf";
+                            break;
+
+                        case "text/html":
+
+                            index = ".html";
+                            break;
+                    }
+
+                    var filename = $"{fileContainer.Description}{index}";
+
+                    PdfFileSpecification pdfAttachent = PdfFileSpecification.FileEmbedded(attachment, fileContainer.FilePath, filename, null, fileContainer.ContentType, new PdfDictionary() {}, 0 );
+                    stamp.AddFileAttachment(fileContainer.Description, pdfAttachent);
                 }
 
                 stamp.Close();

@@ -45,7 +45,6 @@ namespace Oereb.Report
             this.SubunitOfLandRegisterValue = new Telerik.Reporting.TextBox();
             this.LandRegistryArea = new Telerik.Reporting.TextBox();
             this.LandRegistryAreaValue = new Telerik.Reporting.TextBox();
-            this.ExtractDS = new Telerik.Reporting.ObjectDataSource();
             this.table2 = new Telerik.Reporting.Table();
             this.CreationDate = new Telerik.Reporting.TextBox();
             this.CreationDateValue = new Telerik.Reporting.TextBox();
@@ -61,6 +60,7 @@ namespace Oereb.Report
             this.FootExtractIdentifier = new Telerik.Reporting.TextBox();
             this.shape9 = new Telerik.Reporting.Shape();
             this.FootPageInformation = new Telerik.Reporting.TextBox();
+            this.ExtractDS = new Telerik.Reporting.ObjectDataSource();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // ParcelNumber
@@ -212,9 +212,9 @@ namespace Oereb.Report
             this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(6.7999987602233887D)));
             this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.600001335144043D)));
             this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Mm(5.9999995231628418D)));
-            this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D)));
-            this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D)));
-            this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D)));
+            this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D)));
+            this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D)));
+            this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D)));
             this.table1.Body.SetCellContent(0, 0, this.EGRID);
             this.table1.Body.SetCellContent(0, 1, this.EGRIDValue);
             this.table1.Body.SetCellContent(1, 0, this.MunicipalityFos);
@@ -262,7 +262,7 @@ namespace Oereb.Report
             this.EGRID.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.7999987602233887D), Telerik.Reporting.Drawing.Unit.Mm(6D));
             this.EGRID.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.EGRID.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.EGRID.Style.Font.Bold = true;
+            this.EGRID.Style.Font.Bold = false;
             this.EGRID.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.EGRID.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.EGRID.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -287,7 +287,7 @@ namespace Oereb.Report
             this.MunicipalityFos.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.7999987602233887D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
             this.MunicipalityFos.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.MunicipalityFos.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.MunicipalityFos.Style.Font.Bold = true;
+            this.MunicipalityFos.Style.Font.Bold = false;
             this.MunicipalityFos.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.MunicipalityFos.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.MunicipalityFos.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -314,7 +314,7 @@ namespace Oereb.Report
             this.SubunitOfLandRegister.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.7999987602233887D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
             this.SubunitOfLandRegister.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.SubunitOfLandRegister.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.SubunitOfLandRegister.Style.Font.Bold = true;
+            this.SubunitOfLandRegister.Style.Font.Bold = false;
             this.SubunitOfLandRegister.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.SubunitOfLandRegister.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.SubunitOfLandRegister.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -341,7 +341,7 @@ namespace Oereb.Report
             this.LandRegistryArea.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.7999987602233887D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
             this.LandRegistryArea.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.LandRegistryArea.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.LandRegistryArea.Style.Font.Bold = true;
+            this.LandRegistryArea.Style.Font.Bold = false;
             this.LandRegistryArea.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.LandRegistryArea.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.LandRegistryArea.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -362,18 +362,12 @@ namespace Oereb.Report
             this.LandRegistryAreaValue.StyleName = "";
             resources.ApplyResources(this.LandRegistryAreaValue, "LandRegistryAreaValue");
             // 
-            // ExtractDS
-            // 
-            this.ExtractDS.DataMember = "GetReportExtract";
-            this.ExtractDS.DataSource = typeof(Oereb.Report.ReportExtract);
-            this.ExtractDS.Name = "ExtractDS";
-            // 
             // table2
             // 
             this.table2.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(6.7999987602233887D)));
             this.table2.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.600001335144043D)));
-            this.table2.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Mm(5.9999995231628418D)));
-            this.table2.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.59999996423721313D)));
+            this.table2.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Mm(5.9999985694885254D)));
+            this.table2.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D)));
             this.table2.Body.SetCellContent(0, 0, this.CreationDate);
             this.table2.Body.SetCellContent(0, 1, this.CreationDateValue);
             this.table2.Body.SetCellContent(1, 0, this.PLRCadastreAuthority);
@@ -463,7 +457,7 @@ namespace Oereb.Report
             this.Attestation.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.7999997138977051D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Attestation.Style.Font.Bold = true;
             this.Attestation.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
-            this.Attestation.Style.Visible = false;
+            this.Attestation.Style.Visible = true;
             resources.ApplyResources(this.Attestation, "Attestation");
             // 
             // AttestationInfo
@@ -482,7 +476,7 @@ namespace Oereb.Report
             this.Stamp.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Stamp.Style.Font.Bold = false;
             this.Stamp.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
-            this.Stamp.Style.Visible = false;
+            this.Stamp.Style.Visible = true;
             resources.ApplyResources(this.Stamp, "Stamp");
             // 
             // Date
@@ -492,7 +486,7 @@ namespace Oereb.Report
             this.Date.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Date.Style.Font.Bold = false;
             this.Date.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
-            this.Date.Style.Visible = false;
+            this.Date.Style.Visible = true;
             resources.ApplyResources(this.Date, "Date");
             // 
             // Signature
@@ -502,7 +496,7 @@ namespace Oereb.Report
             this.Signature.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Signature.Style.Font.Bold = false;
             this.Signature.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
-            this.Signature.Style.Visible = false;
+            this.Signature.Style.Visible = true;
             resources.ApplyResources(this.Signature, "Signature");
             // 
             // pageFooterSection1
@@ -550,6 +544,12 @@ namespace Oereb.Report
             this.FootPageInformation.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             this.FootPageInformation.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             resources.ApplyResources(this.FootPageInformation, "FootPageInformation");
+            // 
+            // ExtractDS
+            // 
+            this.ExtractDS.DataMember = "GetReportExtract";
+            this.ExtractDS.DataSource = typeof(Oereb.Report.ReportExtract);
+            this.ExtractDS.Name = "ExtractDS";
             // 
             // ReportTitle
             // 
