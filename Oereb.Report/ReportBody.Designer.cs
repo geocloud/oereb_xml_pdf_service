@@ -12,17 +12,19 @@ namespace Oereb.Report
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportBody));
             Telerik.Reporting.TableGroup tableGroup1 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup2 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.NavigateToUrlAction navigateToUrlAction1 = new Telerik.Reporting.NavigateToUrlAction();
             Telerik.Reporting.TableGroup tableGroup3 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup4 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup5 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup6 = new Telerik.Reporting.TableGroup();
-            Telerik.Reporting.NavigateToUrlAction navigateToUrlAction1 = new Telerik.Reporting.NavigateToUrlAction();
             Telerik.Reporting.TableGroup tableGroup7 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup8 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup9 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup10 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup11 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup12 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup13 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup14 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
             this.LogoFederal = new Telerik.Reporting.PictureBox();
@@ -33,21 +35,7 @@ namespace Oereb.Report
             this.detail = new Telerik.Reporting.DetailSection();
             this.Title = new Telerik.Reporting.TextBox();
             this.pictureBox1 = new Telerik.Reporting.PictureBox();
-            this.ListLegendInvolved = new Telerik.Reporting.List();
-            this.panel1 = new Telerik.Reporting.Panel();
-            this.LISymbol = new Telerik.Reporting.PictureBox();
-            this.LILabel = new Telerik.Reporting.TextBox();
-            this.LIArea = new Telerik.Reporting.TextBox();
-            this.LIPartIn = new Telerik.Reporting.TextBox();
-            this.LegendItemsInvolvedDs = new Telerik.Reporting.ObjectDataSource();
-            this.LITitle = new Telerik.Reporting.TextBox();
             this.shape1 = new Telerik.Reporting.Shape();
-            this.LNITitle = new Telerik.Reporting.TextBox();
-            this.ListLegendNotInvolved = new Telerik.Reporting.List();
-            this.panel2 = new Telerik.Reporting.Panel();
-            this.LNISymbol = new Telerik.Reporting.PictureBox();
-            this.LNILabel = new Telerik.Reporting.TextBox();
-            this.LegendItemsNotInvolvedDs = new Telerik.Reporting.ObjectDataSource();
             this.shape2 = new Telerik.Reporting.Shape();
             this.LTyp = new Telerik.Reporting.TextBox();
             this.LArea = new Telerik.Reporting.TextBox();
@@ -59,27 +47,50 @@ namespace Oereb.Report
             this.TLegendAtWeb = new Telerik.Reporting.TextBox();
             this.LegendAtWebDs = new Telerik.Reporting.ObjectDataSource();
             this.shape3 = new Telerik.Reporting.Shape();
-            this.LDocuments = new Telerik.Reporting.TextBox();
+            this.shape5 = new Telerik.Reporting.Shape();
+            this.shape6 = new Telerik.Reporting.Shape();
+            this.shape8 = new Telerik.Reporting.Shape();
+            this.PLegalProvisions = new Telerik.Reporting.Panel();
             this.LLegalProvisions = new Telerik.Reporting.TextBox();
             this.LILegalProvisions = new Telerik.Reporting.List();
             this.panel5 = new Telerik.Reporting.Panel();
             this.HBLegalProvisions = new Telerik.Reporting.HtmlTextBox();
             this.LegalProvisionsDs = new Telerik.Reporting.ObjectDataSource();
-            this.shape4 = new Telerik.Reporting.Shape();
+            this.PDocuments = new Telerik.Reporting.Panel();
+            this.LDocuments = new Telerik.Reporting.TextBox();
             this.LIDocuments = new Telerik.Reporting.List();
             this.panel6 = new Telerik.Reporting.Panel();
             this.HBDocument = new Telerik.Reporting.HtmlTextBox();
             this.DocumentsDs = new Telerik.Reporting.ObjectDataSource();
-            this.shape5 = new Telerik.Reporting.Shape();
+            this.PLegendInvolved = new Telerik.Reporting.Panel();
+            this.LITitle = new Telerik.Reporting.TextBox();
+            this.ListLegendInvolved = new Telerik.Reporting.List();
+            this.panel1 = new Telerik.Reporting.Panel();
+            this.LISymbol = new Telerik.Reporting.PictureBox();
+            this.LILabel = new Telerik.Reporting.TextBox();
+            this.LIArea = new Telerik.Reporting.TextBox();
+            this.LIPartIn = new Telerik.Reporting.TextBox();
+            this.LegendItemsInvolvedDs = new Telerik.Reporting.ObjectDataSource();
+            this.PLegendNotInvolved = new Telerik.Reporting.Panel();
+            this.LNITitle = new Telerik.Reporting.TextBox();
+            this.ListLegendNotInvolved = new Telerik.Reporting.List();
+            this.panel2 = new Telerik.Reporting.Panel();
+            this.LNISymbol = new Telerik.Reporting.PictureBox();
+            this.LNILabel = new Telerik.Reporting.TextBox();
+            this.LegendItemsNotInvolvedDs = new Telerik.Reporting.ObjectDataSource();
+            this.shape4 = new Telerik.Reporting.Shape();
+            this.PMoreInformations = new Telerik.Reporting.Panel();
             this.LMoreInformation = new Telerik.Reporting.TextBox();
-            this.LMoreInformationValue = new Telerik.Reporting.TextBox();
-            this.shape6 = new Telerik.Reporting.Shape();
+            this.LIMoreInformation = new Telerik.Reporting.List();
+            this.panel4 = new Telerik.Reporting.Panel();
+            this.htmlTextBox1 = new Telerik.Reporting.HtmlTextBox();
+            this.MoreInformationDs = new Telerik.Reporting.ObjectDataSource();
+            this.PResponsibleOffice = new Telerik.Reporting.Panel();
             this.LResponsibleOffice = new Telerik.Reporting.TextBox();
             this.LIResonsibleOffice = new Telerik.Reporting.List();
             this.panel7 = new Telerik.Reporting.Panel();
             this.HBResponsibleOffice = new Telerik.Reporting.HtmlTextBox();
             this.ResponsibleOfficeDS = new Telerik.Reporting.ObjectDataSource();
-            this.shape8 = new Telerik.Reporting.Shape();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.FootCreationDate = new Telerik.Reporting.TextBox();
             this.FootExtractIdentifier = new Telerik.Reporting.TextBox();
@@ -150,28 +161,22 @@ namespace Oereb.Report
             this.detail.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.Title,
             this.pictureBox1,
-            this.ListLegendInvolved,
-            this.LITitle,
             this.shape1,
-            this.LNITitle,
-            this.ListLegendNotInvolved,
             this.shape2,
             this.LTyp,
             this.LArea,
             this.LPartIn,
             this.PLegendAtWeb,
-            this.LDocuments,
-            this.LLegalProvisions,
-            this.LILegalProvisions,
-            this.shape4,
-            this.LIDocuments,
             this.shape5,
-            this.LMoreInformation,
-            this.LMoreInformationValue,
             this.shape6,
-            this.LResponsibleOffice,
-            this.LIResonsibleOffice,
-            this.shape8});
+            this.shape8,
+            this.PLegalProvisions,
+            this.PDocuments,
+            this.PLegendInvolved,
+            this.PLegendNotInvolved,
+            this.shape4,
+            this.PMoreInformations,
+            this.PResponsibleOffice});
             this.detail.Name = "detail";
             this.detail.PageBreak = Telerik.Reporting.PageBreak.Before;
             this.detail.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.800000011920929D);
@@ -200,23 +205,293 @@ namespace Oereb.Report
             this.pictureBox1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.pictureBox1.Value = "=Fields.Image";
             // 
+            // shape1
+            // 
+            this.shape1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14.399999618530273D));
+            this.shape1.Name = "shape1";
+            this.shape1.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
+            this.shape1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
+            this.shape1.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            // 
+            // shape2
+            // 
+            this.shape2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14.899999618530273D));
+            this.shape2.Name = "shape2";
+            this.shape2.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
+            this.shape2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
+            this.shape2.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            // 
+            // LTyp
+            // 
+            this.LTyp.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.800300121307373D), Telerik.Reporting.Drawing.Unit.Cm(13.5D));
+            this.LTyp.Name = "LTyp";
+            this.LTyp.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.80000013113021851D), Telerik.Reporting.Drawing.Unit.Cm(0.30000105500221252D));
+            this.LTyp.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            resources.ApplyResources(this.LTyp, "LTyp");
+            // 
+            // LArea
+            // 
+            this.LArea.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(15.099699020385742D), Telerik.Reporting.Drawing.Unit.Cm(13.5D));
+            this.LArea.Name = "LArea";
+            this.LArea.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.89999938011169434D), Telerik.Reporting.Drawing.Unit.Cm(0.30000105500221252D));
+            this.LArea.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            resources.ApplyResources(this.LArea, "LArea");
+            // 
+            // LPartIn
+            // 
+            this.LPartIn.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(16.500001907348633D), Telerik.Reporting.Drawing.Unit.Cm(13.5D));
+            this.LPartIn.Name = "LPartIn";
+            this.LPartIn.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.89999938011169434D), Telerik.Reporting.Drawing.Unit.Cm(0.30000105500221252D));
+            this.LPartIn.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            this.LPartIn.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            resources.ApplyResources(this.LPartIn, "LPartIn");
+            // 
+            // PLegendAtWeb
+            // 
+            this.PLegendAtWeb.Bindings.Add(new Telerik.Reporting.Binding("Visible", "= Fields.VisibleLegendAtWeb"));
+            this.PLegendAtWeb.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.LWebReference,
+            this.LILegendAtWeb,
+            this.shape3});
+            this.PLegendAtWeb.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.019999999552965164D), Telerik.Reporting.Drawing.Unit.Cm(15D));
+            this.PLegendAtWeb.Name = "PLegendAtWeb";
+            this.PLegendAtWeb.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.400001525878906D), Telerik.Reporting.Drawing.Unit.Cm(0.49999925494194031D));
+            // 
+            // LWebReference
+            // 
+            this.LWebReference.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.LWebReference.Name = "LWebReference";
+            this.LWebReference.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
+            this.LWebReference.Style.Font.Bold = true;
+            this.LWebReference.Style.Font.Name = "Cadastra";
+            this.LWebReference.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            resources.ApplyResources(this.LWebReference, "LWebReference");
+            // 
+            // LILegendAtWeb
+            // 
+            this.LILegendAtWeb.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.LegendAtWeb"));
+            this.LILegendAtWeb.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D)));
+            this.LILegendAtWeb.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
+            this.LILegendAtWeb.Body.SetCellContent(0, 0, this.panel3);
+            tableGroup1.Name = "ColumnGroup";
+            this.LILegendAtWeb.ColumnGroups.Add(tableGroup1);
+            this.LILegendAtWeb.DataSource = this.LegendAtWebDs;
+            this.LILegendAtWeb.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.panel3});
+            this.LILegendAtWeb.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.LILegendAtWeb.Name = "LILegendAtWeb";
+            tableGroup2.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup2.Name = "DetailGroup";
+            this.LILegendAtWeb.RowGroups.Add(tableGroup2);
+            this.LILegendAtWeb.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            // 
+            // panel3
+            // 
+            this.panel3.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.TLegendAtWeb});
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            // 
+            // TLegendAtWeb
+            // 
+            navigateToUrlAction1.Url = "= Fields.Url";
+            this.TLegendAtWeb.Action = navigateToUrlAction1;
+            this.TLegendAtWeb.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.05000000074505806D));
+            this.TLegendAtWeb.Name = "TLegendAtWeb";
+            this.TLegendAtWeb.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.562824249267578D), Telerik.Reporting.Drawing.Unit.Cm(0.30000001192092896D));
+            this.TLegendAtWeb.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(143)))), ((int)(((byte)(186)))));
+            this.TLegendAtWeb.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
+            resources.ApplyResources(this.TLegendAtWeb, "TLegendAtWeb");
+            // 
+            // LegendAtWebDs
+            // 
+            this.LegendAtWebDs.DataSource = typeof(Oereb.Report.ReportExtract.LegendAtWeb);
+            this.LegendAtWebDs.Name = "LegendAtWebDs";
+            // 
+            // shape3
+            // 
+            this.shape3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.39999926090240479D));
+            this.shape3.Name = "shape3";
+            this.shape3.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
+            this.shape3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
+            this.shape3.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            // 
+            // shape5
+            // 
+            this.shape5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.700000762939453D));
+            this.shape5.Name = "shape5";
+            this.shape5.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
+            this.shape5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
+            this.shape5.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            // 
+            // shape6
+            // 
+            this.shape6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.200000762939453D));
+            this.shape6.Name = "shape6";
+            this.shape6.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
+            this.shape6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
+            this.shape6.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            // 
+            // shape8
+            // 
+            this.shape8.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(13.899999618530273D));
+            this.shape8.Name = "shape8";
+            this.shape8.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
+            this.shape8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
+            this.shape8.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            // 
+            // PLegalProvisions
+            // 
+            this.PLegalProvisions.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.LLegalProvisions,
+            this.LILegalProvisions});
+            this.PLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(15.80000114440918D));
+            this.PLegalProvisions.Name = "PLegalProvisions";
+            this.PLegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            // 
+            // LLegalProvisions
+            // 
+            this.LLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D), Telerik.Reporting.Drawing.Unit.Cm(9.8185220849700272E-05D));
+            this.LLegalProvisions.Name = "LLegalProvisions";
+            this.LLegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
+            this.LLegalProvisions.Style.Font.Bold = true;
+            this.LLegalProvisions.Style.Font.Name = "Cadastra";
+            this.LLegalProvisions.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            resources.ApplyResources(this.LLegalProvisions, "LLegalProvisions");
+            // 
+            // LILegalProvisions
+            // 
+            this.LILegalProvisions.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.LegalProvisions"));
+            this.LILegalProvisions.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D)));
+            this.LILegalProvisions.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
+            this.LILegalProvisions.Body.SetCellContent(0, 0, this.panel5);
+            tableGroup3.Name = "ColumnGroup";
+            this.LILegalProvisions.ColumnGroups.Add(tableGroup3);
+            this.LILegalProvisions.DataSource = this.LegalProvisionsDs;
+            this.LILegalProvisions.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.panel5});
+            this.LILegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.LILegalProvisions.Name = "LILegalProvisions";
+            tableGroup4.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup4.Name = "DetailGroup";
+            this.LILegalProvisions.RowGroups.Add(tableGroup4);
+            this.LILegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.LILegalProvisions.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.Level", Telerik.Reporting.SortDirection.Asc));
+            // 
+            // panel5
+            // 
+            this.panel5.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.HBLegalProvisions});
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            // 
+            // HBLegalProvisions
+            // 
+            this.HBLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.HBLegalProvisions.Name = "HBLegalProvisions";
+            this.HBLegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.HBLegalProvisions.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            resources.ApplyResources(this.HBLegalProvisions, "HBLegalProvisions");
+            // 
+            // LegalProvisionsDs
+            // 
+            this.LegalProvisionsDs.DataSource = typeof(Oereb.Report.ReportExtract.Document);
+            this.LegalProvisionsDs.Name = "LegalProvisionsDs";
+            // 
+            // PDocuments
+            // 
+            this.PDocuments.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.LDocuments,
+            this.LIDocuments});
+            this.PDocuments.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.30000114440918D));
+            this.PDocuments.Name = "PDocuments";
+            this.PDocuments.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.420412063598633D), Telerik.Reporting.Drawing.Unit.Cm(0.4000014066696167D));
+            // 
+            // LDocuments
+            // 
+            this.LDocuments.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.LDocuments.Name = "LDocuments";
+            this.LDocuments.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
+            this.LDocuments.Style.Font.Bold = true;
+            this.LDocuments.Style.Font.Name = "Cadastra";
+            this.LDocuments.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            resources.ApplyResources(this.LDocuments, "LDocuments");
+            // 
+            // LIDocuments
+            // 
+            this.LIDocuments.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.Documents"));
+            this.LIDocuments.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D)));
+            this.LIDocuments.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
+            this.LIDocuments.Body.SetCellContent(0, 0, this.panel6);
+            tableGroup5.Name = "ColumnGroup";
+            this.LIDocuments.ColumnGroups.Add(tableGroup5);
+            this.LIDocuments.DataSource = this.DocumentsDs;
+            this.LIDocuments.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.panel6});
+            this.LIDocuments.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.LIDocuments.Name = "LIDocuments";
+            tableGroup6.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup6.Name = "DetailGroup";
+            this.LIDocuments.RowGroups.Add(tableGroup6);
+            this.LIDocuments.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.LIDocuments.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.Level", Telerik.Reporting.SortDirection.Asc));
+            // 
+            // panel6
+            // 
+            this.panel6.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.HBDocument});
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            // 
+            // HBDocument
+            // 
+            this.HBDocument.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.HBDocument.Name = "HBDocument";
+            this.HBDocument.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.HBDocument.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            resources.ApplyResources(this.HBDocument, "HBDocument");
+            // 
+            // DocumentsDs
+            // 
+            this.DocumentsDs.DataSource = typeof(Oereb.Report.ReportExtract.Document);
+            this.DocumentsDs.Name = "DocumentsDs";
+            // 
+            // PLegendInvolved
+            // 
+            this.PLegendInvolved.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.LITitle,
+            this.ListLegendInvolved});
+            this.PLegendInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14D));
+            this.PLegendInvolved.Name = "PLegendInvolved";
+            this.PLegendInvolved.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            // 
+            // LITitle
+            // 
+            this.LITitle.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.9921220680698752E-05D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.LITitle.Name = "LITitle";
+            this.LITitle.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
+            this.LITitle.Style.Font.Bold = true;
+            this.LITitle.Style.Font.Name = "Cadastra";
+            this.LITitle.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            resources.ApplyResources(this.LITitle, "LITitle");
+            // 
             // ListLegendInvolved
             // 
             this.ListLegendInvolved.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.LegendItemsInvolved"));
-            this.ListLegendInvolved.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.58282470703125D)));
-            this.ListLegendInvolved.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000033378601074D)));
+            this.ListLegendInvolved.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D)));
+            this.ListLegendInvolved.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
             this.ListLegendInvolved.Body.SetCellContent(0, 0, this.panel1);
-            tableGroup1.Name = "ColumnGroup";
-            this.ListLegendInvolved.ColumnGroups.Add(tableGroup1);
+            tableGroup7.Name = "ColumnGroup";
+            this.ListLegendInvolved.ColumnGroups.Add(tableGroup7);
             this.ListLegendInvolved.DataSource = this.LegendItemsInvolvedDs;
             this.ListLegendInvolved.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.panel1});
-            this.ListLegendInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.800300121307373D), Telerik.Reporting.Drawing.Unit.Cm(14.061458587646484D));
+            this.ListLegendInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.ListLegendInvolved.Name = "ListLegendInvolved";
-            tableGroup2.Groupings.Add(new Telerik.Reporting.Grouping(null));
-            tableGroup2.Name = "DetailGroup";
-            this.ListLegendInvolved.RowGroups.Add(tableGroup2);
-            this.ListLegendInvolved.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.58282470703125D), Telerik.Reporting.Drawing.Unit.Cm(0.40000033378601074D));
+            tableGroup8.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup8.Name = "DetailGroup";
+            this.ListLegendInvolved.RowGroups.Add(tableGroup8);
+            this.ListLegendInvolved.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
             // panel1
             // 
@@ -226,7 +501,7 @@ namespace Oereb.Report
             this.LIArea,
             this.LIPartIn});
             this.panel1.Name = "panel1";
-            this.panel1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.58282470703125D), Telerik.Reporting.Drawing.Unit.Cm(0.40000033378601074D));
+            this.panel1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
             // LISymbol
             // 
@@ -268,27 +543,18 @@ namespace Oereb.Report
             this.LegendItemsInvolvedDs.DataSource = typeof(Oereb.Report.ReportExtract.LegendItemInvolved);
             this.LegendItemsInvolvedDs.Name = "LegendItemsInvolvedDs";
             // 
-            // LITitle
+            // PLegendNotInvolved
             // 
-            this.LITitle.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.9921220680698752E-05D), Telerik.Reporting.Drawing.Unit.Cm(14.061458587646484D));
-            this.LITitle.Name = "LITitle";
-            this.LITitle.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
-            this.LITitle.Style.Font.Bold = true;
-            this.LITitle.Style.Font.Name = "Cadastra";
-            this.LITitle.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            resources.ApplyResources(this.LITitle, "LITitle");
-            // 
-            // shape1
-            // 
-            this.shape1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14.461458206176758D));
-            this.shape1.Name = "shape1";
-            this.shape1.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
-            this.shape1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
-            this.shape1.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            this.PLegendNotInvolved.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.LNITitle,
+            this.ListLegendNotInvolved});
+            this.PLegendNotInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14.5D));
+            this.PLegendNotInvolved.Name = "PLegendNotInvolved";
+            this.PLegendNotInvolved.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
             // LNITitle
             // 
-            this.LNITitle.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14.661458969116211D));
+            this.LNITitle.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.LNITitle.Name = "LNITitle";
             this.LNITitle.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LNITitle.Style.Font.Bold = true;
@@ -299,20 +565,20 @@ namespace Oereb.Report
             // ListLegendNotInvolved
             // 
             this.ListLegendNotInvolved.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.LegendItemsNotInvolved"));
-            this.ListLegendNotInvolved.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D)));
+            this.ListLegendNotInvolved.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D)));
             this.ListLegendNotInvolved.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
             this.ListLegendNotInvolved.Body.SetCellContent(0, 0, this.panel2);
-            tableGroup3.Name = "ColumnGroup";
-            this.ListLegendNotInvolved.ColumnGroups.Add(tableGroup3);
+            tableGroup9.Name = "ColumnGroup";
+            this.ListLegendNotInvolved.ColumnGroups.Add(tableGroup9);
             this.ListLegendNotInvolved.DataSource = this.LegendItemsNotInvolvedDs;
             this.ListLegendNotInvolved.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.panel2});
-            this.ListLegendNotInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(14.659999847412109D));
+            this.ListLegendNotInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.ListLegendNotInvolved.Name = "ListLegendNotInvolved";
-            tableGroup4.Groupings.Add(new Telerik.Reporting.Grouping(null));
-            tableGroup4.Name = "DetailGroup";
-            this.ListLegendNotInvolved.RowGroups.Add(tableGroup4);
-            this.ListLegendNotInvolved.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            tableGroup10.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup10.Name = "DetailGroup";
+            this.ListLegendNotInvolved.RowGroups.Add(tableGroup10);
+            this.ListLegendNotInvolved.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
             // panel2
             // 
@@ -320,7 +586,7 @@ namespace Oereb.Report
             this.LNISymbol,
             this.LNILabel});
             this.panel2.Name = "panel2";
-            this.panel2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.panel2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
             // LNISymbol
             // 
@@ -344,225 +610,26 @@ namespace Oereb.Report
             this.LegendItemsNotInvolvedDs.DataSource = typeof(Oereb.Report.ReportExtract.LegendItem);
             this.LegendItemsNotInvolvedDs.Name = "LegendItemsNotInvolvedDs";
             // 
-            // shape2
-            // 
-            this.shape2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(15.102230072021484D));
-            this.shape2.Name = "shape2";
-            this.shape2.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
-            this.shape2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
-            this.shape2.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            // 
-            // LTyp
-            // 
-            this.LTyp.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.800300121307373D), Telerik.Reporting.Drawing.Unit.Cm(13.5D));
-            this.LTyp.Name = "LTyp";
-            this.LTyp.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.80000013113021851D), Telerik.Reporting.Drawing.Unit.Cm(0.30000105500221252D));
-            this.LTyp.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
-            resources.ApplyResources(this.LTyp, "LTyp");
-            // 
-            // LArea
-            // 
-            this.LArea.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(15.099699020385742D), Telerik.Reporting.Drawing.Unit.Cm(13.5D));
-            this.LArea.Name = "LArea";
-            this.LArea.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.89999938011169434D), Telerik.Reporting.Drawing.Unit.Cm(0.30000105500221252D));
-            this.LArea.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
-            resources.ApplyResources(this.LArea, "LArea");
-            // 
-            // LPartIn
-            // 
-            this.LPartIn.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(16.500001907348633D), Telerik.Reporting.Drawing.Unit.Cm(13.5D));
-            this.LPartIn.Name = "LPartIn";
-            this.LPartIn.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.89999938011169434D), Telerik.Reporting.Drawing.Unit.Cm(0.30000105500221252D));
-            this.LPartIn.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
-            resources.ApplyResources(this.LPartIn, "LPartIn");
-            // 
-            // PLegendAtWeb
-            // 
-            this.PLegendAtWeb.Bindings.Add(new Telerik.Reporting.Binding("Visible", "= Fields.VisibleLegendAtWeb"));
-            this.PLegendAtWeb.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.LWebReference,
-            this.LILegendAtWeb,
-            this.shape3});
-            this.PLegendAtWeb.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.9988508736714721E-05D), Telerik.Reporting.Drawing.Unit.Cm(15.261460304260254D));
-            this.PLegendAtWeb.Name = "PLegendAtWeb";
-            this.PLegendAtWeb.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.400001525878906D), Telerik.Reporting.Drawing.Unit.Cm(0.53854018449783325D));
-            // 
-            // LWebReference
-            // 
-            this.LWebReference.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
-            this.LWebReference.Name = "LWebReference";
-            this.LWebReference.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
-            this.LWebReference.Style.Font.Bold = true;
-            this.LWebReference.Style.Font.Name = "Cadastra";
-            this.LWebReference.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            resources.ApplyResources(this.LWebReference, "LWebReference");
-            // 
-            // LILegendAtWeb
-            // 
-            this.LILegendAtWeb.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.LegendAtWeb"));
-            this.LILegendAtWeb.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D)));
-            this.LILegendAtWeb.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
-            this.LILegendAtWeb.Body.SetCellContent(0, 0, this.panel3);
-            tableGroup5.Name = "ColumnGroup";
-            this.LILegendAtWeb.ColumnGroups.Add(tableGroup5);
-            this.LILegendAtWeb.DataSource = this.LegendAtWebDs;
-            this.LILegendAtWeb.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.panel3});
-            this.LILegendAtWeb.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0D));
-            this.LILegendAtWeb.Name = "LILegendAtWeb";
-            tableGroup6.Groupings.Add(new Telerik.Reporting.Grouping(null));
-            tableGroup6.Name = "DetailGroup";
-            this.LILegendAtWeb.RowGroups.Add(tableGroup6);
-            this.LILegendAtWeb.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
-            // 
-            // panel3
-            // 
-            this.panel3.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.TLegendAtWeb});
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
-            // 
-            // TLegendAtWeb
-            // 
-            navigateToUrlAction1.Url = "= Fields.Url";
-            this.TLegendAtWeb.Action = navigateToUrlAction1;
-            this.TLegendAtWeb.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.05000000074505806D));
-            this.TLegendAtWeb.Name = "TLegendAtWeb";
-            this.TLegendAtWeb.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.562824249267578D), Telerik.Reporting.Drawing.Unit.Cm(0.30000001192092896D));
-            this.TLegendAtWeb.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(143)))), ((int)(((byte)(186)))));
-            this.TLegendAtWeb.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
-            resources.ApplyResources(this.TLegendAtWeb, "TLegendAtWeb");
-            // 
-            // LegendAtWebDs
-            // 
-            this.LegendAtWebDs.DataSource = typeof(Oereb.Report.ReportExtract.LegendAtWeb);
-            this.LegendAtWebDs.Name = "LegendAtWebDs";
-            // 
-            // shape3
-            // 
-            this.shape3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.39999926090240479D));
-            this.shape3.Name = "shape3";
-            this.shape3.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
-            this.shape3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
-            this.shape3.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            // 
-            // LDocuments
-            // 
-            this.LDocuments.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.911457061767578D));
-            this.LDocuments.Name = "LDocuments";
-            this.LDocuments.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
-            this.LDocuments.Style.Font.Bold = true;
-            this.LDocuments.Style.Font.Name = "Cadastra";
-            this.LDocuments.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            resources.ApplyResources(this.LDocuments, "LDocuments");
-            // 
-            // LLegalProvisions
-            // 
-            this.LLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.311456680297852D));
-            this.LLegalProvisions.Name = "LLegalProvisions";
-            this.LLegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
-            this.LLegalProvisions.Style.Font.Bold = true;
-            this.LLegalProvisions.Style.Font.Name = "Cadastra";
-            this.LLegalProvisions.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            resources.ApplyResources(this.LLegalProvisions, "LLegalProvisions");
-            // 
-            // LILegalProvisions
-            // 
-            this.LILegalProvisions.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.LegalProvisions"));
-            this.LILegalProvisions.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D)));
-            this.LILegalProvisions.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
-            this.LILegalProvisions.Body.SetCellContent(0, 0, this.panel5);
-            tableGroup7.Name = "ColumnGroup";
-            this.LILegalProvisions.ColumnGroups.Add(tableGroup7);
-            this.LILegalProvisions.DataSource = this.LegalProvisionsDs;
-            this.LILegalProvisions.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.panel5});
-            this.LILegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.79979133605957D), Telerik.Reporting.Drawing.Unit.Cm(16.311456680297852D));
-            this.LILegalProvisions.Name = "LILegalProvisions";
-            tableGroup8.Groupings.Add(new Telerik.Reporting.Grouping(null));
-            tableGroup8.Name = "DetailGroup";
-            this.LILegalProvisions.RowGroups.Add(tableGroup8);
-            this.LILegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
-            this.LILegalProvisions.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.Level", Telerik.Reporting.SortDirection.Asc));
-            // 
-            // panel5
-            // 
-            this.panel5.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.HBLegalProvisions});
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
-            // 
-            // HBLegalProvisions
-            // 
-            this.HBLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.020410036668181419D), Telerik.Reporting.Drawing.Unit.Cm(0D));
-            this.HBLegalProvisions.Name = "HBLegalProvisions";
-            this.HBLegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.539599418640137D), Telerik.Reporting.Drawing.Unit.Cm(0.4000014066696167D));
-            this.HBLegalProvisions.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            resources.ApplyResources(this.HBLegalProvisions, "HBLegalProvisions");
-            // 
-            // LegalProvisionsDs
-            // 
-            this.LegalProvisionsDs.DataSource = typeof(Oereb.Report.ReportExtract.Document);
-            this.LegalProvisionsDs.Name = "LegalProvisionsDs";
-            // 
             // shape4
             // 
-            this.shape4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.711458206176758D));
+            this.shape4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.200000762939453D));
             this.shape4.Name = "shape4";
             this.shape4.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
             this.shape4.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             // 
-            // LIDocuments
+            // PMoreInformations
             // 
-            this.LIDocuments.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.Documents"));
-            this.LIDocuments.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D)));
-            this.LIDocuments.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
-            this.LIDocuments.Body.SetCellContent(0, 0, this.panel6);
-            tableGroup9.Name = "ColumnGroup";
-            this.LIDocuments.ColumnGroups.Add(tableGroup9);
-            this.LIDocuments.DataSource = this.DocumentsDs;
-            this.LIDocuments.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.panel6});
-            this.LIDocuments.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.7799015045166016D), Telerik.Reporting.Drawing.Unit.Cm(16.911457061767578D));
-            this.LIDocuments.Name = "LIDocuments";
-            tableGroup10.Groupings.Add(new Telerik.Reporting.Grouping(null));
-            tableGroup10.Name = "DetailGroup";
-            this.LIDocuments.RowGroups.Add(tableGroup10);
-            this.LIDocuments.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
-            this.LIDocuments.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.Level", Telerik.Reporting.SortDirection.Asc));
-            // 
-            // panel6
-            // 
-            this.panel6.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.HBDocument});
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.579999923706055D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
-            // 
-            // HBDocument
-            // 
-            this.HBDocument.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.040299542248249054D), Telerik.Reporting.Drawing.Unit.Cm(9.9046490504406393E-05D));
-            this.HBDocument.Name = "HBDocument";
-            this.HBDocument.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.539599418640137D), Telerik.Reporting.Drawing.Unit.Cm(0.39990237355232239D));
-            this.HBDocument.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            resources.ApplyResources(this.HBDocument, "HBDocument");
-            // 
-            // DocumentsDs
-            // 
-            this.DocumentsDs.DataSource = typeof(Oereb.Report.ReportExtract.Document);
-            this.DocumentsDs.Name = "DocumentsDs";
-            // 
-            // shape5
-            // 
-            this.shape5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.311458587646484D));
-            this.shape5.Name = "shape5";
-            this.shape5.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
-            this.shape5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
-            this.shape5.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            this.PMoreInformations.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.LMoreInformation,
+            this.LIMoreInformation});
+            this.PMoreInformations.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.80000114440918D));
+            this.PMoreInformations.Name = "PMoreInformations";
+            this.PMoreInformations.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
             // LMoreInformation
             // 
-            this.LMoreInformation.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.450000762939453D));
+            this.LMoreInformation.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.LMoreInformation.Name = "LMoreInformation";
             this.LMoreInformation.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LMoreInformation.Style.Font.Bold = true;
@@ -570,27 +637,56 @@ namespace Oereb.Report
             this.LMoreInformation.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LMoreInformation, "LMoreInformation");
             // 
-            // LMoreInformationValue
+            // LIMoreInformation
             // 
-            this.LMoreInformationValue.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8003005981445312D), Telerik.Reporting.Drawing.Unit.Cm(17.411655426025391D));
-            this.LMoreInformationValue.Name = "LMoreInformationValue";
-            this.LMoreInformationValue.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.559598922729492D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
-            this.LMoreInformationValue.Style.Font.Bold = true;
-            this.LMoreInformationValue.Style.Font.Name = "Cadastra";
-            this.LMoreInformationValue.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
-            resources.ApplyResources(this.LMoreInformationValue, "LMoreInformationValue");
+            this.LIMoreInformation.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.MoreInformations"));
+            this.LIMoreInformation.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D)));
+            this.LIMoreInformation.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
+            this.LIMoreInformation.Body.SetCellContent(0, 0, this.panel4);
+            tableGroup11.Name = "ColumnGroup";
+            this.LIMoreInformation.ColumnGroups.Add(tableGroup11);
+            this.LIMoreInformation.DataSource = this.MoreInformationDs;
+            this.LIMoreInformation.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.panel4});
+            this.LIMoreInformation.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.LIMoreInformation.Name = "LIMoreInformation";
+            tableGroup12.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup12.Name = "DetailGroup";
+            this.LIMoreInformation.RowGroups.Add(tableGroup12);
+            this.LIMoreInformation.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
-            // shape6
+            // panel4
             // 
-            this.shape6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.81146240234375D));
-            this.shape6.Name = "shape6";
-            this.shape6.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
-            this.shape6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
-            this.shape6.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            this.panel4.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.htmlTextBox1});
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            // 
+            // htmlTextBox1
+            // 
+            this.htmlTextBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.htmlTextBox1.Name = "htmlTextBox1";
+            this.htmlTextBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.htmlTextBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
+            resources.ApplyResources(this.htmlTextBox1, "htmlTextBox1");
+            // 
+            // MoreInformationDs
+            // 
+            this.MoreInformationDs.DataSource = typeof(Oereb.Report.ReportExtract.Document);
+            this.MoreInformationDs.Name = "MoreInformationDs";
+            // 
+            // PResponsibleOffice
+            // 
+            this.PResponsibleOffice.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.LResponsibleOffice,
+            this.LIResonsibleOffice});
+            this.PResponsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.300201416015625D));
+            this.PResponsibleOffice.Name = "PResponsibleOffice";
+            this.PResponsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
             // LResponsibleOffice
             // 
-            this.LResponsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.950000762939453D));
+            this.LResponsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.LResponsibleOffice.Name = "LResponsibleOffice";
             this.LResponsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LResponsibleOffice.Style.Font.Bold = true;
@@ -601,34 +697,34 @@ namespace Oereb.Report
             // LIResonsibleOffice
             // 
             this.LIResonsibleOffice.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.ResponsibleOffice"));
-            this.LIResonsibleOffice.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.620200157165527D)));
-            this.LIResonsibleOffice.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40010052919387817D)));
+            this.LIResonsibleOffice.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D)));
+            this.LIResonsibleOffice.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D)));
             this.LIResonsibleOffice.Body.SetCellContent(0, 0, this.panel7);
-            tableGroup11.Name = "ColumnGroup";
-            this.LIResonsibleOffice.ColumnGroups.Add(tableGroup11);
+            tableGroup13.Name = "ColumnGroup";
+            this.LIResonsibleOffice.ColumnGroups.Add(tableGroup13);
             this.LIResonsibleOffice.DataSource = this.ResponsibleOfficeDS;
             this.LIResonsibleOffice.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.panel7});
-            this.LIResonsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.78000020980835D), Telerik.Reporting.Drawing.Unit.Cm(17.950000762939453D));
+            this.LIResonsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8033380508422852D), Telerik.Reporting.Drawing.Unit.Cm(9.9907767435070127E-05D));
             this.LIResonsibleOffice.Name = "LIResonsibleOffice";
-            tableGroup12.Groupings.Add(new Telerik.Reporting.Grouping(null));
-            tableGroup12.Name = "DetailGroup";
-            this.LIResonsibleOffice.RowGroups.Add(tableGroup12);
-            this.LIResonsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.620200157165527D), Telerik.Reporting.Drawing.Unit.Cm(0.40010052919387817D));
+            tableGroup14.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup14.Name = "DetailGroup";
+            this.LIResonsibleOffice.RowGroups.Add(tableGroup14);
+            this.LIResonsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
             // panel7
             // 
             this.panel7.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.HBResponsibleOffice});
             this.panel7.Name = "panel7";
-            this.panel7.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.620200157165527D), Telerik.Reporting.Drawing.Unit.Cm(0.40010052919387817D));
+            this.panel7.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
             // HBResponsibleOffice
             // 
             this.HBResponsibleOffice.CanShrink = true;
             this.HBResponsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.020099440589547157D), Telerik.Reporting.Drawing.Unit.Cm(9.9046490504406393E-05D));
             this.HBResponsibleOffice.Name = "HBResponsibleOffice";
-            this.HBResponsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.559900283813477D), Telerik.Reporting.Drawing.Unit.Cm(0.4000014066696167D));
+            this.HBResponsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             this.HBResponsibleOffice.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.HBResponsibleOffice, "HBResponsibleOffice");
             // 
@@ -636,14 +732,6 @@ namespace Oereb.Report
             // 
             this.ResponsibleOfficeDS.DataSource = typeof(Oereb.Report.ReportExtract.ResponsibleOffice);
             this.ResponsibleOfficeDS.Name = "ResponsibleOfficeDS";
-            // 
-            // shape8
-            // 
-            this.shape8.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(13.911459922790527D));
-            this.shape8.Name = "shape8";
-            this.shape8.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
-            this.shape8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
-            this.shape8.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             // 
             // pageFooterSection1
             // 
@@ -716,7 +804,7 @@ namespace Oereb.Report
             styleRule1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.StyleSheet.AddRange(new Telerik.Reporting.Drawing.StyleRule[] {
             styleRule1});
-            this.Width = Telerik.Reporting.Drawing.Unit.Cm(17.400100708007812D);
+            this.Width = Telerik.Reporting.Drawing.Unit.Cm(17.441125869750977D);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
             }
@@ -769,7 +857,6 @@ namespace Oereb.Report
         private Telerik.Reporting.ObjectDataSource DocumentsDs;
         private Telerik.Reporting.Shape shape5;
         private Telerik.Reporting.TextBox LMoreInformation;
-        private Telerik.Reporting.TextBox LMoreInformationValue;
         private Telerik.Reporting.Shape shape6;
         private Telerik.Reporting.TextBox LResponsibleOffice;
         private Telerik.Reporting.List LIResonsibleOffice;
@@ -784,5 +871,15 @@ namespace Oereb.Report
         private Telerik.Reporting.TextBox FootExtractIdentifier;
         private Telerik.Reporting.Shape shape9;
         private Telerik.Reporting.TextBox FootPageInfo;
+        private Telerik.Reporting.Panel PLegalProvisions;
+        private Telerik.Reporting.Panel PDocuments;
+        private Telerik.Reporting.Panel PLegendInvolved;
+        private Telerik.Reporting.Panel PLegendNotInvolved;
+        private Telerik.Reporting.Panel PMoreInformations;
+        private Telerik.Reporting.Panel PResponsibleOffice;
+        private Telerik.Reporting.List LIMoreInformation;
+        private Telerik.Reporting.Panel panel4;
+        private Telerik.Reporting.HtmlTextBox htmlTextBox1;
+        private Telerik.Reporting.ObjectDataSource MoreInformationDs;
     }
 }

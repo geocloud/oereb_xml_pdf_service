@@ -489,6 +489,7 @@ namespace Oereb.Report
             public bool VisibleLegendAtWeb => LegendAtWeb.Any();
             public List<Document> LegalProvisions { get; set; }
             public List<Document> Documents { get; set; }
+            public List<Document> MoreInformations { get; set; }
             public List<ResponsibleOffice> ResponsibleOffice { get; set; }
             public string ExtractIdentifier { get; set; }
             public DateTime CreationDate { get; set; }
@@ -503,6 +504,10 @@ namespace Oereb.Report
 
                 LegalProvisions = new List<Document>();
                 Documents = new List<Document>();
+                MoreInformations = new List<Document>()
+                {
+                    new Document() {Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url =""}
+                };
 
                 ResponsibleOffice = new List<ResponsibleOffice>();
 
@@ -657,6 +662,11 @@ namespace Oereb.Report
 
                             LegalProvisions.Add(documentItem);
                         }
+
+                        if (!LegalProvisions.Any())
+                        {
+                            LegalProvisions.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
+                        }
                     }
 
                     #endregion
@@ -683,6 +693,11 @@ namespace Oereb.Report
                             }
 
                             Documents.Add(documentItem);
+                        }
+
+                        if (!Documents.Any())
+                        {
+                            Documents.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
                         }
                     }
 

@@ -120,24 +120,6 @@
   <data name="Title.Value" xml:space="preserve">
     <value>= Fields.Theme</value>
   </data>
-  <data name="LILabel.Value" xml:space="preserve">
-    <value>= Fields.Label</value>
-  </data>
-  <data name="LIArea.Value" xml:space="preserve">
-    <value>= Fields.Area</value>
-  </data>
-  <data name="LIPartIn.Value" xml:space="preserve">
-    <value>= Fields.PartInPercent</value>
-  </data>
-  <data name="LITitle.Value" xml:space="preserve">
-    <value>Legende beteiligter Objekte</value>
-  </data>
-  <data name="LNITitle.Value" xml:space="preserve">
-    <value>Übrige Legende (im sichtbaren Bereich)</value>
-  </data>
-  <data name="LNILabel.Value" xml:space="preserve">
-    <value>= Fields.Label</value>
-  </data>
   <data name="LTyp.Value" xml:space="preserve">
     <value>Typ</value>
   </data>
@@ -153,23 +135,46 @@
   <data name="TLegendAtWeb.Value" xml:space="preserve">
     <value>= Fields.Label</value>
   </data>
-  <data name="LDocuments.Value" xml:space="preserve">
-    <value>Gesetzliche Grundlagen</value>
-  </data>
   <data name="LLegalProvisions.Value" xml:space="preserve">
     <value>Rechtsvorschriften</value>
   </data>
   <data name="HBLegalProvisions.Value" xml:space="preserve">
-    <value>= Fields.OfficialNumber + Fields.Title + ":&lt;a href='"+ Fields.Url+"' style='font-size:6.5pt;text-decoration:none;text-indent:-3mm;padding-left:3mm;color:#4c8fba;'&gt;" + Fields.Url + "&lt;/a&gt;"</value>
+    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + ":&lt;a href='"+ Fields.Url+"' style='font-size:6.5pt;text-decoration:none;text-indent:-3mm;padding-left:3mm;color:#4c8fba;'&gt;" + Fields.Url + "&lt;/a&gt;")
+</value>
+  </data>
+  <data name="LDocuments.Value" xml:space="preserve">
+    <value>Gesetzliche Grundlagen</value>
   </data>
   <data name="HBDocument.Value" xml:space="preserve">
-    <value>= Fields.OfficialNumber + Fields.Title + ":&lt;a href='"+ Fields.Url+"' style='font-size:6.5pt;text-decoration:none;text-indent:-3mm;padding-left:3mm;color:#4c8fba;'&gt;" + Fields.Url + "&lt;/a&gt;"</value>
+    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + ":&lt;a href='"+ Fields.Url+"' style='font-size:6.5pt;text-decoration:none;text-indent:-3mm;padding-left:3mm;color:#4c8fba;'&gt;" + Fields.Url + "&lt;/a&gt;")
+</value>
+  </data>
+  <data name="LITitle.Value" xml:space="preserve">
+    <value>Legende beteiligter Objekte</value>
+  </data>
+  <data name="LILabel.Value" xml:space="preserve">
+    <value>= Fields.Label</value>
+  </data>
+  <data name="LIArea.Value" xml:space="preserve">
+    <value>= Fields.Area</value>
+  </data>
+  <data name="LIPartIn.Value" xml:space="preserve">
+    <value>= Fields.PartInPercent</value>
+  </data>
+  <data name="LNITitle.Value" xml:space="preserve">
+    <value>Übrige Legende (im sichtbaren Bereich)</value>
+  </data>
+  <data name="LNILabel.Value" xml:space="preserve">
+    <value>= Fields.Label</value>
   </data>
   <data name="LMoreInformation.Value" xml:space="preserve">
     <value>Weitere Informationen und Hinweise</value>
   </data>
-  <data name="LMoreInformationValue.Value" xml:space="preserve">
-    <value>-</value>
+  <data name="htmlTextBox1.Value" xml:space="preserve">
+    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + ":&lt;a href='"+ Fields.Url+"' style='font-size:6.5pt;text-decoration:none;text-indent:-3mm;padding-left:3mm;color:#4c8fba;'&gt;" + Fields.Url + "&lt;/a&gt;")
+
+
+</value>
   </data>
   <data name="LResponsibleOffice.Value" xml:space="preserve">
     <value>Zuständige Stelle</value>
@@ -188,5 +193,8 @@
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>1.5</value>
   </metadata>
 </root>
