@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Erzeuge PDF aus einem Öreb Data-Extrakt</title>
+	</head>
+	<body style="font-family:Arial">
+		<h1>Erzeuge PDF aus einem Öreb Data-Extrakt</h1>
+		<form action = "./create" method = "post" enctype = "multipart/form-data">
+			<table>
+				<tr><td>Xml-Datei</td><td><input type = "file" name = "file"/></td></tr>
+				<tr><td>Token</td><td><input type = "text" name = "token"/></td></tr>
+			    <tr><td>Xml-Validation</td><td><input type="radio" name="validate" value="true" checked="">Ja<br/><input type="radio" name="validate" value="false">Nein</td></tr>
+			    <tr><td>Wms verwenden</td><td><input type="radio" name="usewms" value="true" disabled="true">Ja<br/><input type="radio" name="usewms" value="false" checked="" disabled="true">Nein</td></tr>
+				<tr>
+					<td>Typ</td>
+					<td>
+						<select name="flavour" size="1"><option value="reduced" selected>Reduziert</option><option value="complete">Komplett, Dokumente im PDF angehängt</option><option value="completeAttached">Komplett, Dokumente im PDF als Anhang</option></select>
+					</td>
+				</tr>
+			</table>
+			<br><br>
+			<input type = "submit" value="Senden" onclick="this.disabled = true; this.value = 'Sende Anfrage…'; form.submit();" />
+		</form>
+	</body>
+</html>

@@ -1,2 +1,2 @@
-xsd.exe /c /language:CS "ExtractData.xsd"
+xsd.exe /c /language:CS "Extract.xsd"
 pause

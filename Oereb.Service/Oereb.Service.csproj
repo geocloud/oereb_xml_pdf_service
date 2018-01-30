@@ -44,8 +44,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="gdalconst_csharp, Version=1.0.5980.33660, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\geocentrale-GDAL.1.10.7\lib\net45\gdalconst_csharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="gdal_csharp, Version=1.0.5980.33659, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\geocentrale-GDAL.1.10.7\lib\net45\gdal_csharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="geocentrale-GDAL, Version=1.10.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\geocentrale-GDAL.1.10.7\lib\net45\geocentrale-GDAL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="geocentrale-GDAL.Native, Version=1.10.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\geocentrale-GDAL.Native.1.10.7\lib\net45\geocentrale-GDAL.Native.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GhostscriptSharp, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GhostScriptSharp.1.3.1.4\lib\net40\GhostscriptSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mapscript_csharp, Version=1.0.5980.33915, Culture=neutral, PublicKeyToken=80087771edd02926, processorArchitecture=MSIL">
+      <HintPath>..\packages\geocentrale-GDAL.1.10.7\lib\net45\mapscript_csharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -55,6 +79,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ogr_csharp, Version=1.0.5980.33659, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\geocentrale-GDAL.1.10.7\lib\net45\ogr_csharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="osr_csharp, Version=1.0.5980.33659, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\geocentrale-GDAL.1.10.7\lib\net45\osr_csharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http" />
@@ -87,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\report-form.htm" />
     <Content Include="Global.asax" />
     <Content Include="Image\report_NorthArrow.png" />
     <Content Include="Image\report_Scalebar.png" />
@@ -98,12 +131,77 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\PathTools.cs" />
     <Compile Include="Helper\Xml.cs" />
+    <Compile Include="Helper\XmlValidation.cs" />
     <Compile Include="SettingsReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Checkfiles\schema_0.4\ExtractData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_0.4\gco.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_0.4\gmd.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_0.4\gml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_0.4\gsr.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_0.4\gss.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_0.4\gts.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_0.4\xlink.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_0.4\xml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_0.4\xmldsig-core-schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\ExtractData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\gco.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\gmd.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\gml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\gsr.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\gss.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\gts.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\xlink.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\xml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\xmldsig-core-schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Checkfiles\schema_1.0\xmldsig-core-schema_mod.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -140,7 +238,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53430</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Oereb.Service</IISUrl>
+          <IISUrl>http://localhost/Xml2Pdf</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -156,11 +254,13 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.2.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.2.1\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Baseclass.Contrib.Nuget.Output.1.0.0\build\net40\Baseclass.Contrib.Nuget.Output.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Baseclass.Contrib.Nuget.Output.1.0.0\build\net40\Baseclass.Contrib.Nuget.Output.targets'))" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>
 PowerShell -NoProfile -ExecutionPolicy Bypass -Command "ls '$(SolutionDir)\packages\GhostScriptSharp.*\Tools\gsdll64.dll' | Sort -Descending | Select -First 1 | cp -Destination '$(TargetDir)'; exit 0"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\Baseclass.Contrib.Nuget.Output.1.0.0\build\net40\Baseclass.Contrib.Nuget.Output.targets" Condition="Exists('..\packages\Baseclass.Contrib.Nuget.Output.1.0.0\build\net40\Baseclass.Contrib.Nuget.Output.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

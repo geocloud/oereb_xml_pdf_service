@@ -8,7 +8,7 @@ namespace Oereb.Report.Helper
 {
     public static class LocalisedUri
     {
-        public static string GetStringFromArray(Service.DataContracts.Model.v04.LocalisedUri[] localisedUri, string language, string defaultValue = "-")
+        public static string GetStringFromArray(Service.DataContracts.Model.v10.LocalisedUri[] localisedUri, string language, string defaultValue = "-")
         {
             if (localisedUri.Any(x => x.Language.ToString() == language))
             {

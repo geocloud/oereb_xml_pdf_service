@@ -20,7 +20,9 @@ namespace Oereb.Service.DataContracts
         {
             Pdf,
             Xml,
-            Json
+            Json,
+            Html,  //project specific
+            PdfA1a //project specific
         }
 
         public enum Language
@@ -42,6 +44,8 @@ namespace Oereb.Service.DataContracts
         public static Dictionary<string, Uri>  AvailableCantonsRedirected { get; set; }
 
         public static Dictionary<string, List<string>>AvailableCantonsAndTopics { get; set; }
+
+        public static Dictionary<string, string> AccessTokens { get; set; }
 
         public const string TopicAll = "ALL";
         public const string TopicAllFederal = "ALL_FEDERAL";

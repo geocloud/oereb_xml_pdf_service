@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace Oereb.Report
 {
     public class ReportBuilder
     {
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// generate the report from xml
         /// </summary>
@@ -22,7 +25,7 @@ namespace Oereb.Report
         /// <param name="complete">get the full pdf, incl. appendix</param>
         /// <param name="attachedFiles">true: attach the appendix as files in the pdf; false: convert the references pdf's to bitmap and include</param>
         /// <returns></returns>
-        public static byte[] Generate(string xmlContent, string format, bool complete = true, bool attachedFiles = false)
+        public static byte[] Generate(string xmlContent, string format, bool complete = true, bool attachedFiles = false, bool useWms = false)
         {
             var reportBody = new ReportBody();
             var reportGlossary = new ReportGlossary();
@@ -34,12 +37,19 @@ namespace Oereb.Report
             //File.WriteAllText(filename, xmlContent, Encoding.Unicode);
             //var source = XElement.Load(filename);
 
+            if (xmlContent[0] == 65279)
+            {
+                xmlContent = xmlContent.Substring(1);
+            }
+
             var source = XElement.Parse(xmlContent);
 
             var converted = PreProcessing.AssignCDataToGmlNamespace(source);
-            var extract = Xml<Oereb.Service.DataContracts.Model.v04.Extract>.DeserializeFromXmlString(converted.ToString());
+            var extract = Xml<Oereb.Service.DataContracts.Model.v10.Extract>.DeserializeFromXmlString(converted.ToString());
 
-            var reportExtract = new ReportExtract(complete, attachedFiles);
+            var attestation = Convert.ToBoolean(ConfigurationManager.AppSettings["attestation"] ?? "true");
+
+            var reportExtract = new ReportExtract(complete, attachedFiles, attestation, useWms);
             reportExtract.Extract = extract;
             reportExtract.Ini();
 
@@ -112,35 +122,43 @@ namespace Oereb.Report
 
             if (reportExtract.ExtractComplete && reportExtract.AttacheFiles)
             {
-                var guid = Guid.NewGuid();
-                var pdfFile = Path.Combine(Path.GetTempPath(), $"{guid}.pdf");
-                var pdfFileAttached = Path.Combine(Path.GetTempPath(), $"{guid}_attached.pdf");
-
-                using (var fileStream = new System.IO.FileStream(pdfFile, System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                try
                 {
-                    fileStream.Write(result.DocumentBytes, 0, result.DocumentBytes.Length);
-                }
+                    var guid = Guid.NewGuid();
+                    var pdfFile = Path.Combine(Path.GetTempPath(), $"{guid}.pdf");
+                    var pdfFileAttached = Path.Combine(Path.GetTempPath(), $"{guid}_attached.pdf");
 
-                var fileContainers = new List<FileContainer>();
-
-                foreach (var tocAppendix in reportExtract.TocAppendixes)
-                {
-                    if (!tocAppendix.State)
+                    using (var fileStream = new System.IO.FileStream(pdfFile, System.IO.FileMode.Create, System.IO.FileAccess.Write))
                     {
-                        continue; //todo what happen if this is not a pdf
+                        fileStream.Write(result.DocumentBytes, 0, result.DocumentBytes.Length);
                     }
 
-                    fileContainers.Add( new FileContainer()
+                    var fileContainers = new List<FileContainer>();
+
+                    foreach (var tocAppendix in reportExtract.TocAppendixes)
                     {
-                        FilePath = tocAppendix.Filename,
-                        Description = $"{tocAppendix.Shortname}_{tocAppendix.FileDescription}",
-                        ContentType = tocAppendix.ContentType
-                    });
+                        if (!tocAppendix.State)
+                        {
+                            continue; //todo what happen if this is not a pdf
+                        }
+
+                        fileContainers.Add( new FileContainer()
+                        {
+                            FilePath = tocAppendix.Filename,
+                            Description = $"{tocAppendix.Shortname}_{tocAppendix.FileDescription}",
+                            ContentType = tocAppendix.ContentType
+                        });
+                    }
+
+                    Oereb.Report.Helper.Pdf.AddAttachments(pdfFile, pdfFileAttached, fileContainers);
+
+                    return File.ReadAllBytes(pdfFileAttached);
                 }
-
-                Oereb.Report.Helper.Pdf.AddAttachments(pdfFile, pdfFileAttached, fileContainers);
-
-                return File.ReadAllBytes(pdfFileAttached);
+                catch (Exception ex)
+                {
+                    Log.Error($"error attache files, {ex.Message}");
+                    throw ex;
+                }
             }
             else
             {
@@ -148,10 +166,10 @@ namespace Oereb.Report
             }
         }
 
-        public static byte[] GeneratePdf(string xmlContent, bool complete = true, bool attachedFiles = false)
+        public static byte[] GeneratePdf(string xmlContent, bool complete = true, bool attachedFiles = false, bool useWms = false)
         {
             string format = "pdf";
-            return Generate(xmlContent, format, complete, attachedFiles);
+            return Generate(xmlContent, format, complete, attachedFiles, useWms);
         }
 
     }

@@ -12,10 +12,16 @@ namespace Oereb.Service
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-               name: "GetPdfFromXml",
-               routeTemplate: "report/{flavour}",
-               defaults: new { controller = "report", action = "getpdffromxml" }
-           );
+                name: "ReportCreation",
+                routeTemplate: "oereb/report/create",
+                defaults: new { controller = "report", action = "create" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "ReportForm",
+                routeTemplate: "oereb/report/form",
+                defaults: new { controller = "report", action = "form" }
+            );
         }
     }
 }

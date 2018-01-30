@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.Server;
 
 namespace Oereb.Service.DataContracts
 {
@@ -13,11 +14,26 @@ namespace Oereb.Service.DataContracts
 
     public class Options
     {
+        public enum ResponseType
+        {
+            Mimetype,
+            Specification,
+            Url
+        }
+
         public Settings.Format Format { get; set; }
         public Settings.Flavour Flavour { get; set; }
         public Settings.Language Language { get; set; }
         public bool Geometry { get; set; }
         public List<string> Topics { get; set; }
+        public string Canton { get; set; }
+        public bool WithImages { get; set; } = true;
+
+        public ResponseType Response { get; set; }
+        public bool AppendixAttached { get; set; } = false;
+        public bool Details { get; set; } = false;
+
+        public bool Cache { get; set; } = true;
 
         private List<Regex> _topicRegexes { get; set; }
 
@@ -30,6 +46,8 @@ namespace Oereb.Service.DataContracts
             Language = Settings.Language.De;
             Geometry = true;
             Topics = new List<string>() { Settings.TopicAll };
+            Canton = string.Empty;
+            Response = ResponseType.Specification;
 
             _topicRegexes = new List<Regex>();
 
@@ -42,9 +60,11 @@ namespace Oereb.Service.DataContracts
             }
         }
 
-        public Options(string format, string flavour, string language, string topics, bool geometry) : this()
+        public Options(string format, string flavour, string language, string topics, bool geometry, string canton = "", string response = "Specification", bool appendixAttached = false, bool details = false, bool withImages = true, bool cache = true) : this()
         {
             Settings.Format formatParsed;
+
+            Canton = canton;
 
             if (Enum.TryParse(format, true, out formatParsed))
             {
@@ -55,10 +75,10 @@ namespace Oereb.Service.DataContracts
                 throw new ExtException($"no valid format: {format}", this, 1);
             }
 
-            if (!Settings.SupportedFormats.Contains(Format))
-            {
-                throw new ExtException($"no supported format: {format}", this , 2);
-            }
+            //if (!Settings.SupportedFormats.Contains(Format))
+            //{
+            //    throw new ExtException($"no supported format: {format}", this , 2);
+            //}
 
             Settings.Flavour flavourParsed;
 
@@ -115,10 +135,27 @@ namespace Oereb.Service.DataContracts
                 throw new ExtException($"no valid themes: {topics}", this, 7);
             }
 
+            ResponseType responseParsed;
+
+            if (Enum.TryParse(response, true, out responseParsed))
+            {
+                Response = responseParsed;
+            }
+            else
+            {
+                throw new ExtException($"no valid type of response: {response}", this, 9);
+            }
+
+            AppendixAttached = appendixAttached;
+            Details = details;
+            WithImages = withImages;
+
             if (!IsParameterCombinationValid())
             {
                 throw new ExtException($"parameter combination is not valid: format: {format}, flavour: {flavour}", this, 8);
             }
+
+            Cache = cache;
         }
 
         #endregion
@@ -147,8 +184,31 @@ namespace Oereb.Service.DataContracts
                 return (Flavour == Settings.Flavour.Reduced || Flavour == Settings.Flavour.Embeddable);
             }
 
-            //json
-            return (Flavour == Settings.Flavour.Reduced || Flavour == Settings.Flavour.Embeddable);
+            if (Format == Settings.Format.Html)
+            {
+                return (Flavour == Settings.Flavour.Reduced);
+            }
+
+            if (Format == Settings.Format.PdfA1a)
+            {
+                return (Flavour == Settings.Flavour.Reduced);
+            }
+
+            if (Format == Settings.Format.Json)
+            {
+                return (Flavour == Settings.Flavour.Reduced || Flavour == Settings.Flavour.Embeddable) && Response == ResponseType.Mimetype; //todo federal query does not support json at this time
+            }
+
+            return false;
+        }
+
+        #endregion
+
+        #region public
+
+        public override string ToString()
+        {
+            return $"format: {Format}, flavour: {Flavour}, response: {Response}, details: {Details}, geometry: {Geometry}, canton: {Canton}, appendixAttached: {AppendixAttached}, language: {Language}, withImages: {WithImages}, topics: {Topics.Aggregate((i, j)=> i + "," + j)}";
         }
 
         #endregion

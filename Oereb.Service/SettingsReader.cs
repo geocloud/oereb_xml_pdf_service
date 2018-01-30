@@ -40,6 +40,20 @@ namespace Oereb.Service
             }
 
             Settings.AvailableCantonsLocal = Settings.AvailableCantonsAndTopics.Where(x => !Settings.AvailableCantonsRedirected.ContainsKey(x.Key)).Select(x => x.Key).ToList();
+
+            Settings.AccessTokens = new Dictionary<string, string>();
+
+            var sectionAccessTokens = ConfigurationManager.GetSection("OerebSettings/AccessTokens") as System.Collections.Hashtable;
+
+            if (sectionAccessTokens != null)
+            {
+                var validAccessTokens = sectionAccessTokens.Cast<System.Collections.DictionaryEntry>().ToDictionary(n => n.Key.ToString(), n => n.Value.ToString());
+
+                foreach (var token in validAccessTokens)
+                {
+                    Settings.AccessTokens.Add(token.Key, token.Value);
+                }
+            }
         }
     }
 }

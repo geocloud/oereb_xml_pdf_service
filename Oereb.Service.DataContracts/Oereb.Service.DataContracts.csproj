@@ -43,8 +43,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtException.cs" />
-    <Compile Include="Model\04\ExtractData.cs">
+    <Compile Include="Model\10\ExtractData.cs">
       <DependentUpon>ExtractData.xsd</DependentUpon>
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="Model\Extract.cs">
+      <DependentUpon>Extract.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Gml\gml.cs">
+      <DependentUpon>gml.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Versioning.cs">
+      <DependentUpon>Versioning.xsd</DependentUpon>
     </Compile>
     <Compile Include="Options.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,11 +63,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Model\04\DifferenceSchema_03_04.pdf" />
-    <None Include="Model\04\ExtractData.xsd">
+    <None Include="Model\10\ExtractData.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Model\Extract.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Model\Gml\gml.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Model\Versioning.xsd">

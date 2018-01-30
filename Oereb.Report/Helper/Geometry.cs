@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using Geocentrale.GDAL;
+using OSGeo.OGR;
 
 namespace Oereb.Report.Helper
 {
@@ -23,7 +25,7 @@ namespace Oereb.Report.Helper
         /// <param name="height"></param>
         /// <returns></returns>
 
-        public static Image RasterizeGeometryFromGml(string geometryGml, double[] extent, int width, int height)
+        public static Image RasterizeGeometryFromGml(string geometryGml, double[] extent, int width, int height, int offset = 0)
         {
             var bitmap = new Bitmap(width, height);
             Graphics graphic = Graphics.FromImage(bitmap);
@@ -35,10 +37,14 @@ namespace Oereb.Report.Helper
                 return bitmap;
             }
 
-            double conversionFactor = (extent[2] - extent[0]) / width; //scale is the same in both directions
-            var gmlElement = RemoveAllNamespaces(geometryGml);
+            double conversionFactor = (extent[2] - extent[0]) / width; //scale is the same in both directions, meter per pixel
 
-            var rings = gmlElement.XPathSelectElements($"/descendant::posList").ToList();
+            geometryGml = BufferGeomtry(geometryGml, offset * conversionFactor);
+
+            var gmlElement = RemoveAllNamespaces(geometryGml.Replace("gml:",""));
+
+            //var rings = gmlElement.XPathSelectElements($"/descendant::posList").ToList();
+            var rings = gmlElement.XPathSelectElements($"/descendant::coordinates").ToList();
 
             if (!rings.Any())
             {
@@ -52,6 +58,9 @@ namespace Oereb.Report.Helper
                 foreach (var ring in rings)
                 {
                     var content = ring.Value.ToString();
+
+                    content = content.Replace(",", " "); //other GML version
+
                     var coords = content.Split(' ').Where(x=>!String.IsNullOrEmpty(x)).ToList();
 
                     var points = new List<PointF>();
@@ -72,13 +81,13 @@ namespace Oereb.Report.Helper
                     if (colorIndex == 0)
                     {
                         Color colorBg = ColorTranslator.FromHtml("#bbffffff"); // TODO: another config value candidate
-                        var penBg = new Pen(colorBg, 20);
+                        var penBg = new Pen(colorBg, 15);
                         graphic.DrawLines(penBg, points.ToArray());
                     }
                     else
                     {
                         Color color = ColorTranslator.FromHtml("#77ff0000"); // TODO: another config value candidate
-                        var pen = new Pen(color, 10);
+                        var pen = new Pen(color, 9);
                         graphic.DrawLines(pen, points.ToArray());
                     }
 
@@ -195,6 +204,23 @@ namespace Oereb.Report.Helper
         {
             var assemblyPath = (new Uri(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
             return new FileInfo(assemblyPath).Directory?.Parent?.FullName;
+        }
+
+        private static string BufferGeomtry(string geometryGml, double offset)
+        {
+            GdalConfiguration.ConfigureOgr();
+
+            try
+            {
+                var geometry = Ogr.CreateGeometryFromGML(geometryGml);
+                var buffer = geometry.Buffer(offset, 4);
+
+                return buffer.ExportToGML();
+            }
+            catch (Exception ex)
+            {
+                return geometryGml;
+            }
         }
     }
 }

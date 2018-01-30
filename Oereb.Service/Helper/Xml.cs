@@ -20,21 +20,37 @@ namespace Oereb.Service.Helper
                 throw new Exception("serialize value is null");
             }
 
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
-
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Encoding = new UnicodeEncoding(false, false); // no BOM in a .NET string
-            settings.Indent = false;
-            settings.OmitXmlDeclaration = false;
-
-            using (StringWriter textWriter = new StringWriter())
+            var serializer = new XmlSerializer(typeof(T));
+            using (var memStm = new MemoryStream())
+            using (var xw = XmlWriter.Create(memStm))
             {
-                using (XmlWriter xmlWriter = XmlWriter.Create(textWriter, settings))
+                serializer.Serialize(xw, value);
+                var buffer = memStm.ToArray();
+                var xmlContent = System.Text.Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+
+                if (xmlContent[0] == 65279)
                 {
-                    serializer.Serialize(xmlWriter, value);
+                    xmlContent = xmlContent.Substring(1);
                 }
-                return textWriter.ToString();
+
+                return xmlContent;
             }
+
+            //XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+            //XmlWriterSettings settings = new XmlWriterSettings();
+            //settings.Encoding = new UTF8Encoding(); //UnicodeEncoding(false, false); // no BOM in a .NET string
+            //settings.Indent = false;
+            //settings.OmitXmlDeclaration = false;
+
+            //using (StringWriter textWriter = new StringWriter())
+            //{
+            //    using (XmlWriter xmlWriter = XmlWriter.Create(textWriter, settings))
+            //    {
+            //        serializer.Serialize(xmlWriter, value);
+            //    }
+            //    return textWriter.ToString();
+            //}
         }
 
         public static T DeserializeFromXmlString(string xml)

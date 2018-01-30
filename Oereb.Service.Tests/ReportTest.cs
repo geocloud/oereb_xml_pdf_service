@@ -9,6 +9,7 @@ using Oereb.Report.Helper;
 using Oereb.Service.DataContracts;
 using Telerik.Reporting;
 using Telerik.Reporting.Processing;
+using Geocentrale.Common;
 
 namespace Oereb.Service.Tests
 {
@@ -103,6 +104,33 @@ namespace Oereb.Service.Tests
             });
 
             Oereb.Report.Helper.Pdf.AddAttachments(filepath, Path.Combine(directory, "output_attached.pdf"),packages);
+        }
+
+        [TestMethod]
+        public void CreateReportExtern()
+        {
+            //var file = Path.GetFullPath("../../Testfiles/_extern_ZH_CH607722082391.xml");
+            //var file = Path.GetFullPath("../../Testfiles/_extern_ZH_CH499977299153.xml");
+            var file = Path.GetFullPath("../../Testfiles/_extern_ZH_CH607722082391_notvalid.xml"); //some responsible offices are missing
+
+            var source = XElement.Load(file).ToString();
+
+            if (source.Contains("GetExtractByIdResponse"))
+            {
+                var document = XElement.Parse(source);
+                source = document.InnerXML();
+            }
+
+            var contentComplete = Oereb.Report.ReportBuilder.GeneratePdf(source, false, false);
+
+            Assert.IsTrue(contentComplete.Length > 0);
+
+            var pdfFile = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}_reduced.pdf");
+
+            using (var fileStream = new System.IO.FileStream(pdfFile, System.IO.FileMode.Create, System.IO.FileAccess.Write))
+            {
+                fileStream.Write(contentComplete, 0, contentComplete.Length);
+            }
         }
     }
 }

@@ -8,7 +8,10 @@ using Oereb.Report.Helper;
 using Oereb.Service.DataContracts;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Oereb.Service.DataContracts.Model.v10;
+using System.Configuration;
 
 namespace Oereb.Report
 {
@@ -19,7 +22,7 @@ namespace Oereb.Report
     [DataObject]
     public class ReportExtract
     {
-        public Service.DataContracts.Model.v04.Extract Extract { get; set; }
+        public Service.DataContracts.Model.v10.Extract Extract { get; set; }
         public string Language { get; set; } = "de";
 
         public TocRegion Toc { get; set; }
@@ -28,11 +31,15 @@ namespace Oereb.Report
 
         public bool ExtractComplete { get; set; } = true;
 
+        public bool Attestation { get; set; }
+
+        public bool UseWms { get; set; }
+
         public string Title {
             get
             {
                 var postfix = !ExtractComplete ? " mit reduzierter Information" : string.Empty;
-                return $"Auszug aus dem Kataster der\nöffentlich-rechtlichen Eigentumsbeschränkungen \n(ÖREB - Kataster){postfix}";
+                return $"Auszug aus dem Kataster der\nöffentlich-rechtlichen Eigentumsbeschränkungen \n(ÖREB-Kataster){postfix}";
             }
         }
 
@@ -63,17 +70,19 @@ namespace Oereb.Report
         {
         }
 
-        public ReportExtract(bool extractComplete, bool attacheFiles)
+        public ReportExtract(bool extractComplete, bool attacheFiles, bool attestation, bool useWms)
         {
             ExtractComplete = extractComplete;
             AttacheFiles = attacheFiles;
+            Attestation = attestation;
+            UseWms = useWms;
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<BodyItem> GetBodyItems()
         {
             //path for the designer preview in visual studio
-            //Extract = Xml<Service.DataContracts.Model.v04.Extract>.DeserializeFromFile(@"...");
+            //Extract = Xml<Service.DataContracts.Model.v10.Extract>.DeserializeFromFile(@"...");
             Ini();
             return ReportBodyItems;
         }
@@ -82,7 +91,7 @@ namespace Oereb.Report
         public ReportExtract GetReportExtract()
         {
             //path for the designer preview in visual studio
-            //Extract = Xml<Service.DataContracts.Model.v04.Extract>.DeserializeFromFile(@"...");
+            //Extract = Xml<Service.DataContracts.Model.v10.Extract>.DeserializeFromFile(@"...");
             Ini();
             return this;
         }
@@ -103,43 +112,59 @@ namespace Oereb.Report
         {
             AdditionalLayers = new List<ImageExtension>();
 
-            //ini title image and extensions
+            //ini title image
+
+            var imageBg = UseWms ? Helper.Wms.GetMap(Extract.RealEstate.PlanForLandRegisterMainPage.ReferenceWMS)  : PreProcessing.GetImageFromByteArray(Extract.RealEstate.PlanForLandRegisterMainPage.Image);
+            var image = new Bitmap(imageBg.Width, imageBg.Height, PixelFormat.Format32bppArgb);
+
+            image = PreProcessing.MergeTwoImages(image, imageBg);
+
+            var georeferenceExtention = new GeoreferenceExtension() {};
+            georeferenceExtention.Extent = null;
+            georeferenceExtention.Seq = 0;
+            georeferenceExtention.Transparency = 0;
+
+            if (Extract.RealEstate.PlanForLandRegisterMainPage.ItemsElementName != null && Extract.RealEstate.PlanForLandRegisterMainPage.ItemsElementName.Length > 0)
+            {
+                georeferenceExtention = GetGeoreferenceExtension(Extract.RealEstate.PlanForLandRegisterMainPage.ItemsElementName, Extract.RealEstate.PlanForLandRegisterMainPage.Items);
+
+                if (!String.IsNullOrEmpty(Extract.RealEstate.Limit))
+                {
+                    var offsetBorderTitle = Convert.ToInt32(ConfigurationManager.AppSettings["offsetBorderTitle"] ?? "0");
+
+                    var parcelHighligthed = Helper.Geometry.RasterizeGeometryFromGml(
+                        Extract.RealEstate.Limit,
+                        new double[] { georeferenceExtention.Extent.Xmin, georeferenceExtention.Extent.Ymin, georeferenceExtention.Extent.Xmax, georeferenceExtention.Extent.Ymax },
+                        image.Width,
+                        image.Height,
+                        offsetBorderTitle
+                    );
+
+                    image = PreProcessing.MergeTwoImages(image, parcelHighligthed);
+                }
+            }
+
+            ImageTitle = image;
+
+            //ini rol images and additionl layers
 
             var titleExtention = Extract.RealEstate.PlanForLandRegister.extensions?.Any.FirstOrDefault(x => x.LocalName == "MapExtension");
 
             if (titleExtention != null)
             {
                 var titleExtentionElement = XElement.Parse(titleExtention.OuterXml);
-
-                var imageBg = PreProcessing.GetImageFromByteArray(Extract.RealEstate.PlanForLandRegister.Image);
-                var image = new Bitmap(imageBg.Width, imageBg.Height, PixelFormat.Format32bppArgb);
-
-                image = PreProcessing.MergeTwoImages(image, imageBg);
-
-                var georeferenceExtention = GetGeoreferenceExtension(titleExtentionElement);
-
-                var parcelHighligthed = Helper.Geometry.RasterizeGeometryFromGml(
-                    Extract.RealEstate.Limit,
-                    new double[] { georeferenceExtention.Extent.Xmin, georeferenceExtention.Extent.Ymin, georeferenceExtention.Extent.Xmax, georeferenceExtention.Extent.Ymax },
-                    image.Width,
-                    image.Height
-                );
-
-                image = PreProcessing.MergeTwoImages(image, parcelHighligthed);
-                ImageTitle = image;
-            }
-            else
-            {
-                ImageTitle = PreProcessing.GetImageFromByteArray(Extract.RealEstate.PlanForLandRegister.Image);
             }
 
             var realEstateExtension = Extract.RealEstate.extensions?.Any.FirstOrDefault(x => x.LocalName == "RealEstateExtension");
 
-            if (realEstateExtension != null)
+            if (realEstateExtension != null && UseWms)
+            {
+                throw new Exception("additional layers are not supported with the wms option");
+            }
+
+            if (realEstateExtension != null && !UseWms)
             {
                 var realEstateElement = XElement.Parse(realEstateExtension.OuterXml);
-
-                ImageRestrictionOnLandownership = GetImageExtension(realEstateElement.Element("PlanForROL"));
 
                 foreach (var additionalLayerElement in realEstateElement.Elements("AdditionalLayer"))
                 {
@@ -153,9 +178,19 @@ namespace Oereb.Report
                     AdditionalLayers.Add(item);
                 }
             }
-            else
+
+            ImageRestrictionOnLandownership = new ImageExtension()
             {
-                ImageRestrictionOnLandownership = new ImageExtension() {Image = ImageTitle, Seq = 0, Transparency = 0};
+                Image = UseWms ? Helper.Wms.GetMap(Extract.RealEstate.PlanForLandRegister.ReferenceWMS) : PreProcessing.GetImageFromByteArray(Extract.RealEstate.PlanForLandRegister.Image),
+                Extent = georeferenceExtention.Extent,
+                Seq = System.Convert.ToInt32(Extract.RealEstate.PlanForLandRegister.layerIndex),
+                Transparency = 1 - Extract.RealEstate.PlanForLandRegister.layerOpacity
+            };
+
+            if (Math.Abs(ImageRestrictionOnLandownership.Transparency) > 0.98)
+            {
+                //todo add warning to log, make no sense
+                ImageRestrictionOnLandownership.Transparency = 0;
             }
 
             IniReportBody();
@@ -173,6 +208,74 @@ namespace Oereb.Report
             descriptionExtension.Transparency = extension.Element("Transparency") == null ? 0.5 : System.Convert.ToDouble(extension.Element("Transparency").Value);
 
             return descriptionExtension;
+        }
+
+        public GeoreferenceExtension GetGeoreferenceExtension(ItemsChoiceType[] itemsElement, string[] items)
+        {
+            if (!itemsElement.Any() || !items.Any())
+            {
+                return null;
+            }
+
+            var georeferenceExtension = new GeoreferenceExtension();
+            georeferenceExtension.Extent = new Extent();
+
+            //<gml:pos>{x} {y}</gml:pos>
+
+            Regex regex = new Regex("<gml:pos>(.*)</gml:pos>");
+
+            if (itemsElement[0] == ItemsChoiceType.min_NS03)
+            {
+                georeferenceExtension.Extent.Crs = 21781;
+            }
+            else
+            {
+                georeferenceExtension.Extent.Crs = 2056;
+            }
+
+            var vmin = regex.Match(items[0]);
+
+            if (!vmin.Success || vmin.Groups.Count != 2)
+            {
+                return null;
+            }
+
+            var valueMin = vmin.Groups[1].ToString();
+            var valueMinParts = valueMin.Trim().Split(' ');
+
+            var vmax = regex.Match(items[1]);
+
+            if (!vmax.Success || vmax.Groups.Count != 2)
+            {
+                return null;
+            }
+
+            var valueMax = vmax.Groups[1].ToString();
+            var valueMaxParts = valueMax.Trim().Split(' ');
+
+            if (valueMinParts.Length != 2 || valueMaxParts.Length != 2)
+            {
+                return null;
+            }
+
+            double xmin, ymin, xmax, ymax;
+
+            if (!(
+                double.TryParse(valueMinParts[0], out xmin) && 
+                double.TryParse(valueMinParts[1], out ymin) && 
+                double.TryParse(valueMaxParts[0], out xmax) && 
+                double.TryParse(valueMaxParts[1], out ymax)
+                ))
+            {
+                return null;
+            }
+
+            georeferenceExtension.Extent.Xmin = xmin;
+            georeferenceExtension.Extent.Ymin = ymin;
+            georeferenceExtension.Extent.Xmax = xmax;
+            georeferenceExtension.Extent.Ymax = ymax;
+
+            return georeferenceExtension;
         }
 
         public GeoreferenceExtension GetGeoreferenceExtension(XElement extension)
@@ -262,13 +365,14 @@ namespace Oereb.Report
             public double Ymin { get; set; }
             public double Xmax { get; set; }
             public double Ymax { get; set; }
+            public int Crs { get; set; }
         }
 
         #endregion
 
         #region TOC
 
-        public void IniToc(Service.DataContracts.Model.v04.Extract extract, string language )
+        public void IniToc(Service.DataContracts.Model.v10.Extract extract, string language )
         {
             Toc = new TocRegion();
             TocAppendixes = new List<TocAppendix>();
@@ -355,24 +459,30 @@ namespace Oereb.Report
                 Toc.TocItems.Add(tocItem);
             }
 
-            foreach (var notConcernedTheme in Extract.NotConcernedTheme)
+            if (Extract.NotConcernedTheme != null)
             {
-                var localisedText = new Service.DataContracts.Model.v04.LocalisedText[] { notConcernedTheme.Text };
-                var label = Helper.LocalisedText.GetStringFromArray(localisedText, Language);               
-                Toc.ThemeNotConcerned.Add(new TocItemTheme() {Label = label });
+                foreach (var notConcernedTheme in Extract.NotConcernedTheme)
+                {
+                    var localisedText = new Service.DataContracts.Model.v10.LocalisedText[] { notConcernedTheme.Text };
+                    var label = Helper.LocalisedText.GetStringFromArray(localisedText, Language);
+                    Toc.ThemeNotConcerned.Add(new TocItemTheme() { Label = label });
+                }
             }
 
-            foreach (var themeWithoutData in Extract.ThemeWithoutData)
+            if (Extract.ThemeWithoutData != null)
             {
-                var localisedText = new Service.DataContracts.Model.v04.LocalisedText[] { themeWithoutData.Text };
-                var label = Helper.LocalisedText.GetStringFromArray(localisedText, Language);
-                Toc.ThemeWithoutData.Add(new TocItemTheme() { Label = label });
+                foreach (var themeWithoutData in Extract.ThemeWithoutData)
+                {
+                    var localisedText = new Service.DataContracts.Model.v10.LocalisedText[] { themeWithoutData.Text };
+                    var label = Helper.LocalisedText.GetStringFromArray(localisedText, Language);
+                    Toc.ThemeWithoutData.Add(new TocItemTheme() { Label = label });
+                }
             }
         }
 
         public class TocRegion
         {
-            public Service.DataContracts.Model.v04.Extract Extract { get; set; }
+            public Service.DataContracts.Model.v10.Extract Extract { get; set; }
             public string Language { get; set; }
 
             public List<TocItem> TocItems { get; set; }
@@ -448,7 +558,7 @@ namespace Oereb.Report
                     continue;
                 }
 
-                ReportBodyItems.Add(new BodyItem(Extract, bodyItem.ToList(), Language, ImageRestrictionOnLandownership, AdditionalLayers));
+                ReportBodyItems.Add(new BodyItem(Extract, bodyItem.ToList(), Language, ImageRestrictionOnLandownership, AdditionalLayers, UseWms));
             }
         }
 
@@ -494,7 +604,7 @@ namespace Oereb.Report
             public string ExtractIdentifier { get; set; }
             public DateTime CreationDate { get; set; }
 
-            public BodyItem(Service.DataContracts.Model.v04.Extract extract, List<Service.DataContracts.Model.v04.RestrictionOnLandownership> restrictionOnLandownership, string language, ImageExtension baselayer, List<ImageExtension> additionalLayers)
+            public BodyItem(Service.DataContracts.Model.v10.Extract extract, List<Service.DataContracts.Model.v10.RestrictionOnLandownership> restrictionOnLandownership, string language, ImageExtension baselayer, List<ImageExtension> additionalLayers, bool useWms = false)
             {
                 #region initialization
 
@@ -522,7 +632,7 @@ namespace Oereb.Report
 
                 Theme = restrictionOnLandownership.First().Theme.Text.Text;
 
-                var image = PreProcessing.GetImageFromByteArray(restrictionOnLandownership.First().Map.Image); //take only with and height from image
+                var image = useWms ? Helper.Wms.GetMap(restrictionOnLandownership.First().Map.ReferenceWMS) : PreProcessing.GetImageFromByteArray(restrictionOnLandownership.First().Map.Image); //take only with and height from image
                 Image = new Bitmap(image.Width, image.Height, PixelFormat.Format32bppArgb);
 
                 var rolLayers = new List<ImageExtension>();
@@ -530,21 +640,58 @@ namespace Oereb.Report
                 rolLayers.Add(baselayer);
                 rolLayers.AddRange(additionalLayers.Where(x=> x.Name == Theme));
 
+                var guidDSs = new List<string>();
+
                 foreach (var restriction in restrictionOnLandownership)
                 {
-                    var restrictionExtension = restriction.Map.extensions?.Any.FirstOrDefault(x => x.LocalName == "MapExtension");
-                    int seq = 5;
-                    double transparency = 0.5;
-
-                    if (restrictionExtension != null)
+                    if (restriction.TypeCode == null)
                     {
-                        var restrictionExtensionElement = XElement.Parse(restrictionExtension.OuterXml);
-
-                        seq = restrictionExtensionElement.Element("Seq") == null ? 5 : System.Convert.ToInt32(restrictionExtensionElement.Element("Seq").Value);
-                        transparency = restrictionExtensionElement.Element("Transparency") == null ? 0.5 : System.Convert.ToDouble(restrictionExtensionElement.Element("Transparency").Value);
+                        //Todo oereb ur typecode == null, this should not be, log warning
+                        continue;
                     }
 
-                    var imageExtension = new ImageExtension() {Image = PreProcessing.GetImageFromByteArray(restriction.Map.Image), Seq = seq, Transparency = transparency};
+                    var guidDSPart = restriction.TypeCode.Split(':');
+                    var guidDS = "";
+
+                    if (guidDSPart.Length == 3)
+                    {
+                        guidDS = guidDSPart[0].Substring(0, 8);
+                    }
+
+                    if (guidDSs.Contains(guidDS))
+                    {                        
+                        continue;
+                    }
+                    else
+                    {
+                        guidDSs.Add(guidDS);
+                    }
+
+                    //var restrictionExtension = restriction.Map.extensions?.Any.FirstOrDefault(x => x.LocalName == "MapExtension");
+                    //int seq = 5;
+                    //double transparency = 0.5;
+
+                    //if (restrictionExtension != null)
+                    //{
+                    //    var restrictionExtensionElement = XElement.Parse(restrictionExtension.OuterXml);
+
+                    //    seq = restrictionExtensionElement.Element("Seq") == null ? 5 : System.Convert.ToInt32(restrictionExtensionElement.Element("Seq").Value);
+                    //    transparency = restrictionExtensionElement.Element("Transparency") == null ? 0.5 : System.Convert.ToDouble(restrictionExtensionElement.Element("Transparency").Value);
+                    //}
+
+                    var imageExtension = new ImageExtension()
+                    {
+                        Image = useWms ? Helper.Wms.GetMap(restriction.Map.ReferenceWMS) : PreProcessing.GetImageFromByteArray(restriction.Map.Image),
+                        Seq = System.Convert.ToInt32(restriction.Map.layerIndex) ,
+                        Transparency = 1 - restriction.Map.layerOpacity
+                    };
+
+                    if (Math.Abs(imageExtension.Transparency) > 0.98)
+                    {
+                        //todo add warning to log, make no sense
+                        imageExtension.Transparency = 0;
+                    }
+
                     rolLayers.Add(imageExtension);
                 }
 
@@ -558,15 +705,21 @@ namespace Oereb.Report
 
                 if (baselayer != null && baselayer.Extent != null)
                 {
+                    var offsetBorder = Convert.ToInt32(ConfigurationManager.AppSettings["offsetBorder"] ?? "0");
+
                     var parcelHighligthed = Helper.Geometry.RasterizeGeometryFromGml(
                         extract.RealEstate.Limit,
                         new double[] { baselayer.Extent.Xmin, baselayer.Extent.Ymin, baselayer.Extent.Xmax, baselayer.Extent.Ymax },
                         image.Width,
-                        image.Height
+                        image.Height,
+                        offsetBorder
                     );
 
                     Image = PreProcessing.MergeTwoImages(Image, parcelHighligthed);
                 }
+
+                var legalProvisions = new List<Document>();
+                var documents = new List<Document>();
 
                 foreach (var restriction in restrictionOnLandownership)
                 {
@@ -588,7 +741,17 @@ namespace Oereb.Report
 
                     var legendItemCatched = LegendItems.FirstOrDefault(x => x.TypeCode == restriction.TypeCode);
 
-                    var geometryExtension = restriction.Geometry.First().extensions.Any.FirstOrDefault(x => x.LocalName == "GeometryExtension");
+                    if (legendItemCatched == null && restriction.Item != null)
+                    {
+                        legendItemCatched = new LegendItem()
+                        {
+                            Symbol = (byte[])restriction.Item,
+                            TypeCode = restriction.TypeCode,
+                            Label = Helper.LocalisedMText.GetStringFromArray(restriction.Information,"de")
+                        };
+                    }
+
+                    var geometryExtension = restriction.Geometry.First().extensions != null ? restriction.Geometry.First().extensions.Any.FirstOrDefault(x => x.LocalName == "GeometryExtension") : null;
                     var type = "NoExtension";
 
                     if (geometryExtension != null)
@@ -600,31 +763,36 @@ namespace Oereb.Report
 
                     if (legendItemCatched != null)
                     {
-                        var area = "";
-                        var partInPercent = "";
-
-                        if (type == "Polygon" || type == "NoExtension")
-                        {
-                            area = restriction.Area + " m²";
-
-                            if (restriction.PartInPercent == "0")
-                            {
-                                partInPercent = "< 1 %";
-                            }
-                            else
-                            {
-                                partInPercent = restriction.PartInPercent + " %";
-                            }
-                        }
                         
                         var legendInvolved = new LegendItemInvolved()
                         {
+                            Type = type,
                             Symbol = legendItemCatched.Symbol,
                             TypeCode = legendItemCatched.TypeCode,
                             Label = legendItemCatched.Label,
-                            Area = area,
-                            PartInPercent = partInPercent
+                            AreaValue = String.IsNullOrEmpty(restriction.AreaShare) ? 0 : Convert.ToDouble(restriction.AreaShare),
+                            PartInPercentValue = restriction.PartInPercent
                         };
+
+                        //distinct of legend, aggregate values
+
+                        var useDistinct = ConfigurationManager.AppSettings["distinct"] == "true";
+                        var markDistinct = ConfigurationManager.AppSettings["markDistinct"] == "true";
+
+                        if (LegendItemsInvolved.Any(x => x.TypeCode == legendInvolved.TypeCode) && useDistinct)
+                        {
+                            if (!(type == "Polygon" || type == "NoExtension"))
+                            {
+                                continue;
+                            }
+
+                            var legAggregation = LegendItemsInvolved.First(x => x.TypeCode == legendInvolved.TypeCode);
+                            legAggregation.AreaValue +=  legendInvolved.AreaValue;
+                            legAggregation.PartInPercentValue += legendInvolved.PartInPercentValue;
+                            legAggregation.Aggregate = markDistinct;
+
+                            continue;
+                        }
 
                         LegendItemsInvolved.Add(legendInvolved);
                     }
@@ -644,28 +812,31 @@ namespace Oereb.Report
 
                     if (restriction.LegalProvisions != null)
                     {
-                        foreach (var document in restriction.LegalProvisions.OfType<Service.DataContracts.Model.v04.LegalProvisions>())
+                        foreach (var document in restriction.LegalProvisions.Where(x=>x.DocumentType == DocumentBaseDocumentType.LegalProvision).Select(x=> (Oereb.Service.DataContracts.Model.v10.Document)x))
                         {
                             var documentItem = new Document()
                             {
                                 Title = Helper.LocalisedText.GetStringFromArray(document.Title, language),
-                                Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbrevation, language),
+                                Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
                                 OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
                                 OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                                Url = WebUtility.HtmlEncode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))
+                                Url = WebUtility.HtmlEncode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language)),
+                                Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
                             };
 
-                            if (LegalProvisions.Any(x => x.Id == documentItem.Id))
+                            DocumentSetLevelAndSort(ref documentItem);
+
+                            if (legalProvisions.Any(x => x.Id == documentItem.Id))
                             {
                                 continue;
                             }
-
-                            LegalProvisions.Add(documentItem);
+                            
+                            legalProvisions.Add(documentItem);
                         }
 
-                        if (!LegalProvisions.Any())
+                        if (!legalProvisions.Any())
                         {
-                            LegalProvisions.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
+                            legalProvisions.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
                         }
                     }
 
@@ -675,29 +846,31 @@ namespace Oereb.Report
 
                     if (restriction.LegalProvisions != null)
                     {
-                        foreach (var document in restriction.LegalProvisions.OfType<Service.DataContracts.Model.v04.Document>().Where(x => !(x is Service.DataContracts.Model.v04.LegalProvisions)))
+                        foreach (var document in restriction.LegalProvisions.Where(x => x.DocumentType == DocumentBaseDocumentType.Law).Select(x => (Oereb.Service.DataContracts.Model.v10.Document)x))
                         {
                             var documentItem = new Document()
                             {
                                 Title = Helper.LocalisedText.GetStringFromArray(document.Title, language),
-                                Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbrevation, language),
+                                Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
                                 OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
                                 OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
                                 Url = WebUtility.HtmlEncode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language)),
                                 Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0
                             };
 
-                            if (Documents.Any(x => x.Id == documentItem.Id))
+                            DocumentSetLevelAndSort(ref documentItem);
+
+                            if (documents.Any(x => x.Id == documentItem.Id))
                             {
                                 continue;
                             }
 
-                            Documents.Add(documentItem);
+                            documents.Add(documentItem);
                         }
 
-                        if (!Documents.Any())
+                        if (!documents.Any())
                         {
-                            Documents.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
+                            documents.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
                         }
                     }
 
@@ -708,7 +881,7 @@ namespace Oereb.Report
                     var responsibleOffice = new ResponsibleOffice()
                     {
                         Name = Helper.LocalisedText.GetStringFromArray(restriction.ResponsibleOffice.Name, language),
-                        Url = restriction.ResponsibleOffice.OfficeAtWeb.Value
+                        Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-": restriction.ResponsibleOffice.OfficeAtWeb.Value
                     };
 
                     if (!ResponsibleOffice.Any(x=> x.Id == responsibleOffice.Id))
@@ -718,7 +891,32 @@ namespace Oereb.Report
 
                     #endregion
                 }
+            
+                LegalProvisions.AddRange(legalProvisions.OrderBy(x => x.Sort));
+                Documents.AddRange(documents.OrderBy(x => x.Sort));
             }
+
+            private void DocumentSetLevelAndSort(ref Document documentItem)
+            {
+                if (documentItem.Level == 0 && String.IsNullOrEmpty(documentItem.OfficialNumber))
+                {
+                    documentItem.Level = 3; // not a federal document, because there is no official number
+                }
+
+                var sort = "";
+
+                if (string.IsNullOrEmpty(documentItem.OfficialNumber))
+                {
+                    sort = ";" + documentItem.Title;
+                }
+                else
+                {
+                    sort = documentItem.OfficialNumber + ";";
+                }
+
+                documentItem.Sort = $"{documentItem.Level};{sort}";
+            }
+
         }
 
         #region helper classes report body
@@ -732,8 +930,45 @@ namespace Oereb.Report
 
         public class LegendItemInvolved : LegendItem
         {
-            public string Area { get; set; }
-            public string PartInPercent { get; set; }
+            public bool Aggregate { get; set; } = false;
+            public string Type { get; set; }
+            public double AreaValue { get; set; }
+            public double PartInPercentValue { get; set; }
+
+            public string Area {
+                get
+                {
+                    var area = "";
+
+                    if (Type == "Polygon" || Type == "NoExtension")
+                    {
+                        area = Math.Round(AreaValue, 0) + " m²";
+                    }
+
+                    return area + (Aggregate ? " *": "");
+                }
+            }
+
+            public string PartInPercent {
+                get
+                {
+                    string partInPercent = "";
+
+                    if (Type == "Polygon" || Type == "NoExtension")
+                    {
+                        if (Math.Abs(PartInPercentValue) < 1)
+                        {
+                            partInPercent = "< 1 %";
+                        }
+                        else
+                        {
+                            partInPercent = PartInPercentValue + " %";
+                        }
+                    }
+
+                    return partInPercent + (Aggregate ? " *" : "");
+                }
+            }
         }
 
         public class LegendAtWeb
@@ -750,6 +985,7 @@ namespace Oereb.Report
             public string Abbrevation { get; set; }
             public string OfficialNumber { get; set; }
             public int Level { get; set; } //for sorting 0 federal | 1 canton | 2 municipality
+            public string Sort { get; set; }
 
             public string Id => $"{Title}|{OfficialTitle}|{OfficialNumber}|{Url}";
         }

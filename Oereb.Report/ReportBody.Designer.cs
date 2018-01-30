@@ -318,7 +318,7 @@ namespace Oereb.Report
             // 
             // shape5
             // 
-            this.shape5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.700000762939453D));
+            this.shape5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.400001525878906D));
             this.shape5.Name = "shape5";
             this.shape5.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
@@ -326,7 +326,7 @@ namespace Oereb.Report
             // 
             // shape6
             // 
-            this.shape6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.200000762939453D));
+            this.shape6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.900001525878906D));
             this.shape6.Name = "shape6";
             this.shape6.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
@@ -345,7 +345,7 @@ namespace Oereb.Report
             this.PLegalProvisions.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LLegalProvisions,
             this.LILegalProvisions});
-            this.PLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(15.80000114440918D));
+            this.PLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(15.500000953674316D));
             this.PLegalProvisions.Name = "PLegalProvisions";
             this.PLegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
@@ -376,7 +376,6 @@ namespace Oereb.Report
             tableGroup4.Name = "DetailGroup";
             this.LILegalProvisions.RowGroups.Add(tableGroup4);
             this.LILegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
-            this.LILegalProvisions.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.Level", Telerik.Reporting.SortDirection.Asc));
             // 
             // panel5
             // 
@@ -403,7 +402,7 @@ namespace Oereb.Report
             this.PDocuments.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LDocuments,
             this.LIDocuments});
-            this.PDocuments.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.30000114440918D));
+            this.PDocuments.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16D));
             this.PDocuments.Name = "PDocuments";
             this.PDocuments.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.420412063598633D), Telerik.Reporting.Drawing.Unit.Cm(0.4000014066696167D));
             // 
@@ -434,7 +433,6 @@ namespace Oereb.Report
             tableGroup6.Name = "DetailGroup";
             this.LIDocuments.RowGroups.Add(tableGroup6);
             this.LIDocuments.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
-            this.LIDocuments.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.Level", Telerik.Reporting.SortDirection.Asc));
             // 
             // panel6
             // 
@@ -612,7 +610,7 @@ namespace Oereb.Report
             // 
             // shape4
             // 
-            this.shape4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.200000762939453D));
+            this.shape4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(15.90000057220459D));
             this.shape4.Name = "shape4";
             this.shape4.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
@@ -623,7 +621,7 @@ namespace Oereb.Report
             this.PMoreInformations.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LMoreInformation,
             this.LIMoreInformation});
-            this.PMoreInformations.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.80000114440918D));
+            this.PMoreInformations.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.500001907348633D));
             this.PMoreInformations.Name = "PMoreInformations";
             this.PMoreInformations.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
@@ -680,7 +678,7 @@ namespace Oereb.Report
             this.PResponsibleOffice.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LResponsibleOffice,
             this.LIResonsibleOffice});
-            this.PResponsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.300201416015625D));
+            this.PResponsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.000202178955078D));
             this.PResponsibleOffice.Name = "PResponsibleOffice";
             this.PResponsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 

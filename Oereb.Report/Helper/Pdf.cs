@@ -57,6 +57,8 @@ namespace Oereb.Report.Helper
 
                 files.Add(array);
             }
+                    
+            pdfReader.Close();
 
             return files;
         }
@@ -98,6 +100,8 @@ namespace Oereb.Report.Helper
                 }
 
                 stamp.Close();
+                outputstream.Dispose();
+                reader.Close();
             }
             catch (Exception ex)
             {

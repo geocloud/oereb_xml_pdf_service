@@ -21,9 +21,13 @@ namespace Oereb.Report.Helper
             request.Accept = "application/pdf";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0";
 
+            request.KeepAlive = false;
+            request.ProtocolVersion = HttpVersion.Version10;
+            request.ServicePoint.ConnectionLimit = 1;
+
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-            //todo what happen if this is not a pdf
+            //at this time we support only pdf content
 
             if (response.ContentType.ToLower() != "application/pdf")
             {

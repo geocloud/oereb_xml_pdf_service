@@ -452,6 +452,7 @@ namespace Oereb.Report
             // 
             // Attestation
             // 
+            this.Attestation.Bindings.Add(new Telerik.Reporting.Binding("Visible", "=Fields.Attestation"));
             this.Attestation.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(23.299999237060547D));
             this.Attestation.Name = "Attestation";
             this.Attestation.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.7999997138977051D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
@@ -462,6 +463,7 @@ namespace Oereb.Report
             // 
             // AttestationInfo
             // 
+            this.AttestationInfo.Bindings.Add(new Telerik.Reporting.Binding("Visible", "=Fields.Attestation"));
             this.AttestationInfo.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D), Telerik.Reporting.Drawing.Unit.Cm(23.68437385559082D));
             this.AttestationInfo.Name = "AttestationInfo";
             this.AttestationInfo.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.390523910522461D), Telerik.Reporting.Drawing.Unit.Cm(0.30000001192092896D));
@@ -471,6 +473,7 @@ namespace Oereb.Report
             // 
             // Stamp
             // 
+            this.Stamp.Bindings.Add(new Telerik.Reporting.Binding("Visible", "=Fields.Attestation"));
             this.Stamp.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(24.299999237060547D));
             this.Stamp.Name = "Stamp";
             this.Stamp.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
@@ -481,6 +484,7 @@ namespace Oereb.Report
             // 
             // Date
             // 
+            this.Date.Bindings.Add(new Telerik.Reporting.Binding("Visible", "=Fields.Attestation"));
             this.Date.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(24.299999237060547D));
             this.Date.Name = "Date";
             this.Date.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
@@ -491,6 +495,7 @@ namespace Oereb.Report
             // 
             // Signature
             // 
+            this.Signature.Bindings.Add(new Telerik.Reporting.Binding("Visible", "=Fields.Attestation"));
             this.Signature.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.100000381469727D), Telerik.Reporting.Drawing.Unit.Cm(24.299999237060547D));
             this.Signature.Name = "Signature";
             this.Signature.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));

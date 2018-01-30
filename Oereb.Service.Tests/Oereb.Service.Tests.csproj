@@ -33,12 +33,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxMin, Version=5.2.5021.16390, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Geocentrale.Common.1.1.63\lib\net45\AjaxMin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Geocentrale.Common, Version=1.1.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Geocentrale.Common.1.1.63\lib\net45\Geocentrale.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GhostscriptSharp, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GhostScriptSharp.1.3.1.4\lib\net40\GhostscriptSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -82,8 +94,10 @@
   <ItemGroup>
     <Compile Include="Helper\ReflectionHelpers.cs" />
     <Compile Include="Helper\RouteTester.cs" />
+    <Compile Include="OptionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\TestUtilities.cs" />
+    <Compile Include="RoutesTest.cs" />
     <Compile Include="ReportTest.cs" />
   </ItemGroup>
   <ItemGroup>
