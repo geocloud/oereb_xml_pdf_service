@@ -5,19 +5,29 @@
 		<title>Erzeuge PDF aus einem Öreb Data-Extrakt</title>
 	</head>
 	<body style="font-family:Arial">
-		<h1>Erzeuge PDF aus einem Öreb Data-Extrakt</h1>
+	    <h2>Erzeuge PDF aus einem Öreb Data-Extrakt</h2>
+	    <br/>
 		<form action = "./create" method = "post" enctype = "multipart/form-data">
 			<table>
-				<tr><td>Xml-Datei</td><td><input type = "file" name = "file"/></td></tr>
-				<tr><td>Token</td><td><input type = "text" name = "token"/></td></tr>
-			    <tr><td>Xml-Validation</td><td><input type="radio" name="validate" value="true" checked="">Ja<br/><input type="radio" name="validate" value="false">Nein</td></tr>
-			    <tr><td>Wms verwenden</td><td><input type="radio" name="usewms" value="true" disabled="true">Ja<br/><input type="radio" name="usewms" value="false" checked="" disabled="true">Nein</td></tr>
-				<tr>
-					<td>Typ</td>
-					<td>
-						<select name="flavour" size="1"><option value="reduced" selected>Reduziert</option><option value="complete">Komplett, Dokumente im PDF angehängt</option><option value="completeAttached">Komplett, Dokumente im PDF als Anhang</option></select>
-					</td>
-				</tr>
+			    <tr><td>Xml-Datei</td><td><input type = "file" name = "file"/></td></tr>
+			    <tr><td></td><td>&nbsp;</td></tr>
+				<tr><td>Token</td><td><input type = "text" name = "token" value="" style="width: 300px;"/></td></tr>
+                <tr><td></td><td>&nbsp;</td></tr>
+			    <tr><td>Xml-Validation durchführen</td><td>
+			        <input type="radio" name="validate" value="false" checked="">Nein<br />
+			        <input type="radio" name="validate" value="true">Ja
+			    </td></tr>
+                <tr><td></td><td>&nbsp;</td></tr>
+			    <tr><td>Einbindung Bilder</td><td>
+			        <input type="radio" name="usewms" value="false" checked="">Eingebettet<br />
+			        <input type="radio" name="usewms" value="true">via WMS Service
+			    </td></tr>
+                <tr><td></td><td>&nbsp;</td></tr>
+			    <tr><td>Umfang</td><td>
+			        <input type="radio" name="flavour" value="reduced" checked="">Reduziert<br/>
+                    <input type="radio" name="flavour" value="complete">Komplett, Dokumente im PDF angehängt<br />
+			        <input type="radio" name="flavour" value="completeAttached">Komplett, Dokumente im PDF als Anhang
+			    </td></tr>
 			</table>
 			<br><br>
 			<input type = "submit" value="Senden" onclick="this.disabled = true; this.value = 'Sende Anfrage…'; form.submit();" />

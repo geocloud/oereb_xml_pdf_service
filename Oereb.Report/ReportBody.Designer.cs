@@ -459,6 +459,7 @@ namespace Oereb.Report
             this.PLegendInvolved.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LITitle,
             this.ListLegendInvolved});
+            this.PLegendInvolved.KeepTogether = false;
             this.PLegendInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14D));
             this.PLegendInvolved.Name = "PLegendInvolved";
             this.PLegendInvolved.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
@@ -484,6 +485,7 @@ namespace Oereb.Report
             this.ListLegendInvolved.DataSource = this.LegendItemsInvolvedDs;
             this.ListLegendInvolved.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.panel1});
+            this.ListLegendInvolved.KeepTogether = false;
             this.ListLegendInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.ListLegendInvolved.Name = "ListLegendInvolved";
             tableGroup8.Groupings.Add(new Telerik.Reporting.Grouping(null));
@@ -546,6 +548,7 @@ namespace Oereb.Report
             this.PLegendNotInvolved.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LNITitle,
             this.ListLegendNotInvolved});
+            this.PLegendNotInvolved.KeepTogether = false;
             this.PLegendNotInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(14.5D));
             this.PLegendNotInvolved.Name = "PLegendNotInvolved";
             this.PLegendNotInvolved.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
@@ -571,6 +574,7 @@ namespace Oereb.Report
             this.ListLegendNotInvolved.DataSource = this.LegendItemsNotInvolvedDs;
             this.ListLegendNotInvolved.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.panel2});
+            this.ListLegendNotInvolved.KeepTogether = false;
             this.ListLegendNotInvolved.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.ListLegendNotInvolved.Name = "ListLegendNotInvolved";
             tableGroup10.Groupings.Add(new Telerik.Reporting.Grouping(null));

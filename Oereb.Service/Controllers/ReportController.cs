@@ -117,13 +117,6 @@ namespace Oereb.Service.Controllers
             string xmlContentOri = System.Text.Encoding.UTF8.GetString(postedFile);
             string xmlContent = System.Text.Encoding.UTF8.GetString(postedFile);
 
-            //remove BOM if available
-
-            if (xmlContent[0] == 65279)
-            {
-                xmlContent = xmlContent.Substring(1);
-            }
-
             if (string.IsNullOrEmpty(xmlContent))
             {
                 return this.Request.CreateResponse
@@ -132,6 +125,25 @@ namespace Oereb.Service.Controllers
                     new
                     {
                         Status = "Posted content is empty"
+                    }
+                );
+            }
+
+            //remove BOM if available
+
+            if (xmlContent[0] == 65279)
+            {
+                xmlContent = xmlContent.Substring(1);
+            }
+
+            if (!xmlContent.Contains("http://schemas.geo.admin.ch/V_D/OeREB/1.0/Extract"))
+            {
+                return this.Request.CreateResponse
+                (
+                    HttpStatusCode.BadRequest,
+                    new
+                    {
+                        Status = "Posted xml content has the wrong version number"
                     }
                 );
             }

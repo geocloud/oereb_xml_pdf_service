@@ -35,6 +35,7 @@ namespace Oereb.Service.Helper
                 settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
                 settings.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
                 settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessIdentityConstraints;
+                settings.ValidationFlags |= XmlSchemaValidationFlags.AllowXmlAttributes;
 
                 settings.ValidationType = ValidationType.Schema;
 

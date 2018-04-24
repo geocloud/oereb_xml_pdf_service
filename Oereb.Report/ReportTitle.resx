@@ -163,7 +163,7 @@
     <value>= Fields.Extract.CreationDate</value>
   </data>
   <data name="PLRCadastreAuthority.Value" xml:space="preserve">
-    <value>Katasterführende Stelle</value>
+    <value>Katasterverantwortliche Stelle</value>
   </data>
   <data name="PLRCadastreAuthorityValue.Value" xml:space="preserve">
     <value>= Fields.PlrCadastreAuthority</value>

@@ -614,10 +614,11 @@ namespace Oereb.Report
 
                 LegalProvisions = new List<Document>();
                 Documents = new List<Document>();
-                MoreInformations = new List<Document>()
-                {
-                    new Document() {Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url =""}
-                };
+                MoreInformations = new List<Document>();
+                //MoreInformations = new List<Document>()
+                //{
+                //    new Document() {Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url =""}
+                //};
 
                 ResponsibleOffice = new List<ResponsibleOffice>();
 
@@ -720,6 +721,7 @@ namespace Oereb.Report
 
                 var legalProvisions = new List<Document>();
                 var documents = new List<Document>();
+                var moreinformations = new List<Document>();
 
                 foreach (var restriction in restrictionOnLandownership)
                 {
@@ -788,13 +790,13 @@ namespace Oereb.Report
 
                             var legAggregation = LegendItemsInvolved.First(x => x.TypeCode == legendInvolved.TypeCode);
                             legAggregation.AreaValue +=  legendInvolved.AreaValue;
-                            legAggregation.PartInPercentValue += legendInvolved.PartInPercentValue;
+                            legAggregation.PartInPercentValue = Math.Round(legAggregation.AreaValue / System.Convert.ToDouble(extract.RealEstate.LandRegistryArea) * 100,0);
                             legAggregation.Aggregate = markDistinct;
-
-                            continue;
                         }
-
-                        LegendItemsInvolved.Add(legendInvolved);
+                        else
+                        {
+                            LegendItemsInvolved.Add(legendInvolved);
+                        }
                     }
 
                     #endregion
@@ -876,12 +878,41 @@ namespace Oereb.Report
 
                     #endregion
 
+                    #region more informations
+
+                    if (restriction.LegalProvisions != null)
+                    {
+                        foreach (var document in restriction.LegalProvisions.Where(x => x.DocumentType == DocumentBaseDocumentType.Hint).Select(x => (Oereb.Service.DataContracts.Model.v10.Document)x))
+                        {
+                            var documentItem = new Document()
+                            {
+                                Title = Helper.LocalisedText.GetStringFromArray(document.Title, language),
+                                Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
+                                OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
+                                OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
+                                Url = WebUtility.HtmlEncode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language)),
+                                Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
+                            };
+
+                            DocumentSetLevelAndSort(ref documentItem);
+
+                            if (moreinformations.Any(x => x.Id == documentItem.Id))
+                            {
+                                continue;
+                            }
+
+                            moreinformations.Add(documentItem);
+                        }
+                    }
+
+                    #endregion
+
                     #region responsible office
 
                     var responsibleOffice = new ResponsibleOffice()
                     {
                         Name = Helper.LocalisedText.GetStringFromArray(restriction.ResponsibleOffice.Name, language),
-                        Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-": restriction.ResponsibleOffice.OfficeAtWeb.Value
+                        Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-": System.Web.HttpUtility.HtmlEncode(restriction.ResponsibleOffice.OfficeAtWeb.Value)
                     };
 
                     if (!ResponsibleOffice.Any(x=> x.Id == responsibleOffice.Id))
@@ -891,9 +922,17 @@ namespace Oereb.Report
 
                     #endregion
                 }
-            
+
+                //with legal provision and laws this should not happen, but here would be the right place
+
+                if (!moreinformations.Any())
+                {
+                    moreinformations.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
+                }
+
                 LegalProvisions.AddRange(legalProvisions.OrderBy(x => x.Sort));
                 Documents.AddRange(documents.OrderBy(x => x.Sort));
+                MoreInformations.AddRange(moreinformations.OrderBy(x => x.Sort));
             }
 
             private void DocumentSetLevelAndSort(ref Document documentItem)

@@ -310,6 +310,7 @@ namespace Oereb.Report
             // 
             // SubunitOfLandRegister
             // 
+            this.SubunitOfLandRegister.CanShrink = true;
             this.SubunitOfLandRegister.Name = "SubunitOfLandRegister";
             this.SubunitOfLandRegister.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.7999987602233887D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
             this.SubunitOfLandRegister.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -319,11 +320,13 @@ namespace Oereb.Report
             this.SubunitOfLandRegister.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.SubunitOfLandRegister.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
             this.SubunitOfLandRegister.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Point(3D);
+            this.SubunitOfLandRegister.Style.Visible = false;
             this.SubunitOfLandRegister.StyleName = "";
             resources.ApplyResources(this.SubunitOfLandRegister, "SubunitOfLandRegister");
             // 
             // SubunitOfLandRegisterValue
             // 
+            this.SubunitOfLandRegisterValue.CanShrink = true;
             this.SubunitOfLandRegisterValue.Name = "SubunitOfLandRegisterValue";
             this.SubunitOfLandRegisterValue.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600001335144043D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
             this.SubunitOfLandRegisterValue.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -332,6 +335,7 @@ namespace Oereb.Report
             this.SubunitOfLandRegisterValue.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.SubunitOfLandRegisterValue.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.SubunitOfLandRegisterValue.Style.Padding.Top = Telerik.Reporting.Drawing.Unit.Point(3D);
+            this.SubunitOfLandRegisterValue.Style.Visible = false;
             this.SubunitOfLandRegisterValue.StyleName = "";
             resources.ApplyResources(this.SubunitOfLandRegisterValue, "SubunitOfLandRegisterValue");
             // 

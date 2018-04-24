@@ -123,7 +123,9 @@
     <Content Include="Global.asax" />
     <Content Include="Image\report_NorthArrow.png" />
     <Content Include="Image\report_Scalebar.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -202,6 +204,7 @@
     <None Include="Checkfiles\schema_1.0\xmldsig-core-schema_mod.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\xml2pdf.dev.geocentrale.com.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -120,6 +120,15 @@
   <data name="textBox1.Value" xml:space="preserve">
     <value>Übersicht ÖREB-Themen</value>
   </data>
+  <data name="ExclusionOfLiability.Value" xml:space="preserve">
+    <value>= "&lt;b&gt;"+ Fields.Toc.ExclusionOfLiabilityTitle+"&lt;/b&gt;&lt;br&gt;"+ Fields.Toc.ExclusionOfLiabilityContent</value>
+  </data>
+  <data name="MoreInformation.Value" xml:space="preserve">
+    <value>= "Weitere Informationen zum ÖREB finden Sie unter &lt;a href='https://oereb.nw.ch/informationen' style='text-decoration:none;color:#4c8fba;'&gt;oereb.nw.ch/informationen&lt;/a&gt;"</value>
+  </data>
+  <data name="GeneralInformation.Value" xml:space="preserve">
+    <value>= "&lt;b&gt;Allgemeine Informationen&lt;/b&gt;&lt;br&gt;"+ Fields.Toc.GeneralInformation + "&lt;br&gt;&lt;br&gt;&lt;b&gt;Grundlagedaten&lt;/b&gt;&lt;br&gt;" + Fields.Toc.BaseData</value>
+  </data>
   <data name="textBox2.Value" xml:space="preserve">
     <value>= "Öffentlich-rechtliche Eigentumsbeschränkungen, welche das Grundstück " + Fields.Extract.RealEstate.Number + " in " + Fields.Extract.RealEstate.Municipality + " betreffen"</value>
   </data>
@@ -162,19 +171,7 @@
   <data name="FootPageInformation.Value" xml:space="preserve">
     <value>= "Seite " + PageNumber+ "/"+ PageCount</value>
   </data>
-  <data name="GeneralInformation.Value" xml:space="preserve">
-    <value>= "&lt;b&gt;Allgemeine Informationen&lt;/b&gt;&lt;br&gt;"+ Fields.Toc.GeneralInformation + "&lt;br&gt;&lt;br&gt;&lt;b&gt;Grundlagedaten&lt;/b&gt;&lt;br&gt;" + Fields.Toc.BaseData</value>
-  </data>
-  <data name="ExclusionOfLiability.Value" xml:space="preserve">
-    <value>= "&lt;b&gt;"+ Fields.Toc.ExclusionOfLiabilityTitle+"&lt;/b&gt;&lt;br&gt;"+ Fields.Toc.ExclusionOfLiabilityContent</value>
-  </data>
-  <data name="MoreInformation.Value" xml:space="preserve">
-    <value>= "Weitere Informationen zum ÖREB finden Sie unter &lt;a href='https://oereb.nw.ch/informationen' style='text-decoration:none;color:#4c8fba;'&gt;oereb.nw.ch/informationen&lt;/a&gt;"</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>1.5</value>
   </metadata>
 </root>
