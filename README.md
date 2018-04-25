@@ -1,15 +1,17 @@
-Kurzüberblick ÖREB XML2PDF Service 
+<b>Kurzüberblick ÖREB XML2PDF Service</b>
 
 Der ÖREB PDF Service wandelt einen validen ÖREB DATA-Extract (XML) einer ÖREB-Auswertung in ein konformes PDF-Dokument um. 
 
-Randbedingungen
+<b>Randbedingungen</b>
 
 Die folgenden Dokumente geben die technischen Randbedingungen des Projektes vor:
 
-•	Weisung vom 1. November 2017 (Stand am 25. August 2017), ÖREB-Kataster DATA-Extract Schemaversion 1.03
-•	Weisung vom 1. Juli 2015 (Stand am 1. Juli 2015), ÖREB-Kataster Inhalt und Darstellung des statischen Auszugs Vorlage ÖREB-Katasterauszug: Satzanweisungen und Vermassung
+<ul>
+<li>Weisung vom 1. November 2017 (Stand am 25. August 2017), ÖREB-Kataster DATA-Extract Schemaversion 1.03</li>
+<li>Weisung vom 1. Juli 2015 (Stand am 1. Juli 2015), ÖREB-Kataster Inhalt und Darstellung des statischen Auszugs Vorlage ÖREB-Katasterauszug: Satzanweisungen und Vermassung</li>
+</ul>
 
-REST Schnittstelle
+<b>REST Schnittstelle</b>
 
 Die Daten können auch direkt gesendet werden z.B. im Zuge einer Server-Server Kommunikation.
 
@@ -23,14 +25,14 @@ Es muss eine "POST" Anweisung an diese Adresse geschickt werden im Format "multi
 <tr><td>validate</td><td>true</td><td>vor der Berichtsaufbereitung wird das Dokument noch validiert und falls ein Validierungsfehler auftritt die Aufbereitung gestoppt.</td></tr>
 <tr><td></td><td>false</td><td>Es wird keine Validierung durchgeführt, es kann aber sein das dadurch die Berichtaufbereitung mit einem Fehler abbricht</td></tr>
 <tr><td>usewms</td><td>true</td><td>benutzen der WMS Referenzen, ein gültiger Link wird vorausgesetzt</td></tr>
-<tr><td></td><td></td>false<td>es wird davon ausgegangen, dass die Bilder eingebettet sind</td></tr>
+<tr><td></td><td>false</td><td>es wird davon ausgegangen, dass die Bilder eingebettet sind</td></tr>
 <tr><td>flavour</td><td>reduced</td><td>Anhänge werden nicht abgefragt und angehängt</td></tr>
 <tr><td></td><td>complete</td><td>sind die verlinkten Dokumente als PDF vorhanden werden diese abgefragt, in ein Bild umgewandelt und im Bericht als weitere Seiten angehängt </td></tr>
 <tr><td></td><td>completeAttached</td><td>sind die verlinkten Dokumente als PDF vorhanden werden diese abgefragt und im PDF als Anhang integriert.</td></tr>
 </table>
 	
 
-Fehlermeldungen
+<b>Fehlermeldungen</b>
 
 Im besten Fall wird der Status Http.OK (200) zurückgegeben und als Mime-Typ "application/pdf".
 
