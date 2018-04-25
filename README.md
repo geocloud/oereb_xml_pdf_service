@@ -17,25 +17,18 @@ https://oereb-dev.gis-daten.ch/oereb/report/form
 
 Es muss eine "POST" Anweisung an diese Adresse geschickt werden im Format "multipart/form-data". Es müssen folgende Variablen abgefüllt sein:
 
-file	Byte Array
-
-token		Ein Zugriffstoken welche Ihnen Zugang gewährt, 
-			Bsp. 1c7751fc-1379-49df-98e3-540f09b11dcb (string)
-		
-validate	true	vor der Berichtsaufbereitung wird das Dokument noch validiert und falls ein Validierungsfehler auftritt die Aufbereitung gestoppt.
-			false	Es wird keine Validierung durchgeführt, es kann aber sein das dadurch die Berichtaufbereitung mit einem Fehler abbricht
-			
-usewms		true	benutzen der WMS Referenzen, ein gültiger Link wird vorausgesetzt
-			false	es wird davon ausgegangen, dass die Bilder eingebettet sind
-
-flavour		reduced	
-			Anhänge werden nicht abgefragt und angehängt
-
-			complete
-			sind die verlinkten Dokumente als PDF vorhanden werden diese abgefragt, in ein Bild umgewandelt und im Bericht als weitere Seiten angehängt 
-			
-			completeAttached
-			sind die verlinkten Dokumente als PDF vorhanden werden diese abgefragt und im PDF als Anhang integriert.
+<table>
+<tr><td>file</td><td></td><td>Byte Array</td></tr>
+<tr><td>token</td><td></td><td>Ein Zugriffstoken welche Ihnen Zugang gewährt, Bsp. 1c7751fc-1379-49df-98e3-540f09b11dcb (string)</td></tr>
+<tr><td>validate</td><td>true</td><td>vor der Berichtsaufbereitung wird das Dokument noch validiert und falls ein Validierungsfehler auftritt die Aufbereitung gestoppt.</td></tr>
+<tr><td></td><td>false</td><td>Es wird keine Validierung durchgeführt, es kann aber sein das dadurch die Berichtaufbereitung mit einem Fehler abbricht</td></tr>
+<tr><td>usewms</td><td>true</td><td>benutzen der WMS Referenzen, ein gültiger Link wird vorausgesetzt</td></tr>
+<tr><td></td><td></td>false<td>es wird davon ausgegangen, dass die Bilder eingebettet sind</td></tr>
+<tr><td>flavour</td><td>reduced</td><td>Anhänge werden nicht abgefragt und angehängt</td></tr>
+<tr><td></td><td>complete</td><td>sind die verlinkten Dokumente als PDF vorhanden werden diese abgefragt, in ein Bild umgewandelt und im Bericht als weitere Seiten angehängt </td></tr>
+<tr><td></td><td>completeAttached</td><td>sind die verlinkten Dokumente als PDF vorhanden werden diese abgefragt und im PDF als Anhang integriert.</td></tr>
+</table>
+	
 
 Fehlermeldungen
 
