@@ -28,14 +28,17 @@ namespace Oereb.Service.Controllers
         /// <param name="flavour">complete |completeAttached | reduced</param>
         /// <param name="validate">per default is the xml validating</param>
         /// <param name="usewms">force using wms</param>
+        /// <param name="language">at this time only support for german, values are de | fr | it</param>
         /// <returns></returns>
         [HttpPost]
-        public HttpResponseMessage Create([FromUri] string flavour = "reduced", [FromUri] bool validate = true,[FromUri] bool usewms = false)
+        public HttpResponseMessage Create([FromUri] string flavour = "reduced", [FromUri] bool validate = true,[FromUri] bool usewms = false, [FromUri] string language = "de")
         {
             var httpRequest = HttpContext.Current.Request;
             bool validToken = false;
             var logFilesXml2Pdf = ConfigurationManager.AppSettings["logFilesXml2Pdf"] == "true";
             var token = "";
+
+            #region get values from uri
 
             if (httpRequest.Form.AllKeys.Contains("token"))
             {
@@ -54,16 +57,9 @@ namespace Oereb.Service.Controllers
                 }
             }
 
-            if (!validToken)
+            if (httpRequest.Form.AllKeys.Contains("language"))
             {
-                return this.Request.CreateResponse
-                (
-                    HttpStatusCode.BadRequest,
-                    new
-                    {
-                        Status = "Submitted token is not valid or does not exist"
-                    }
-                );
+                language = httpRequest.Form["language"];
             }
 
             if (httpRequest.Form.AllKeys.Contains("flavour"))
@@ -79,6 +75,22 @@ namespace Oereb.Service.Controllers
             if (httpRequest.Form.AllKeys.Contains("usewms"))
             {
                 usewms = Convert.ToBoolean(httpRequest.Form["usewms"]);
+            }
+
+            #endregion
+
+            #region check input values
+
+            if (!validToken)
+            {
+                return this.Request.CreateResponse
+                (
+                    HttpStatusCode.BadRequest,
+                    new
+                    {
+                        Status = "Submitted token is not valid or does not exist"
+                    }
+                );
             }
 
             if (httpRequest.Files.Count != 1)
@@ -106,6 +118,22 @@ namespace Oereb.Service.Controllers
                     }
                 );
             }
+
+            var validLanguages = new string[] {"de"}; //, "fr", "it" };
+
+            if (!validLanguages.Contains(language))
+            {
+                return this.Request.CreateResponse
+                (
+                    HttpStatusCode.BadRequest,
+                    new
+                    {
+                        Status = $"no support for this language {language}"
+                    }
+                );
+            }
+
+            #endregion
 
             byte[] postedFile;
 
