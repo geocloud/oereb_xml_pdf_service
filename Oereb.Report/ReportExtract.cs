@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Oereb.Service.DataContracts.Model.v10;
 using System.Configuration;
+using System.Web;
 
 namespace Oereb.Report
 {
@@ -624,10 +625,10 @@ namespace Oereb.Report
 
                 #endregion
 
-                FederalLogo = (byte[]) extract.Item1;
-                CantonalLogo = (byte[])extract.Item2;
-                MunicipalityLogo = (byte[])extract.Item3;
-                LogoPLRCadastre = (byte[])extract.Item;
+                FederalLogo = GetImageAsBytes(extract.Item1);
+                CantonalLogo = GetImageAsBytes(extract.Item2);
+                MunicipalityLogo = GetImageAsBytes(extract.Item3);
+                LogoPLRCadastre = GetImageAsBytes(extract.Item);
                 ExtractIdentifier = extract.ExtractIdentifier;
                 CreationDate = extract.CreationDate;
 
@@ -734,7 +735,7 @@ namespace Oereb.Report
                         {
                             LegendItems.Add(new LegendItem()
                             {
-                                Symbol = (byte[])legend.Item,
+                                Symbol = GetImageAsBytes(legend.Item),
                                 TypeCode = legend.TypeCode,
                                 Label = legend.LegendText.FirstOrDefault(x => x.Language.ToString() == language) != null ? legend.LegendText.First(x => x.Language.ToString() == language).Text : "-"
                             });
@@ -747,7 +748,7 @@ namespace Oereb.Report
                     {
                         legendItemCatched = new LegendItem()
                         {
-                            Symbol = (byte[])restriction.Item,
+                            Symbol = GetImageAsBytes(restriction.Item),
                             TypeCode = restriction.TypeCode,
                             Label = Helper.LocalisedMText.GetStringFromArray(restriction.Information,"de")
                         };
@@ -933,6 +934,26 @@ namespace Oereb.Report
                 LegalProvisions.AddRange(legalProvisions.OrderBy(x => x.Sort));
                 Documents.AddRange(documents.OrderBy(x => x.Sort));
                 MoreInformations.AddRange(moreinformations.OrderBy(x => x.Sort));
+            }
+
+            protected byte[] GetImageAsBytes(object data)
+            {
+                if (data is string)
+                {
+                    var url = HttpUtility.UrlDecode(data.ToString());
+                    Uri uriResult;
+                    bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+                    if (result)
+                    {
+                        using (var webClient = new WebClient())
+                        {
+                            return webClient.DownloadData(uriResult);
+                        }
+                    }
+                }
+
+                return (byte[])data;
             }
 
             private void DocumentSetLevelAndSort(ref Document documentItem)
