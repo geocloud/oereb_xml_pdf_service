@@ -97,6 +97,7 @@ namespace Oereb.Report
             this.shape9 = new Telerik.Reporting.Shape();
             this.FootPageInfo = new Telerik.Reporting.TextBox();
             this.BodyItemsDs = new Telerik.Reporting.ObjectDataSource();
+            this.BufferBox = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // pageHeaderSection1
@@ -176,7 +177,8 @@ namespace Oereb.Report
             this.PLegendNotInvolved,
             this.shape4,
             this.PMoreInformations,
-            this.PResponsibleOffice});
+            this.PResponsibleOffice,
+            this.BufferBox});
             this.detail.Name = "detail";
             this.detail.PageBreak = Telerik.Reporting.PageBreak.Before;
             this.detail.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.800000011920929D);
@@ -189,7 +191,7 @@ namespace Oereb.Report
             this.Title.Name = "Title";
             this.Title.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399900436401367D), Telerik.Reporting.Drawing.Unit.Cm(0.70000004768371582D));
             this.Title.Style.Font.Bold = true;
-            this.Title.Style.Font.Name = "Cadastra";
+            this.Title.Style.Font.Name = "Microsoft Sans Serif";
             this.Title.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(15D);
             this.Title.TocText = "= Fields.Theme";
             resources.ApplyResources(this.Title, "Title");
@@ -226,6 +228,7 @@ namespace Oereb.Report
             this.LTyp.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.800300121307373D), Telerik.Reporting.Drawing.Unit.Cm(13.5D));
             this.LTyp.Name = "LTyp";
             this.LTyp.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.80000013113021851D), Telerik.Reporting.Drawing.Unit.Cm(0.30000105500221252D));
+            this.LTyp.Style.Font.Name = "Microsoft Sans Serif";
             this.LTyp.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.LTyp, "LTyp");
             // 
@@ -234,6 +237,7 @@ namespace Oereb.Report
             this.LArea.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(15.099699020385742D), Telerik.Reporting.Drawing.Unit.Cm(13.5D));
             this.LArea.Name = "LArea";
             this.LArea.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.89999938011169434D), Telerik.Reporting.Drawing.Unit.Cm(0.30000105500221252D));
+            this.LArea.Style.Font.Name = "Microsoft Sans Serif";
             this.LArea.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.LArea, "LArea");
             // 
@@ -242,6 +246,7 @@ namespace Oereb.Report
             this.LPartIn.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(16.500001907348633D), Telerik.Reporting.Drawing.Unit.Cm(13.5D));
             this.LPartIn.Name = "LPartIn";
             this.LPartIn.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.89999938011169434D), Telerik.Reporting.Drawing.Unit.Cm(0.30000105500221252D));
+            this.LPartIn.Style.Font.Name = "Microsoft Sans Serif";
             this.LPartIn.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             this.LPartIn.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             resources.ApplyResources(this.LPartIn, "LPartIn");
@@ -263,7 +268,7 @@ namespace Oereb.Report
             this.LWebReference.Name = "LWebReference";
             this.LWebReference.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LWebReference.Style.Font.Bold = true;
-            this.LWebReference.Style.Font.Name = "Cadastra";
+            this.LWebReference.Style.Font.Name = "Microsoft Sans Serif";
             this.LWebReference.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LWebReference, "LWebReference");
             // 
@@ -300,6 +305,7 @@ namespace Oereb.Report
             this.TLegendAtWeb.Name = "TLegendAtWeb";
             this.TLegendAtWeb.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.562824249267578D), Telerik.Reporting.Drawing.Unit.Cm(0.30000001192092896D));
             this.TLegendAtWeb.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(143)))), ((int)(((byte)(186)))));
+            this.TLegendAtWeb.Style.Font.Name = "Microsoft Sans Serif";
             this.TLegendAtWeb.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.TLegendAtWeb, "TLegendAtWeb");
             // 
@@ -318,7 +324,7 @@ namespace Oereb.Report
             // 
             // shape5
             // 
-            this.shape5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.400001525878906D));
+            this.shape5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.400197982788086D));
             this.shape5.Name = "shape5";
             this.shape5.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
@@ -326,7 +332,7 @@ namespace Oereb.Report
             // 
             // shape6
             // 
-            this.shape6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.900001525878906D));
+            this.shape6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.900197982788086D));
             this.shape6.Name = "shape6";
             this.shape6.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
@@ -345,7 +351,7 @@ namespace Oereb.Report
             this.PLegalProvisions.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LLegalProvisions,
             this.LILegalProvisions});
-            this.PLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(15.500000953674316D));
+            this.PLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.500198364257812D));
             this.PLegalProvisions.Name = "PLegalProvisions";
             this.PLegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
@@ -355,7 +361,7 @@ namespace Oereb.Report
             this.LLegalProvisions.Name = "LLegalProvisions";
             this.LLegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LLegalProvisions.Style.Font.Bold = true;
-            this.LLegalProvisions.Style.Font.Name = "Cadastra";
+            this.LLegalProvisions.Style.Font.Name = "Microsoft Sans Serif";
             this.LLegalProvisions.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LLegalProvisions, "LLegalProvisions");
             // 
@@ -389,6 +395,7 @@ namespace Oereb.Report
             this.HBLegalProvisions.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.HBLegalProvisions.Name = "HBLegalProvisions";
             this.HBLegalProvisions.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.HBLegalProvisions.Style.Font.Name = "Microsoft Sans Serif";
             this.HBLegalProvisions.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.HBLegalProvisions, "HBLegalProvisions");
             // 
@@ -402,7 +409,7 @@ namespace Oereb.Report
             this.PDocuments.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LDocuments,
             this.LIDocuments});
-            this.PDocuments.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16D));
+            this.PDocuments.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.00019645690918D));
             this.PDocuments.Name = "PDocuments";
             this.PDocuments.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.420412063598633D), Telerik.Reporting.Drawing.Unit.Cm(0.4000014066696167D));
             // 
@@ -412,7 +419,7 @@ namespace Oereb.Report
             this.LDocuments.Name = "LDocuments";
             this.LDocuments.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LDocuments.Style.Font.Bold = true;
-            this.LDocuments.Style.Font.Name = "Cadastra";
+            this.LDocuments.Style.Font.Name = "Microsoft Sans Serif";
             this.LDocuments.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LDocuments, "LDocuments");
             // 
@@ -446,6 +453,7 @@ namespace Oereb.Report
             this.HBDocument.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.HBDocument.Name = "HBDocument";
             this.HBDocument.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.HBDocument.Style.Font.Name = "Microsoft Sans Serif";
             this.HBDocument.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.HBDocument, "HBDocument");
             // 
@@ -470,7 +478,7 @@ namespace Oereb.Report
             this.LITitle.Name = "LITitle";
             this.LITitle.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LITitle.Style.Font.Bold = true;
-            this.LITitle.Style.Font.Name = "Cadastra";
+            this.LITitle.Style.Font.Name = "Microsoft Sans Serif";
             this.LITitle.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LITitle, "LITitle");
             // 
@@ -517,6 +525,7 @@ namespace Oereb.Report
             this.LILabel.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.LILabel.Name = "LILabel";
             this.LILabel.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.3996996879577637D), Telerik.Reporting.Drawing.Unit.Cm(0.30000001192092896D));
+            this.LILabel.Style.Font.Name = "Microsoft Sans Serif";
             this.LILabel.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LILabel, "LILabel");
             // 
@@ -525,6 +534,7 @@ namespace Oereb.Report
             this.LIArea.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.3998985290527344D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
             this.LIArea.Name = "LIArea";
             this.LIArea.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.799500584602356D), Telerik.Reporting.Drawing.Unit.Cm(0.30000001192092896D));
+            this.LIArea.Style.Font.Name = "Microsoft Sans Serif";
             this.LIArea.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.LIArea.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             resources.ApplyResources(this.LIArea, "LIArea");
@@ -534,6 +544,7 @@ namespace Oereb.Report
             this.LIPartIn.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3830251693725586D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.LIPartIn.Name = "LIPartIn";
             this.LIPartIn.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.1996997594833374D), Telerik.Reporting.Drawing.Unit.Cm(0.30000001192092896D));
+            this.LIPartIn.Style.Font.Name = "Microsoft Sans Serif";
             this.LIPartIn.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.LIPartIn.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             resources.ApplyResources(this.LIPartIn, "LIPartIn");
@@ -559,7 +570,7 @@ namespace Oereb.Report
             this.LNITitle.Name = "LNITitle";
             this.LNITitle.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LNITitle.Style.Font.Bold = true;
-            this.LNITitle.Style.Font.Name = "Cadastra";
+            this.LNITitle.Style.Font.Name = "Microsoft Sans Serif";
             this.LNITitle.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LNITitle, "LNITitle");
             // 
@@ -604,6 +615,7 @@ namespace Oereb.Report
             this.LNILabel.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.980298638343811D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.LNILabel.Name = "LNILabel";
             this.LNILabel.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.3996996879577637D), Telerik.Reporting.Drawing.Unit.Cm(0.30000001192092896D));
+            this.LNILabel.Style.Font.Name = "Microsoft Sans Serif";
             this.LNILabel.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LNILabel, "LNILabel");
             // 
@@ -614,7 +626,7 @@ namespace Oereb.Report
             // 
             // shape4
             // 
-            this.shape4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(15.90000057220459D));
+            this.shape4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.900197982788086D));
             this.shape4.Name = "shape4";
             this.shape4.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
@@ -625,7 +637,7 @@ namespace Oereb.Report
             this.PMoreInformations.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LMoreInformation,
             this.LIMoreInformation});
-            this.PMoreInformations.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(16.500001907348633D));
+            this.PMoreInformations.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.500198364257812D));
             this.PMoreInformations.Name = "PMoreInformations";
             this.PMoreInformations.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
@@ -635,7 +647,7 @@ namespace Oereb.Report
             this.LMoreInformation.Name = "LMoreInformation";
             this.LMoreInformation.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LMoreInformation.Style.Font.Bold = true;
-            this.LMoreInformation.Style.Font.Name = "Cadastra";
+            this.LMoreInformation.Style.Font.Name = "Microsoft Sans Serif";
             this.LMoreInformation.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LMoreInformation, "LMoreInformation");
             // 
@@ -669,6 +681,7 @@ namespace Oereb.Report
             this.htmlTextBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.htmlTextBox1.Name = "htmlTextBox1";
             this.htmlTextBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.htmlTextBox1.Style.Font.Name = "Microsoft Sans Serif";
             this.htmlTextBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.htmlTextBox1, "htmlTextBox1");
             // 
@@ -682,7 +695,7 @@ namespace Oereb.Report
             this.PResponsibleOffice.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.LResponsibleOffice,
             this.LIResonsibleOffice});
-            this.PResponsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(17.000202178955078D));
+            this.PResponsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(18.000398635864258D));
             this.PResponsibleOffice.Name = "PResponsibleOffice";
             this.PResponsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
             // 
@@ -692,7 +705,7 @@ namespace Oereb.Report
             this.LResponsibleOffice.Name = "LResponsibleOffice";
             this.LResponsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.40000039339065552D));
             this.LResponsibleOffice.Style.Font.Bold = true;
-            this.LResponsibleOffice.Style.Font.Name = "Cadastra";
+            this.LResponsibleOffice.Style.Font.Name = "Microsoft Sans Serif";
             this.LResponsibleOffice.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.LResponsibleOffice, "LResponsibleOffice");
             // 
@@ -727,6 +740,7 @@ namespace Oereb.Report
             this.HBResponsibleOffice.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.020099440589547157D), Telerik.Reporting.Drawing.Unit.Cm(9.9046490504406393E-05D));
             this.HBResponsibleOffice.Name = "HBResponsibleOffice";
             this.HBResponsibleOffice.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600000381469727D), Telerik.Reporting.Drawing.Unit.Cm(0.40000000596046448D));
+            this.HBResponsibleOffice.Style.Font.Name = "Microsoft Sans Serif";
             this.HBResponsibleOffice.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             resources.ApplyResources(this.HBResponsibleOffice, "HBResponsibleOffice");
             // 
@@ -752,6 +766,7 @@ namespace Oereb.Report
             this.FootCreationDate.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.079999998211860657D));
             this.FootCreationDate.Name = "FootCreationDate";
             this.FootCreationDate.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.9000003337860107D), Telerik.Reporting.Drawing.Unit.Cm(0.25D));
+            this.FootCreationDate.Style.Font.Name = "Microsoft Sans Serif";
             this.FootCreationDate.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.FootCreationDate, "FootCreationDate");
             // 
@@ -761,6 +776,7 @@ namespace Oereb.Report
             this.FootExtractIdentifier.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.2000000476837158D), Telerik.Reporting.Drawing.Unit.Cm(0.079999998211860657D));
             this.FootExtractIdentifier.Name = "FootExtractIdentifier";
             this.FootExtractIdentifier.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.25D));
+            this.FootExtractIdentifier.Style.Font.Name = "Microsoft Sans Serif";
             this.FootExtractIdentifier.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.FootExtractIdentifier, "FootExtractIdentifier");
             // 
@@ -778,6 +794,7 @@ namespace Oereb.Report
             this.FootPageInfo.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.5D), Telerik.Reporting.Drawing.Unit.Cm(0.079999998211860657D));
             this.FootPageInfo.Name = "FootPageInfo";
             this.FootPageInfo.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.9000003337860107D), Telerik.Reporting.Drawing.Unit.Cm(0.25D));
+            this.FootPageInfo.Style.Font.Name = "Microsoft Sans Serif";
             this.FootPageInfo.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             this.FootPageInfo.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             resources.ApplyResources(this.FootPageInfo, "FootPageInfo");
@@ -787,6 +804,14 @@ namespace Oereb.Report
             this.BodyItemsDs.DataMember = "GetBodyItems";
             this.BodyItemsDs.DataSource = typeof(Oereb.Report.ReportExtract);
             this.BodyItemsDs.Name = "BodyItemsDs";
+            // 
+            // BufferBox
+            // 
+            this.BufferBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.019999856129288673D), Telerik.Reporting.Drawing.Unit.Cm(15.50019645690918D));
+            this.BufferBox.Name = "BufferBox";
+            this.BufferBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.99999922513961792D));
+            this.BufferBox.Style.Font.Name = "Microsoft Sans Serif";
+            resources.ApplyResources(this.BufferBox, "BufferBox");
             // 
             // ReportBody
             // 
@@ -883,5 +908,6 @@ namespace Oereb.Report
         private Telerik.Reporting.Panel panel4;
         private Telerik.Reporting.HtmlTextBox htmlTextBox1;
         private Telerik.Reporting.ObjectDataSource MoreInformationDs;
+        private Telerik.Reporting.TextBox BufferBox;
     }
 }

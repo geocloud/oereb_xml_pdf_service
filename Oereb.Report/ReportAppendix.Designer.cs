@@ -135,7 +135,7 @@ namespace Oereb.Report
             this.AppendixLabel.Name = "AppendixLabel";
             this.AppendixLabel.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(15.690624237060547D), Telerik.Reporting.Drawing.Unit.Cm(2.1998999118804932D));
             this.AppendixLabel.Style.Font.Bold = true;
-            this.AppendixLabel.Style.Font.Name = "Cadastra";
+            this.AppendixLabel.Style.Font.Name = "Microsoft Sans Serif";
             this.AppendixLabel.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(15D);
             this.AppendixLabel.Value = "= Fields.Description";
             // 
@@ -148,7 +148,7 @@ namespace Oereb.Report
             this.AppendixShortname.Name = "AppendixShortname";
             this.AppendixShortname.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.3998997211456299D), Telerik.Reporting.Drawing.Unit.Cm(0.60000008344650269D));
             this.AppendixShortname.Style.Font.Bold = true;
-            this.AppendixShortname.Style.Font.Name = "Cadastra";
+            this.AppendixShortname.Style.Font.Name = "Microsoft Sans Serif";
             this.AppendixShortname.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(15D);
             this.AppendixShortname.TocText = "= Fields.Shortname + \" \" + Fields.Description";
             this.AppendixShortname.Value = "= Fields.Shortname";
@@ -201,7 +201,7 @@ namespace Oereb.Report
             this.textBoxAppendixUrl.Name = "textBoxAppendixUrl";
             this.textBoxAppendixUrl.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(15.690001487731934D), Telerik.Reporting.Drawing.Unit.Cm(0.60000050067901611D));
             this.textBoxAppendixUrl.Style.Color = System.Drawing.Color.RoyalBlue;
-            this.textBoxAppendixUrl.Style.Font.Name = "Cadastra";
+            this.textBoxAppendixUrl.Style.Font.Name = "Microsoft Sans Serif";
             this.textBoxAppendixUrl.Value = "= Fields.Url";
             // 
             // AppendixDs

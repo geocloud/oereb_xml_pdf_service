@@ -182,6 +182,9 @@
   <data name="HBResponsibleOffice.Value" xml:space="preserve">
     <value>= Fields.Name + ":&lt;a href='"+ Fields.Url+"' style='font-size:6.5pt;text-decoration:none;text-indent:-3mm;padding-left:3mm;color:#4c8fba;'&gt;" + Fields.Url + "&lt;/a&gt;"</value>
   </data>
+  <data name="BufferBox.Value" xml:space="preserve">
+    <value />
+  </data>
   <data name="FootCreationDate.Value" xml:space="preserve">
     <value>= Fields.CreationDate</value>
   </data>
@@ -195,6 +198,6 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>1.5</value>
+    <value>2</value>
   </metadata>
 </root>
