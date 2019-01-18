@@ -117,29 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title.Value" xml:space="preserve">
-    <value>Abkürzungen</value>
-    
-    <comment>x</comment>
+  <data name="GeneralInformation.Value" xml:space="preserve">
+    <value>= "&lt;b&gt;Informazioni generali&lt;/b&gt;&lt;br&gt;"+ Fields.Toc.GeneralInformation + "&lt;br&gt;&lt;br&gt;&lt;b&gt;dati di base&lt;/b&gt;&lt;br&gt;" + Fields.Toc.BaseData</value>
   </data>
-  <data name="GlossaryItem.Value" xml:space="preserve">
-    <value>= "&lt;span style='font-weight:bold;'&gt;" + Fields.Abbreviation + ": &lt;/span&gt;&lt;span style='text-indent:-3mm;padding-left:3mm;'&gt;" + Fields.Description+ "&lt;/span&gt;"</value>
+  <data name="textBox2.Value" xml:space="preserve">
+    <value>= "Restrizioni della proprietà che riguardano il fondo" + Fields.Extract.RealEstate.Number + " a " + Fields.Extract.RealEstate.Municipality</value>
   </data>
-  <data name="FootCreationDate.Value" xml:space="preserve">
-    <value>= Fields.Extract.CreationDate</value>
+  <data name="LabelAppendix.Value" xml:space="preserve">
+    <value>Allegati</value>
   </data>
-  <data name="FootExtractIdentifier.Value" xml:space="preserve">
-    <value>= Fields.Extract.ExtractIdentifier</value>
+  <data name="LabelPage.Value" xml:space="preserve">
+    <value>Pagina</value>
+  </data>
+  <data name="LabelThemeNotConcerned.Value" xml:space="preserve">
+    <value>Restrizioni delle proprietà che non riguardano il fondo</value>
+  </data>
+  <data name="textBox1.Value" xml:space="preserve">
+    <value>Panoramica temi RDPP</value>
+  </data>
+  <data name="LabelThemeWithoutData.Value" xml:space="preserve">
+    <value>Restrizioni delle proprietà per le quali non sono ancora disponibili dati</value>
   </data>
   <data name="FootPageInformation.Value" xml:space="preserve">
-    <value>= "Seite " + PageNumber+ "/"+ PageCount</value>
-    
-    <comment>x</comment>
+    <value>= "Pagina " + PageNumber+ "/"+ PageCount</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>1.5</value>
-  </metadata>
+  <data name="MoreInformation.Value" xml:space="preserve">
+    <value>Ulteriori informazioni su RDPP sono disponibili all'indirizzo</value>
+  </data>
 </root>

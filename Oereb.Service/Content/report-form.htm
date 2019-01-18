@@ -7,36 +7,38 @@
 	<body style="font-family:Arial">
 	    <h2>Erzeuge PDF aus einem Öreb Data-Extrakt</h2>
 	    <br/>
-		<form action = "./create" method = "post" enctype = "multipart/form-data">
-			<table>
-			    <tr><td>Xml-Datei</td><td><input type = "file" name = "file"/></td></tr>
-			    <tr><td></td><td>&nbsp;</td></tr>
-				<tr><td>Token</td><td><input type = "text" name = "token" value="" style="width: 300px;"/></td></tr>
-                <tr><td></td><td>&nbsp;</td></tr>
-			    <tr><td>Xml-Validation durchführen</td><td>
-			        <input type="radio" name="validate" value="false" checked="">Nein<br />
-			        <input type="radio" name="validate" value="true">Ja
-			    </td></tr>
-                <tr><td></td><td>&nbsp;</td></tr>
-			    <tr><td>Einbindung Bilder</td><td>
-			        <input type="radio" name="usewms" value="false" checked="">Eingebettet<br />
-			        <input type="radio" name="usewms" value="true">via WMS Service
-			    </td></tr>
-                <tr><td></td><td>&nbsp;</td></tr>
-			    <tr><td>Umfang</td><td>
-			        <input type="radio" name="flavour" value="reduced" checked="">Reduziert<br/>
-			        <input type="radio" name="flavour" value="complete">Komplett, Dokumente im PDF angehängt<br />
-			        <input type="radio" name="flavour" value="completeAttached">Komplett, PDF-Originaldateien eingebettet
-			    </td></tr>
-			    <tr><td></td><td>&nbsp;</td></tr>
-			    <tr><td>Sprache</td><td>
-			        <input type="radio" name="language" value="de" checked="">Deutsch<br/>
-			        <input type="radio" name="language" value="fr" disabled="true"><span style="color: #aaaaaa;">Französisch</span><br />
-			        <input type="radio" name="language" value="it" disabled="true"><span style="color: #aaaaaa;">Italienisch</span>
-</td></tr>
-			</table>
-			<br><br>
-			<input type = "submit" value="Senden" onclick="this.disabled = true; this.value = 'Sende Anfrage…'; form.submit();" />
-		</form>
+	<form action = "./create" method = "post" enctype = "multipart/form-data">
+	    <table>
+	        <tr><td>Xml-Datei</td><td><input type = "file" name = "file"/></td></tr>
+	        <tr><td></td><td>&nbsp;</td></tr>
+	        <tr><td>Token</td><td><input type = "text" name = "token" value="" style="width: 300px;"/></td></tr>
+	        <tr><td></td><td>&nbsp;</td></tr>
+	        <tr><td>Xml-Validation durchführen</td><td>
+	            <input type="radio" name="validate" value="false" checked="">Nein<br />
+	            <input type="radio" name="validate" value="true">Ja
+	        </td></tr>
+	        <tr><td></td><td>&nbsp;</td></tr>
+	        <tr><td>Einbindung Bilder</td><td>
+	            <input type="radio" name="usewms" value="false" checked="">Eingebettet<br />
+	            <input type="radio" name="usewms" value="true">via WMS Service
+	        </td></tr>
+	        <tr><td></td><td>&nbsp;</td></tr>
+	        <tr><td>Umfang</td><td>
+	            <input type="radio" name="flavour" value="reduced" checked="">Reduziert<br/>
+	            <input type="radio" name="flavour" value="complete">Komplett, Dokumente im PDF angehängt<br />
+	            <input type="radio" name="flavour" value="completeAttached">Komplett, PDF-Originaldateien eingebettet
+	        </td></tr>
+	        <tr><td></td><td>&nbsp;</td></tr>
+	        <tr><td>Sprache</td><td>
+	            <input type="radio" name="language" value="de" checked="">Deutsch<br/>
+	            <input type="radio" name="language" value="fr" ><span>Französisch</span><br />
+	            <input type="radio" name="language" value="it" ><span>Italienisch</span>
+	        </td></tr>
+	    </table>
+	    <br><br>
+	    <input type = "submit" value="Senden" onclick="this.disabled = true; this.value = 'Sende Anfrage…'; form.submit();" />
+	</form>
+	<hr/>
+	<p>Version: 17.01.2019</p>
 	</body>
 </html>

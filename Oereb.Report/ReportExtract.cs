@@ -39,8 +39,11 @@ namespace Oereb.Report
         public string Title {
             get
             {
-                var postfix = !ExtractComplete ? " mit reduzierter Information" : string.Empty;
-                return $"Auszug aus dem Kataster der\nöffentlich-rechtlichen Eigentumsbeschränkungen \n(ÖREB-Kataster){postfix}";
+                var ResourceManager = new System.Resources.ResourceManager("Oereb.Report.ReportTitle", typeof(ReportTitle).Assembly);
+
+                return !ExtractComplete
+                    ? ResourceManager.GetString("PageTitleReduced")
+                    : ResourceManager.GetString("PageTitle");
             }
         }
 

@@ -148,6 +148,30 @@
     <EmbeddedResource Include="ReportAppendix.resx">
       <DependentUpon>ReportAppendix.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportBody.fr.resx">
+      <DependentUpon>ReportBody.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBody.it.resx">
+      <DependentUpon>ReportBody.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportGlossary.fr.resx">
+      <DependentUpon>ReportGlossary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportGlossary.it.resx">
+      <DependentUpon>ReportGlossary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTitle.fr.resx">
+      <DependentUpon>ReportTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTitle.it.resx">
+      <DependentUpon>ReportTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportToc.fr.resx">
+      <DependentUpon>ReportToc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportToc.it.resx">
+      <DependentUpon>ReportToc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportToc.resx">
       <DependentUpon>ReportToc.cs</DependentUpon>
     </EmbeddedResource>

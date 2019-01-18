@@ -119,7 +119,7 @@ namespace Oereb.Service.Controllers
                 );
             }
 
-            var validLanguages = new string[] {"de"}; //, "fr", "it" };
+            var validLanguages = new string[] {"de", "fr", "it" };
 
             if (!validLanguages.Contains(language))
             {
@@ -132,6 +132,25 @@ namespace Oereb.Service.Controllers
                     }
                 );
             }
+
+            var cultureInfo = new System.Globalization.CultureInfo("de-CH");
+            switch (language)
+            {
+                case "fr":
+                    cultureInfo = new System.Globalization.CultureInfo("fr-CH");
+                    cultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+                    break;
+                case "it":
+                    cultureInfo = new System.Globalization.CultureInfo("it-CH");
+                    break;
+            }
+
+
+            // Set the language for static text (i.e. column headings, titles)
+            System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+            // Set the language for dynamic text (i.e. date, time, money)
+            System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
 
             #endregion
 

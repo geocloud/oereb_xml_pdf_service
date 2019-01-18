@@ -117,29 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title.Value" xml:space="preserve">
-    <value>Abkürzungen</value>
-    
-    <comment>x</comment>
+  <data name="PLRCadastreAuthority.Value" xml:space="preserve">
+    <value>Organisme responsable du cadastre</value>
   </data>
-  <data name="GlossaryItem.Value" xml:space="preserve">
-    <value>= "&lt;span style='font-weight:bold;'&gt;" + Fields.Abbreviation + ": &lt;/span&gt;&lt;span style='text-indent:-3mm;padding-left:3mm;'&gt;" + Fields.Description+ "&lt;/span&gt;"</value>
+  <data name="Attestation.Value" xml:space="preserve">
+    <value>Certification</value>
   </data>
-  <data name="FootCreationDate.Value" xml:space="preserve">
-    <value>= Fields.Extract.CreationDate</value>
+  <data name="Stamp.Value" xml:space="preserve">
+    <value>(Tampon)</value>
   </data>
-  <data name="FootExtractIdentifier.Value" xml:space="preserve">
-    <value>= Fields.Extract.ExtractIdentifier</value>
+  <data name="Date.Value" xml:space="preserve">
+    <value>(Date)</value>
+  </data>
+  <data name="Signature.Value" xml:space="preserve">
+    <value>(Signature)</value>
+  </data>
+  <data name="CreationDate.Value" xml:space="preserve">
+    <value>Date de création de l'extrait</value>
   </data>
   <data name="FootPageInformation.Value" xml:space="preserve">
-    <value>= "Seite " + PageNumber+ "/"+ PageCount</value>
-    
-    <comment>x</comment>
+    <value>= "Page " + PageNumber+ "/"+ PageCount</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>1.5</value>
-  </metadata>
+  <data name="LandRegistryArea.Value" xml:space="preserve">
+    <value>Surface</value>
+  </data>
+  <data name="MunicipalityFos.Value" xml:space="preserve">
+    <value>Commune  (No OFS)</value>
+  </data>
+  <data name="ParcelNumber.Value" xml:space="preserve">
+    <value>No de l'immeuble</value>
+  </data>
+  <data name="ExtractIdentifier.Value" xml:space="preserve">
+    <value>Identifiant de l'extrait</value>
+  </data>
+  <data name="EGRID.Value" xml:space="preserve">
+    <value>E-GRID</value>
+  </data>
+  <data name="SubunitOfLandRegister.Value" xml:space="preserve">
+    <value>Arrondissement du RF</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Extrait du cadastre des restrictions de droit public à la propriété foncière (cadastre RDPPF)</value>
+  </data>
+  <data name="PageTitleReduced" xml:space="preserve">
+    <value>Extrait du cadastre des restrictions de droit public à la propriété foncière (cadastre RDPPF) comportant des informations réduites</value>
+  </data>
 </root>

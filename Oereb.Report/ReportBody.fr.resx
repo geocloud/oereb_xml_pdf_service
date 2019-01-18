@@ -117,29 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title.Value" xml:space="preserve">
-    <value>Abkürzungen</value>
-    
-    <comment>x</comment>
+  <data name="LResponsibleOffice.Value" xml:space="preserve">
+    <value>Service compétent</value>
   </data>
-  <data name="GlossaryItem.Value" xml:space="preserve">
-    <value>= "&lt;span style='font-weight:bold;'&gt;" + Fields.Abbreviation + ": &lt;/span&gt;&lt;span style='text-indent:-3mm;padding-left:3mm;'&gt;" + Fields.Description+ "&lt;/span&gt;"</value>
+  <data name="LArea.Value" xml:space="preserve">
+    <value>Surface</value>
   </data>
-  <data name="FootCreationDate.Value" xml:space="preserve">
-    <value>= Fields.Extract.CreationDate</value>
+  <data name="LPartIn.Value" xml:space="preserve">
+    <value>Part</value>
   </data>
-  <data name="FootExtractIdentifier.Value" xml:space="preserve">
-    <value>= Fields.Extract.ExtractIdentifier</value>
+  <data name="LWebReference.Value" xml:space="preserve">
+    <value>Légende thématique complète</value>
   </data>
-  <data name="FootPageInformation.Value" xml:space="preserve">
-    <value>= "Seite " + PageNumber+ "/"+ PageCount</value>
-    
-    <comment>x</comment>
+  <data name="LLegalProvisions.Value" xml:space="preserve">
+    <value>Dispositions juridiques</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>1.5</value>
-  </metadata>
+  <data name="LDocuments.Value" xml:space="preserve">
+    <value>Bases légales</value>
+  </data>
+  <data name="LITitle.Value" xml:space="preserve">
+    <value>Légende des objets touchés</value>
+  </data>
+  <data name="LNITitle.Value" xml:space="preserve">
+    <value>Autre légende (visible dans le cadre du plan)</value>
+  </data>
+  <data name="LMoreInformation.Value" xml:space="preserve">
+    <value>Informations et renvois supplémentaires</value>
+  </data>
+  <data name="FootPageInfo.Value" xml:space="preserve">
+    <value>= "Page " + PageNumber+ "/"+ PageCount</value>
+  </data>
+  <data name="LTyp.Value" xml:space="preserve">
+    <value>Type</value>
+  </data>
 </root>
