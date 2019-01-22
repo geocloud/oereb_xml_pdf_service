@@ -86,7 +86,7 @@ namespace Oereb.Report.Helper
                     }
                     else
                     {
-                        Color color = ColorTranslator.FromHtml("#77ff0000"); // TODO: another config value candidate
+                        Color color = ColorTranslator.FromHtml("#99e60000"); // TODO: another config value candidate
                         var pen = new Pen(color, 9);
                         graphic.DrawLines(pen, points.ToArray());
                     }
