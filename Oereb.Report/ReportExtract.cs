@@ -776,9 +776,19 @@ namespace Oereb.Report
                             Symbol = legendItemCatched.Symbol,
                             TypeCode = legendItemCatched.TypeCode,
                             Label = legendItemCatched.Label,
-                            AreaValue = String.IsNullOrEmpty(restriction.AreaShare) ? 0 : Convert.ToDouble(restriction.AreaShare),
                             PartInPercentValue = restriction.PartInPercent
                         };
+
+                        if ((type == "Polygon" || type == "NoExtension" || type != "Line") && !string.IsNullOrEmpty(restriction.AreaShare))
+                        {
+                            legendInvolved.AreaValue = Convert.ToDouble(restriction.AreaShare);
+                            legendInvolved.Type = "Polygon";
+                        }
+                        else if ((type == "Line" || type == "NoExtension") && !string.IsNullOrEmpty(restriction.LengthShare))
+                        {
+                            legendInvolved.AreaValue = Convert.ToDouble(restriction.LengthShare);
+                            legendInvolved.Type = "Line";
+                        }
 
                         //distinct of legend, aggregate values
 
@@ -1006,6 +1016,10 @@ namespace Oereb.Report
                     if (Type == "Polygon" || Type == "NoExtension")
                     {
                         area = Math.Round(AreaValue, 0) + " m²";
+                    }
+                    else if (Type == "Line")
+                    {
+                        area = Math.Round(AreaValue, 0) + " m";
                     }
 
                     return area + (Aggregate ? " *": "");

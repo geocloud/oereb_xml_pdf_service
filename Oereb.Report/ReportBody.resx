@@ -124,10 +124,10 @@
     <value>Typ</value>
   </data>
   <data name="LArea.Value" xml:space="preserve">
-    <value>Fläche</value>
+    <value>Anteil</value>
   </data>
   <data name="LPartIn.Value" xml:space="preserve">
-    <value>Anteil</value>
+    <value>Anteil in %</value>
   </data>
   <data name="LWebReference.Value" xml:space="preserve">
     <value>Vollständige Legende</value>

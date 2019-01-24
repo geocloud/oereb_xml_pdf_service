@@ -322,7 +322,8 @@ namespace Oereb.Report
             // SubunitOfLandRegister
             // 
             this.SubunitOfLandRegister.CanShrink = true;
-            formattingRule1.Filters.Add(new Telerik.Reporting.Filter("= Fields.Extract.RealEstate.SubunitOfLandRegister", Telerik.Reporting.FilterOperator.Equal, "=\"\""));
+            formattingRule1.Filters.Add(new Telerik.Reporting.Filter("= Fields.Extract.RealEstate.SubunitOfLandRegister is Null or Fields.Extract.RealE" +
+            "state.SubunitOfLandRegister like \'\'", Telerik.Reporting.FilterOperator.Equal, "True"));
             formattingRule1.Style.Visible = false;
             this.SubunitOfLandRegister.ConditionalFormatting.AddRange(new Telerik.Reporting.Drawing.FormattingRule[] {
             formattingRule1});
@@ -344,7 +345,8 @@ namespace Oereb.Report
             // SubunitOfLandRegisterValue
             // 
             this.SubunitOfLandRegisterValue.CanShrink = true;
-            formattingRule2.Filters.Add(new Telerik.Reporting.Filter("= Fields.Extract.RealEstate.SubunitOfLandRegister", Telerik.Reporting.FilterOperator.Equal, "=\"\""));
+            formattingRule2.Filters.Add(new Telerik.Reporting.Filter("= Fields.Extract.RealEstate.SubunitOfLandRegister is Null or Fields.Extract.RealE" +
+            "state.SubunitOfLandRegister like \'\'", Telerik.Reporting.FilterOperator.Equal, "True"));
             formattingRule2.Style.Visible = false;
             this.SubunitOfLandRegisterValue.ConditionalFormatting.AddRange(new Telerik.Reporting.Drawing.FormattingRule[] {
             formattingRule2});
