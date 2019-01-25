@@ -47,7 +47,7 @@ namespace Oereb.Report
             var converted = PreProcessing.AssignCDataToGmlNamespace(source);
             var extract = Xml<Oereb.Service.DataContracts.Model.v10.Extract>.DeserializeFromXmlString(converted.ToString());
 
-            var attestation = Convert.ToBoolean(ConfigurationManager.AppSettings["attestation"] ?? "true");
+            var attestation = Convert.ToBoolean(ConfigurationManager.AppSettings["attestation"] ?? "false");
 
             var reportExtract = new ReportExtract(complete, attachedFiles, attestation, useWms);
             reportExtract.Extract = extract;
