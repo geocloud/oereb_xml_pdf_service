@@ -72,7 +72,7 @@ namespace Oereb.Report
             this.ParcelNumber.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.ParcelNumber.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.ParcelNumber.Style.Font.Bold = true;
-            this.ParcelNumber.Style.Font.Name = "Microsoft Sans Serif";
+            this.ParcelNumber.Style.Font.Name = "Cadastra";
             this.ParcelNumber.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.ParcelNumber.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.ParcelNumber.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -87,7 +87,7 @@ namespace Oereb.Report
             this.ParcelValue.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.ParcelValue.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.ParcelValue.Style.Font.Bold = true;
-            this.ParcelValue.Style.Font.Name = "Microsoft Sans Serif";
+            this.ParcelValue.Style.Font.Name = "Cadastra";
             this.ParcelValue.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.ParcelValue.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.ParcelValue.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
@@ -101,7 +101,7 @@ namespace Oereb.Report
             this.ExtractIdentifier.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.ExtractIdentifier.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.ExtractIdentifier.Style.Font.Bold = true;
-            this.ExtractIdentifier.Style.Font.Name = "Microsoft Sans Serif";
+            this.ExtractIdentifier.Style.Font.Name = "Cadastra";
             this.ExtractIdentifier.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.ExtractIdentifier.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.ExtractIdentifier.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -116,7 +116,7 @@ namespace Oereb.Report
             this.ExtractIdentifierValue.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.ExtractIdentifierValue.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.ExtractIdentifierValue.Style.Font.Bold = true;
-            this.ExtractIdentifierValue.Style.Font.Name = "Microsoft Sans Serif";
+            this.ExtractIdentifierValue.Style.Font.Name = "Cadastra";
             this.ExtractIdentifierValue.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.ExtractIdentifierValue.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.ExtractIdentifierValue.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
@@ -199,7 +199,7 @@ namespace Oereb.Report
             this.Title.Name = "Title";
             this.Title.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.390625D), Telerik.Reporting.Drawing.Unit.Cm(2.4000000953674316D));
             this.Title.Style.Font.Bold = true;
-            this.Title.Style.Font.Name = "Microsoft Sans Serif";
+            this.Title.Style.Font.Name = "Cadastra";
             this.Title.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(17.5D);
             resources.ApplyResources(this.Title, "Title");
             // 
@@ -270,7 +270,7 @@ namespace Oereb.Report
             this.EGRID.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.EGRID.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.EGRID.Style.Font.Bold = false;
-            this.EGRID.Style.Font.Name = "Microsoft Sans Serif";
+            this.EGRID.Style.Font.Name = "Cadastra";
             this.EGRID.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.EGRID.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.EGRID.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -283,7 +283,7 @@ namespace Oereb.Report
             this.EGRIDValue.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600001335144043D), Telerik.Reporting.Drawing.Unit.Mm(6D));
             this.EGRIDValue.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.EGRIDValue.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.EGRIDValue.Style.Font.Name = "Microsoft Sans Serif";
+            this.EGRIDValue.Style.Font.Name = "Cadastra";
             this.EGRIDValue.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.EGRIDValue.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.EGRIDValue.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
@@ -297,7 +297,7 @@ namespace Oereb.Report
             this.MunicipalityFos.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.MunicipalityFos.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.MunicipalityFos.Style.Font.Bold = false;
-            this.MunicipalityFos.Style.Font.Name = "Microsoft Sans Serif";
+            this.MunicipalityFos.Style.Font.Name = "Cadastra";
             this.MunicipalityFos.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.MunicipalityFos.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.MunicipalityFos.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -311,7 +311,7 @@ namespace Oereb.Report
             this.MunicipalityFosValue.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600001335144043D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
             this.MunicipalityFosValue.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.MunicipalityFosValue.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.MunicipalityFosValue.Style.Font.Name = "Microsoft Sans Serif";
+            this.MunicipalityFosValue.Style.Font.Name = "Cadastra";
             this.MunicipalityFosValue.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.MunicipalityFosValue.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.MunicipalityFosValue.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
@@ -332,7 +332,7 @@ namespace Oereb.Report
             this.SubunitOfLandRegister.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.SubunitOfLandRegister.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.SubunitOfLandRegister.Style.Font.Bold = false;
-            this.SubunitOfLandRegister.Style.Font.Name = "Microsoft Sans Serif";
+            this.SubunitOfLandRegister.Style.Font.Name = "Cadastra";
             this.SubunitOfLandRegister.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.SubunitOfLandRegister.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Point(4D);
             this.SubunitOfLandRegister.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
@@ -354,7 +354,7 @@ namespace Oereb.Report
             this.SubunitOfLandRegisterValue.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600001335144043D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
             this.SubunitOfLandRegisterValue.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.SubunitOfLandRegisterValue.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.SubunitOfLandRegisterValue.Style.Font.Name = "Microsoft Sans Serif";
+            this.SubunitOfLandRegisterValue.Style.Font.Name = "Cadastra";
             this.SubunitOfLandRegisterValue.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.SubunitOfLandRegisterValue.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Point(4D);
             this.SubunitOfLandRegisterValue.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
@@ -371,7 +371,7 @@ namespace Oereb.Report
             this.LandRegistryArea.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.LandRegistryArea.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.LandRegistryArea.Style.Font.Bold = false;
-            this.LandRegistryArea.Style.Font.Name = "Microsoft Sans Serif";
+            this.LandRegistryArea.Style.Font.Name = "Cadastra";
             this.LandRegistryArea.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.LandRegistryArea.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.LandRegistryArea.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -385,7 +385,7 @@ namespace Oereb.Report
             this.LandRegistryAreaValue.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600001335144043D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
             this.LandRegistryAreaValue.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.LandRegistryAreaValue.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.LandRegistryAreaValue.Style.Font.Name = "Microsoft Sans Serif";
+            this.LandRegistryAreaValue.Style.Font.Name = "Cadastra";
             this.LandRegistryAreaValue.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.LandRegistryAreaValue.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.LandRegistryAreaValue.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
@@ -435,7 +435,7 @@ namespace Oereb.Report
             this.CreationDate.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.CreationDate.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.CreationDate.Style.Font.Bold = false;
-            this.CreationDate.Style.Font.Name = "Microsoft Sans Serif";
+            this.CreationDate.Style.Font.Name = "Cadastra";
             this.CreationDate.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.CreationDate.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.CreationDate.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -449,7 +449,7 @@ namespace Oereb.Report
             this.CreationDateValue.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600001335144043D), Telerik.Reporting.Drawing.Unit.Mm(6D));
             this.CreationDateValue.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.CreationDateValue.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.CreationDateValue.Style.Font.Name = "Microsoft Sans Serif";
+            this.CreationDateValue.Style.Font.Name = "Cadastra";
             this.CreationDateValue.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.CreationDateValue.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.CreationDateValue.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
@@ -463,7 +463,7 @@ namespace Oereb.Report
             this.PLRCadastreAuthority.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.PLRCadastreAuthority.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
             this.PLRCadastreAuthority.Style.Font.Bold = false;
-            this.PLRCadastreAuthority.Style.Font.Name = "Microsoft Sans Serif";
+            this.PLRCadastreAuthority.Style.Font.Name = "Cadastra";
             this.PLRCadastreAuthority.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.PLRCadastreAuthority.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.PLRCadastreAuthority.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Cm(0D);
@@ -477,7 +477,7 @@ namespace Oereb.Report
             this.PLRCadastreAuthorityValue.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.600001335144043D), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791D));
             this.PLRCadastreAuthorityValue.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.PLRCadastreAuthorityValue.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
-            this.PLRCadastreAuthorityValue.Style.Font.Name = "Microsoft Sans Serif";
+            this.PLRCadastreAuthorityValue.Style.Font.Name = "Cadastra";
             this.PLRCadastreAuthorityValue.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.5D);
             this.PLRCadastreAuthorityValue.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.PLRCadastreAuthorityValue.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
@@ -492,7 +492,7 @@ namespace Oereb.Report
             this.Attestation.Name = "Attestation";
             this.Attestation.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.7999997138977051D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Attestation.Style.Font.Bold = true;
-            this.Attestation.Style.Font.Name = "Microsoft Sans Serif";
+            this.Attestation.Style.Font.Name = "Cadastra";
             this.Attestation.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             this.Attestation.Style.Visible = true;
             resources.ApplyResources(this.Attestation, "Attestation");
@@ -514,7 +514,7 @@ namespace Oereb.Report
             this.Stamp.Name = "Stamp";
             this.Stamp.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Stamp.Style.Font.Bold = false;
-            this.Stamp.Style.Font.Name = "Microsoft Sans Serif";
+            this.Stamp.Style.Font.Name = "Cadastra";
             this.Stamp.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             this.Stamp.Style.Visible = true;
             resources.ApplyResources(this.Stamp, "Stamp");
@@ -526,7 +526,7 @@ namespace Oereb.Report
             this.Date.Name = "Date";
             this.Date.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Date.Style.Font.Bold = false;
-            this.Date.Style.Font.Name = "Microsoft Sans Serif";
+            this.Date.Style.Font.Name = "Cadastra";
             this.Date.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             this.Date.Style.Visible = true;
             resources.ApplyResources(this.Date, "Date");
@@ -538,7 +538,7 @@ namespace Oereb.Report
             this.Signature.Name = "Signature";
             this.Signature.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999997615814209D), Telerik.Reporting.Drawing.Unit.Cm(0.29999944567680359D));
             this.Signature.Style.Font.Bold = false;
-            this.Signature.Style.Font.Name = "Microsoft Sans Serif";
+            this.Signature.Style.Font.Name = "Cadastra";
             this.Signature.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             this.Signature.Style.Visible = true;
             resources.ApplyResources(this.Signature, "Signature");
@@ -559,7 +559,7 @@ namespace Oereb.Report
             this.FootCreationDate.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.0793749988079071D));
             this.FootCreationDate.Name = "FootCreationDate";
             this.FootCreationDate.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.9000003337860107D), Telerik.Reporting.Drawing.Unit.Cm(0.25D));
-            this.FootCreationDate.Style.Font.Name = "Microsoft Sans Serif";
+            this.FootCreationDate.Style.Font.Name = "Cadastra";
             this.FootCreationDate.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.FootCreationDate, "FootCreationDate");
             // 
@@ -569,7 +569,7 @@ namespace Oereb.Report
             this.FootExtractIdentifier.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.7999999523162842D), Telerik.Reporting.Drawing.Unit.Cm(0.079999998211860657D));
             this.FootExtractIdentifier.Name = "FootExtractIdentifier";
             this.FootExtractIdentifier.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8000001907348633D), Telerik.Reporting.Drawing.Unit.Cm(0.25D));
-            this.FootExtractIdentifier.Style.Font.Name = "Microsoft Sans Serif";
+            this.FootExtractIdentifier.Style.Font.Name = "Cadastra";
             this.FootExtractIdentifier.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.FootExtractIdentifier, "FootExtractIdentifier");
             // 
@@ -587,7 +587,7 @@ namespace Oereb.Report
             this.FootPageInformation.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.5D), Telerik.Reporting.Drawing.Unit.Cm(0.0793749988079071D));
             this.FootPageInformation.Name = "FootPageInformation";
             this.FootPageInformation.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.9000003337860107D), Telerik.Reporting.Drawing.Unit.Cm(0.25D));
-            this.FootPageInformation.Style.Font.Name = "Microsoft Sans Serif";
+            this.FootPageInformation.Style.Font.Name = "Cadastra";
             this.FootPageInformation.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             this.FootPageInformation.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             resources.ApplyResources(this.FootPageInformation, "FootPageInformation");
