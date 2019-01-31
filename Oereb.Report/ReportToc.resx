@@ -124,7 +124,7 @@
     <value>= "&lt;b&gt;"+ Fields.Toc.ExclusionOfLiabilityTitle+"&lt;/b&gt;&lt;br&gt;"+ Fields.Toc.ExclusionOfLiabilityContent</value>
   </data>
   <data name="MoreInformation.Value" xml:space="preserve">
-    <value>= "Weitere Informationen zum ÖREB finden Sie unter &lt;a href='https://oereb.nw.ch/informationen' style='text-decoration:none;color:#4c8fba;'&gt;oereb.nw.ch/informationen&lt;/a&gt;"</value>
+    <value>= "Um einen aktualisierten Auszug aus dem ÖREB-Kataster zu erhalten, scannen Sie bitte den QR-Code."</value>
   </data>
   <data name="GeneralInformation.Value" xml:space="preserve">
     <value>= "&lt;b&gt;Allgemeine Informationen&lt;/b&gt;&lt;br&gt;"+ Fields.Toc.GeneralInformation + "&lt;br&gt;&lt;br&gt;&lt;b&gt;Grundlagedaten&lt;/b&gt;&lt;br&gt;" + Fields.Toc.BaseData</value>
@@ -173,5 +173,8 @@
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>2</value>
   </metadata>
 </root>

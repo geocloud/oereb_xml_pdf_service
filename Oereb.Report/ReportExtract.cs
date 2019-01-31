@@ -779,12 +779,12 @@ namespace Oereb.Report
                             PartInPercentValue = restriction.PartInPercent
                         };
 
-                        if ((type == "Polygon" || type == "NoExtension" || type != "Line") && !string.IsNullOrEmpty(restriction.AreaShare))
+                        if ((type == "Polygon" || type == "NoExtension" || (type != "Line" && type != "Polyline")) && !string.IsNullOrEmpty(restriction.AreaShare))
                         {
                             legendInvolved.AreaValue = Convert.ToDouble(restriction.AreaShare);
                             legendInvolved.Type = "Polygon";
                         }
-                        else if ((type == "Line" || type == "NoExtension") && !string.IsNullOrEmpty(restriction.LengthShare))
+                        else if ((type == "Line" || type== "Polyline" || type == "NoExtension") && !string.IsNullOrEmpty(restriction.LengthShare))
                         {
                             legendInvolved.AreaValue = Convert.ToDouble(restriction.LengthShare);
                             legendInvolved.Type = "Line";
