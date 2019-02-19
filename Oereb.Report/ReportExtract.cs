@@ -1022,7 +1022,9 @@ namespace Oereb.Report
                         area = Math.Round(AreaValue, 0) + " m";
                     }
 
-                    return area + (Aggregate ? " *": "");
+                    // Wunsch Mirjam kein * anzeigen
+                    // return area + (Aggregate ? " *": "");
+                    return area;
                 }
             }
 
@@ -1043,7 +1045,9 @@ namespace Oereb.Report
                         }
                     }
 
-                    return partInPercent + (Aggregate ? " *" : "");
+                    // Wunsch Mirjam kein * anzeigen
+                    // return partInPercent + (Aggregate ? " *" : "");
+                    return partInPercent;
                 }
             }
         }
