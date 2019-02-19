@@ -1022,9 +1022,7 @@ namespace Oereb.Report
                         area = Math.Round(AreaValue, 0) + " m";
                     }
 
-                    // Wunsch Mirjam kein * anzeigen
-                    // return area + (Aggregate ? " *": "");
-                    return area;
+                    return area + (Aggregate ? " *": "");
                 }
             }
 
@@ -1041,13 +1039,11 @@ namespace Oereb.Report
                         }
                         else
                         {
-                            partInPercent = PartInPercentValue + " %";
+                            partInPercent = PartInPercentValue + " %"; 
                         }
                     }
 
-                    // Wunsch Mirjam kein * anzeigen
-                    // return partInPercent + (Aggregate ? " *" : "");
-                    return partInPercent;
+                    return partInPercent + (Aggregate ? " *" : "");
                 }
             }
         }
