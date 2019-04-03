@@ -119,11 +119,10 @@
   </resheader>
   <data name="Title.Value" xml:space="preserve">
     <value>Abkürzungen</value>
-    
     <comment>x</comment>
   </data>
   <data name="GlossaryItem.Value" xml:space="preserve">
-    <value>= "&lt;span style='font-weight:bold;'&gt;" + Fields.Abbreviation + ": &lt;/span&gt;&lt;span style='text-indent:-3mm;padding-left:3mm;'&gt;" + Fields.Description+ "&lt;/span&gt;"</value>
+    <value>= "&lt;span style='font-weight:bold;'&gt;" + Fields.Abbreviation + ": &lt;/span&gt;&lt;span style='padding-left: 0mm; text-indent: -3mm'&gt;" + Fields.Description+ "&lt;/span&gt;"</value>
   </data>
   <data name="FootCreationDate.Value" xml:space="preserve">
     <value>= Fields.Extract.CreationDate</value>
@@ -133,13 +132,13 @@
   </data>
   <data name="FootPageInformation.Value" xml:space="preserve">
     <value>= "Seite " + PageNumber+ "/"+ PageCount</value>
-    
     <comment>x</comment>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.Zoom" type="System.Single, mscorlib">
     <value>1.5</value>
-  </metadata>
+  </data>
 </root>

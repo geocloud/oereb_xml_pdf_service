@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using Oereb.Service.DataContracts.Model.v10;
 using System.Configuration;
 using System.Web;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Oereb.Report
 {
@@ -385,8 +386,14 @@ namespace Oereb.Report
 
             Toc.GeneralInformation = Helper.LocalisedMText.GetStringFromArray(Extract.GeneralInformation, Language);
             Toc.BaseData = Helper.LocalisedMText.GetStringFromArray(Extract.BaseData, Language);
-            Toc.ExclusionOfLiabilityTitle = Extract.ExclusionOfLiability.Select(x => Helper.LocalisedText.GetStringFromArray(x.Title, Language)).First();
-            Toc.ExclusionOfLiabilityContent = Extract.ExclusionOfLiability.Select(x => Helper.LocalisedMText.GetStringFromArray(x.Content, Language)).First();
+
+            if (Extract.ExclusionOfLiability != null)
+            {
+                Toc.ExclusionOfLiabilityTitle = Extract.ExclusionOfLiability
+                    .Select(x => Helper.LocalisedText.GetStringFromArray(x.Title, Language)).First();
+                Toc.ExclusionOfLiabilityContent = Extract.ExclusionOfLiability
+                    .Select(x => Helper.LocalisedMText.GetStringFromArray(x.Content, Language)).First();
+            }
 
             var groupedBodyItems = ReportBodyItems.GroupBy(x => x.Theme).ToList(); // Extract.RealEstate.RestrictionOnLandownership.GroupBy(x => x.Theme.Code).ToList();
 
@@ -441,11 +448,11 @@ namespace Oereb.Report
 
                             if (AttacheFiles && result.Successful)
                             {
-                                tocAppendix.Description += "(siehe im Anhang)";
+                                // tocAppendix.Description += " (siehe Anhang)";
                             }
                             else if (AttacheFiles && !result.Successful)
                             {
-                                tocAppendix.Description += "(nicht anhängbar)";
+                                // tocAppendix.Description += " (nicht anhängbar)";
                             }
                             else if (result.Successful)
                             {
@@ -817,9 +824,9 @@ namespace Oereb.Report
 
                     #region legend at web
 
-                    if (restriction.Map.LegendAtWeb != null && !string.IsNullOrEmpty(restriction.Map.LegendAtWeb.Value) && !LegendAtWeb.Any(x => x.Url == restriction.Map.LegendAtWeb.Value))
+                    if (restriction.Map.LegendAtWeb != null && !string.IsNullOrEmpty(restriction.Map.LegendAtWeb.Value) && LegendAtWeb.All(x => x.Url != WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value))))
                     {
-                        LegendAtWeb.Add(new LegendAtWeb() { Label = restriction.Map.LegendAtWeb.Value, Url = restriction.Map.LegendAtWeb.Value });
+                        LegendAtWeb.Add(new LegendAtWeb() { Label = WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)), Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)) });
                     }
 
                     #endregion
@@ -836,7 +843,7 @@ namespace Oereb.Report
                                 Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
                                 OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
                                 OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                                Url = WebUtility.HtmlEncode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language)),
+                                Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
                                 Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
                             };
 
@@ -862,26 +869,9 @@ namespace Oereb.Report
 
                     if (restriction.LegalProvisions != null)
                     {
-                        foreach (var document in restriction.LegalProvisions.Where(x => x.DocumentType == DocumentBaseDocumentType.Law).Select(x => (Oereb.Service.DataContracts.Model.v10.Document)x))
+                        foreach (var documentBase in restriction.LegalProvisions.Select(x => (Service.DataContracts.Model.v10.Document)x))
                         {
-                            var documentItem = new Document()
-                            {
-                                Title = Helper.LocalisedText.GetStringFromArray(document.Title, language),
-                                Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
-                                OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
-                                OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                                Url = WebUtility.HtmlEncode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language)),
-                                Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0
-                            };
-
-                            DocumentSetLevelAndSort(ref documentItem);
-
-                            if (documents.Any(x => x.Id == documentItem.Id))
-                            {
-                                continue;
-                            }
-
-                            documents.Add(documentItem);
+                            documents = CreateDocumentsFromDocumentBases(documentBase, language, documents);
                         }
 
                         if (!documents.Any())
@@ -904,7 +894,7 @@ namespace Oereb.Report
                                 Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
                                 OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
                                 OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                                Url = WebUtility.HtmlEncode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language)),
+                                Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
                                 Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
                             };
 
@@ -926,7 +916,7 @@ namespace Oereb.Report
                     var responsibleOffice = new ResponsibleOffice()
                     {
                         Name = Helper.LocalisedText.GetStringFromArray(restriction.ResponsibleOffice.Name, language),
-                        Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-": System.Web.HttpUtility.HtmlEncode(restriction.ResponsibleOffice.OfficeAtWeb.Value)
+                        Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-": System.Web.HttpUtility.HtmlDecode(WebUtility.UrlDecode(restriction.ResponsibleOffice.OfficeAtWeb.Value))
                     };
 
                     if (!ResponsibleOffice.Any(x=> x.Id == responsibleOffice.Id))
@@ -947,6 +937,40 @@ namespace Oereb.Report
                 LegalProvisions.AddRange(legalProvisions.OrderBy(x => x.Sort));
                 Documents.AddRange(documents.OrderBy(x => x.Sort));
                 MoreInformations.AddRange(moreinformations.OrderBy(x => x.Sort));
+            }
+
+            protected List<Document> CreateDocumentsFromDocumentBases(Oereb.Service.DataContracts.Model.v10.Document document, string language, List<Document> documents)
+            {
+                if (document.DocumentType == DocumentBaseDocumentType.Law)
+                {
+                    var documentItem = new Document()
+                    {
+                        Title = Helper.LocalisedText.GetStringFromArray(document.Title, language),
+                        Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
+                        OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber)
+                            ? ""
+                            : document.OfficialNumber + " ",
+                        OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
+                        Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
+                        Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0
+                    };
+
+                    DocumentSetLevelAndSort(ref documentItem);
+
+                    if (documents.All(x => x.Id != documentItem.Id))
+                    {
+                        documents.Add(documentItem);
+                    }
+                }
+
+                if (document.Reference != null)
+                {
+                    foreach (var subdocument in document.Reference)
+                    {
+                        documents = CreateDocumentsFromDocumentBases(subdocument, language, documents);
+                    }
+                }
+                return documents;
             }
 
             protected byte[] GetImageAsBytes(object data)
@@ -1022,7 +1046,8 @@ namespace Oereb.Report
                         area = Math.Round(AreaValue, 0) + " m";
                     }
 
-                    return area + (Aggregate ? " *": "");
+                    // return area + (Aggregate ? " *": "");
+                    return area;
                 }
             }
 
@@ -1043,7 +1068,8 @@ namespace Oereb.Report
                         }
                     }
 
-                    return partInPercent + (Aggregate ? " *" : "");
+                    // return partInPercent + (Aggregate ? " *" : "");
+                    return partInPercent;
                 }
             }
         }
@@ -1085,11 +1111,15 @@ namespace Oereb.Report
         {
             GlossaryItems = new List<GlossaryItem>();
 
-            GlossaryItems.AddRange(Extract.Glossary.Where(x=>x.Title.Any(y=>y.Language.ToString() == Language)).Select(x => new GlossaryItem()
+            if (Extract.Glossary != null)
             {
-                Abbreviation = Helper.LocalisedText.GetStringFromArray(x.Title, Language),
-                Description = Helper.LocalisedMText.GetStringFromArray(x.Content, Language),
-            }));
+                GlossaryItems.AddRange(Extract.Glossary.Where(x => x.Title.Any(y => y.Language.ToString() == Language))
+                    .Select(x => new GlossaryItem()
+                    {
+                        Abbreviation = Helper.LocalisedText.GetStringFromArray(x.Title, Language),
+                        Description = Helper.LocalisedMText.GetStringFromArray(x.Content, Language),
+                    }));
+            }
         }
 
         public class GlossaryItem

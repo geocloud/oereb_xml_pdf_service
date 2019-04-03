@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
@@ -39,7 +40,15 @@ namespace Oereb.Report.Helper
 
             double conversionFactor = (extent[2] - extent[0]) / width; //scale is the same in both directions, meter per pixel
 
-            geometryGml = BufferGeomtry(geometryGml, offset * conversionFactor);
+            // If exterior and interior exist, drop interior
+            var exteriorRegex = new Regex(@"\<(\/)?gml:exterior\>");
+            if (exteriorRegex.Matches(geometryGml).Count > 0)
+            {
+                var interiorRegex = new Regex(@"\<gml:interior\>(.|\n)*\<\/gml:interior\>");
+                geometryGml = interiorRegex.Replace(geometryGml, "");
+            }
+
+            geometryGml = BufferGeomtry(geometryGml, offset * conversionFactor * width / 2055);
 
             var gmlElement = RemoveAllNamespaces(geometryGml.Replace("gml:",""));
 
@@ -81,13 +90,13 @@ namespace Oereb.Report.Helper
                     if (colorIndex == 0)
                     {
                         Color colorBg = ColorTranslator.FromHtml("#bbffffff"); // TODO: another config value candidate
-                        var penBg = new Pen(colorBg, 15);
+                        var penBg = new Pen(colorBg, (int) Math.Round(15 * width / 2055d, 0)); // 15
                         graphic.DrawLines(penBg, points.ToArray());
                     }
                     else
                     {
                         Color color = ColorTranslator.FromHtml("#99e60000"); // TODO: another config value candidate
-                        var pen = new Pen(color, 9);
+                        var pen = new Pen(color, (int)Math.Round(9 * width / 2055d, 0)); // 9
                         graphic.DrawLines(pen, points.ToArray());
                     }
 
@@ -95,7 +104,7 @@ namespace Oereb.Report.Helper
                 }                
             }
 
-            bitmap = (Bitmap)AddScalebarAndOrientation(bitmap, extent, width, height, 0.2, 30);
+            bitmap = (Bitmap)AddScalebarAndOrientation(bitmap, extent, width, height, 0.2, (int)Math.Round(width / 70d, 0));
 
             //bitmap.Save(@"c:\temp\testrasterize6.png", System.Drawing.Imaging.ImageFormat.Png);
 
@@ -119,7 +128,7 @@ namespace Oereb.Report.Helper
             var widthScaleBarMeter = Math.Round(distanceH * maxPercent / 10, 0)*10;
             var widthScalebarPixel = (int)(widthScaleBarMeter /meterPerPixel);
             var heightScalebarPixel = (int)((double)widthScalebarPixel /scalebar.Width*scalebar.Height);
-            var fontheight = (int)36;
+            var fontheight = (int) Math.Round(width/58d, 0);
 
             var lrX = (int)0;
             var lrY = (int)height;
