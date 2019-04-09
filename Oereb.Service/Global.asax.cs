@@ -14,6 +14,7 @@ namespace Oereb.Service
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             SettingsReader.ReadFromConfig();
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
         }
     }
 }
