@@ -774,6 +774,14 @@ namespace Oereb.Report
                         var geometryExtention = GetGeometryExtension(geometryExtentionElement);
                         type = geometryExtention.Type;
                     }
+                    else if (restriction.extensions != null)
+                    {
+                        var areaShare = restriction.extensions.Any.FirstOrDefault(x => x.LocalName == "AreaShare");
+                        var lengthShare = restriction.extensions.Any.FirstOrDefault(x => x.LocalName == "LengthShare");
+
+                        if (lengthShare != null) restriction.LengthShare = lengthShare.InnerText;
+                        if (areaShare != null) restriction.AreaShare = areaShare.InnerText;
+                    }
 
                     if (legendItemCatched != null)
                     {
