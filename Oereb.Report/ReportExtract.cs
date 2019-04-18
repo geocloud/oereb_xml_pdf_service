@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Oereb.Service.DataContracts.Model.v10;
 using System.Configuration;
+using System.Drawing.Drawing2D;
 using System.Web;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -977,7 +978,7 @@ namespace Oereb.Report
             {
                 if (data is string)
                 {
-                    var url = HttpUtility.UrlDecode(data.ToString());
+                    var url = HttpUtility.UrlDecode(WebUtility.HtmlDecode(data.ToString()));
                     Uri uriResult;
                     bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
 
@@ -1021,7 +1022,48 @@ namespace Oereb.Report
         public class LegendItem
         {
             public string TypeCode { get; set; }
-            public byte[] Symbol { get; set; }
+            private byte[] symbol;
+
+            public byte[] Symbol
+            {
+                get
+                {
+                    using (var ms = new MemoryStream(symbol))
+                    {
+                        var bmp = new Bitmap(ms);
+                        var height = bmp.Height;
+                        var width = bmp.Width;
+
+                        if (height > width * 2)
+                        {
+                            width = height * 2;
+                        }
+                        else if (width > height * 2)
+                        {
+                            height = width / 2;
+                        }
+                        else
+                        {
+                            return symbol;
+                        }
+
+                        Bitmap result = new Bitmap(width, height);
+                        using (Graphics g = Graphics.FromImage(result))
+                        {
+                            g.InterpolationMode = InterpolationMode.Bicubic;
+                            g.DrawImage(bmp, (width-bmp.Width)/2, (height-bmp.Height)/2, bmp.Width, bmp.Height);
+                        }
+
+                        using (MemoryStream m = new MemoryStream())
+                        {
+                            result.Save(m, ImageFormat.Png);
+                            return m.ToArray();
+                        }
+                    }
+                }
+                set { symbol = value; }
+            }
+
             public string Label { get; set; }
         }
 
