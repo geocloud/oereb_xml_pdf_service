@@ -10,6 +10,7 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Http;
 using System.Xml.Linq;
@@ -204,8 +205,14 @@ namespace Oereb.Service.Controllers
                 xmlContent = reader.ReadInnerXml();
             }
 
-            var outGuid = Guid.NewGuid();
-            var pathLogFiles = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "LogFilesXml2Pdf");
+            var outGuid = Guid.NewGuid().ToString();
+            var regex = new Regex(@"(?:(?:<(?:data:)?ExtractIdentifier.*?>))([\s\S]*?)(?:(?:<\/(?:data:)?ExtractIdentifier>))");
+            var match = regex.Match(xmlContent);
+            if (match.Groups.Count > 1)
+            {
+                outGuid = match.Groups[1].Value;
+            }
+            var pathLogFiles = System.IO.Path.Combine(System.IO.Path.Combine(System.IO.Path.GetTempPath(), "LogFilesXml2Pdf"), token);
 
             if (logFilesXml2Pdf && !Directory.Exists(pathLogFiles))
             {
@@ -304,7 +311,7 @@ namespace Oereb.Service.Controllers
 
             response.Content.Headers.ContentType = mimeTypeObject;
             response.Content.Headers.ContentLength = ms.Length;
-            response.Content.Headers.ContentDisposition.FileName = $"{Guid.NewGuid()}.pdf";
+            response.Content.Headers.ContentDisposition.FileName = $"{outGuid}.pdf";
             return response;
         }
 
