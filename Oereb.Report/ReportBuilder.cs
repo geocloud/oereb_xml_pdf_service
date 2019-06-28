@@ -51,6 +51,9 @@ namespace Oereb.Report
 
             var reportExtract = new ReportExtract(complete, attachedFiles, attestation, useWms);
             reportExtract.Extract = extract;
+            //if (reportExtract.Extract.RealEstate.RestrictionOnLandownership == null) {
+            //    reportExtract.Extract.RealEstate.RestrictionOnLandownership = new Service.DataContracts.Model.v10.RestrictionOnLandownership[0];
+            //}
             reportExtract.Ini();
 
             //**************************************************************************************************************************************

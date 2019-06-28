@@ -68,7 +68,7 @@ namespace Oereb.Report
             }
         }
 
-        public int BodySectionCount => Extract.RealEstate.RestrictionOnLandownership.GroupBy(x => x.Theme.Code + "|" +x.SubTheme ?? "").ToList().Count;
+        public int BodySectionCount => Extract.RealEstate.RestrictionOnLandownership != null ? Extract.RealEstate.RestrictionOnLandownership.GroupBy(x => x.Theme.Code + "|" +x.SubTheme ?? "").ToList().Count : 0;
 
         public int BodySectionFlag { get; set; } = -1;
 
@@ -557,20 +557,23 @@ namespace Oereb.Report
         {
             ReportBodyItems = new List<BodyItem>();
 
-            var groupedBodyItems = Extract.RealEstate.RestrictionOnLandownership.GroupBy(x => x.Theme.Code + "|" + x.SubTheme ?? "").ToList();
-
-            int section = -1;
-
-            foreach (var bodyItem in groupedBodyItems)
+            if (Extract.RealEstate.RestrictionOnLandownership != null)
             {
-                section++;
+                var groupedBodyItems = Extract.RealEstate.RestrictionOnLandownership.GroupBy(x => x.Theme.Code + "|" + x.SubTheme ?? "").ToList();
 
-                if (!(BodySectionFlag == section || BodySectionFlag == -1))
+                int section = -1;
+
+                foreach (var bodyItem in groupedBodyItems)
                 {
-                    continue;
-                }
+                    section++;
 
-                ReportBodyItems.Add(new BodyItem(Extract, bodyItem.ToList(), Language, ImageRestrictionOnLandownership, AdditionalLayers, UseWms));
+                    if (!(BodySectionFlag == section || BodySectionFlag == -1))
+                    {
+                        continue;
+                    }
+
+                    ReportBodyItems.Add(new BodyItem(Extract, bodyItem.ToList(), Language, ImageRestrictionOnLandownership, AdditionalLayers, UseWms));
+                }
             }
         }
 
@@ -643,69 +646,78 @@ namespace Oereb.Report
                 ExtractIdentifier = extract.ExtractIdentifier;
                 CreationDate = extract.CreationDate;
 
-                Theme = restrictionOnLandownership.First().Theme.Text.Text;
-
-                var image = useWms ? Helper.Wms.GetMap(restrictionOnLandownership.First().Map.ReferenceWMS) : PreProcessing.GetImageFromByteArray(restrictionOnLandownership.First().Map.Image); //take only with and height from image
-                Image = new Bitmap(image.Width, image.Height, PixelFormat.Format32bppArgb);
-
                 var rolLayers = new List<ImageExtension>();
-
                 rolLayers.Add(baselayer);
-                rolLayers.AddRange(additionalLayers.Where(x=> x.Name == Theme));
+
+                if (restrictionOnLandownership != null && restrictionOnLandownership.Count > 0)
+                {
+                    Theme = restrictionOnLandownership.First().Theme.Text.Text;
+                    var image = useWms ? Helper.Wms.GetMap(restrictionOnLandownership.First().Map.ReferenceWMS) : PreProcessing.GetImageFromByteArray(restrictionOnLandownership.First().Map.Image); //take only with and height from image
+                    Image = new Bitmap(image.Width, image.Height, PixelFormat.Format32bppArgb);
+
+                    rolLayers.AddRange(additionalLayers.Where(x => x.Name == Theme));
+                }
+                else
+                {
+                    Theme = "";
+                }
 
                 var guidDSs = new List<string>();
 
-                foreach (var restriction in restrictionOnLandownership)
+                if (restrictionOnLandownership != null)
                 {
-                    if (restriction.TypeCode == null)
+                    foreach (var restriction in restrictionOnLandownership)
                     {
-                        //Todo oereb ur typecode == null, this should not be, log warning
-                        continue;
+                        if (restriction.TypeCode == null)
+                        {
+                            //Todo oereb ur typecode == null, this should not be, log warning
+                            continue;
+                        }
+
+                        var guidDSPart = restriction.TypeCode.Split(':');
+                        var guidDS = "";
+
+                        if (guidDSPart.Length == 3)
+                        {
+                            guidDS = guidDSPart[0].Substring(0, 8);
+                        }
+
+                        if (guidDSs.Contains(guidDS))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            guidDSs.Add(guidDS);
+                        }
+
+                        //var restrictionExtension = restriction.Map.extensions?.Any.FirstOrDefault(x => x.LocalName == "MapExtension");
+                        //int seq = 5;
+                        //double transparency = 0.5;
+
+                        //if (restrictionExtension != null)
+                        //{
+                        //    var restrictionExtensionElement = XElement.Parse(restrictionExtension.OuterXml);
+
+                        //    seq = restrictionExtensionElement.Element("Seq") == null ? 5 : System.Convert.ToInt32(restrictionExtensionElement.Element("Seq").Value);
+                        //    transparency = restrictionExtensionElement.Element("Transparency") == null ? 0.5 : System.Convert.ToDouble(restrictionExtensionElement.Element("Transparency").Value);
+                        //}
+
+                        var imageExtension = new ImageExtension()
+                        {
+                            Image = useWms ? Helper.Wms.GetMap(restriction.Map.ReferenceWMS) : PreProcessing.GetImageFromByteArray(restriction.Map.Image),
+                            Seq = System.Convert.ToInt32(restriction.Map.layerIndex),
+                            Transparency = 1 - restriction.Map.layerOpacity
+                        };
+
+                        if (Math.Abs(imageExtension.Transparency) > 0.98)
+                        {
+                            //todo add warning to log, make no sense
+                            imageExtension.Transparency = 0;
+                        }
+
+                        rolLayers.Add(imageExtension);
                     }
-
-                    var guidDSPart = restriction.TypeCode.Split(':');
-                    var guidDS = "";
-
-                    if (guidDSPart.Length == 3)
-                    {
-                        guidDS = guidDSPart[0].Substring(0, 8);
-                    }
-
-                    if (guidDSs.Contains(guidDS))
-                    {                        
-                        continue;
-                    }
-                    else
-                    {
-                        guidDSs.Add(guidDS);
-                    }
-
-                    //var restrictionExtension = restriction.Map.extensions?.Any.FirstOrDefault(x => x.LocalName == "MapExtension");
-                    //int seq = 5;
-                    //double transparency = 0.5;
-
-                    //if (restrictionExtension != null)
-                    //{
-                    //    var restrictionExtensionElement = XElement.Parse(restrictionExtension.OuterXml);
-
-                    //    seq = restrictionExtensionElement.Element("Seq") == null ? 5 : System.Convert.ToInt32(restrictionExtensionElement.Element("Seq").Value);
-                    //    transparency = restrictionExtensionElement.Element("Transparency") == null ? 0.5 : System.Convert.ToDouble(restrictionExtensionElement.Element("Transparency").Value);
-                    //}
-
-                    var imageExtension = new ImageExtension()
-                    {
-                        Image = useWms ? Helper.Wms.GetMap(restriction.Map.ReferenceWMS) : PreProcessing.GetImageFromByteArray(restriction.Map.Image),
-                        Seq = System.Convert.ToInt32(restriction.Map.layerIndex) ,
-                        Transparency = 1 - restriction.Map.layerOpacity
-                    };
-
-                    if (Math.Abs(imageExtension.Transparency) > 0.98)
-                    {
-                        //todo add warning to log, make no sense
-                        imageExtension.Transparency = 0;
-                    }
-
-                    rolLayers.Add(imageExtension);
                 }
 
                 var sortedRolLayers = rolLayers.OrderBy(x => x.Seq);
@@ -723,8 +735,8 @@ namespace Oereb.Report
                     var parcelHighligthed = Helper.Geometry.RasterizeGeometryFromGml(
                         extract.RealEstate.Limit,
                         new double[] { baselayer.Extent.Xmin, baselayer.Extent.Ymin, baselayer.Extent.Xmax, baselayer.Extent.Ymax },
-                        image.Width,
-                        image.Height,
+                        Image.Width,
+                        Image.Height,
                         offsetBorder
                     );
 
@@ -735,205 +747,208 @@ namespace Oereb.Report
                 var documents = new List<Document>();
                 var moreinformations = new List<Document>();
 
-                foreach (var restriction in restrictionOnLandownership)
+                if (restrictionOnLandownership != null)
                 {
-
-                    #region  legenditems
-
-                    if (restriction.Map.OtherLegend != null)
+                    foreach (var restriction in restrictionOnLandownership)
                     {
-                        foreach (var legend in restriction.Map.OtherLegend)
+
+                        #region  legenditems
+
+                        if (restriction.Map.OtherLegend != null)
                         {
-                            LegendItems.Add(new LegendItem()
+                            foreach (var legend in restriction.Map.OtherLegend)
                             {
-                                Symbol = GetImageAsBytes(legend.Item),
-                                TypeCode = legend.TypeCode,
-                                Label = legend.LegendText.FirstOrDefault(x => x.Language.ToString() == language) != null ? legend.LegendText.First(x => x.Language.ToString() == language).Text : "-"
-                            });
-                        }
-                    }
-
-                    var legendItemCatched = LegendItems.FirstOrDefault(x => x.TypeCode == restriction.TypeCode);
-
-                    if (legendItemCatched == null && restriction.Item != null)
-                    {
-                        legendItemCatched = new LegendItem()
-                        {
-                            Symbol = GetImageAsBytes(restriction.Item),
-                            TypeCode = restriction.TypeCode,
-                            Label = Helper.LocalisedMText.GetStringFromArray(restriction.Information,"de")
-                        };
-                    }
-
-                    var geometryExtension = restriction.Geometry.First().extensions != null ? restriction.Geometry.First().extensions.Any.FirstOrDefault(x => x.LocalName == "GeometryExtension") : null;
-                    var type = "NoExtension";
-
-                    if (geometryExtension != null)
-                    {
-                        var geometryExtentionElement = XElement.Parse(geometryExtension.OuterXml);
-                        var geometryExtention = GetGeometryExtension(geometryExtentionElement);
-                        type = geometryExtention.Type;
-                    }
-                    else if (restriction.extensions != null)
-                    {
-                        var areaShare = restriction.extensions.Any.FirstOrDefault(x => x.LocalName == "AreaShare");
-                        var lengthShare = restriction.extensions.Any.FirstOrDefault(x => x.LocalName == "LengthShare");
-
-                        if (lengthShare != null) restriction.LengthShare = lengthShare.InnerText;
-                        if (areaShare != null) restriction.AreaShare = areaShare.InnerText;
-                    }
-
-                    if (legendItemCatched != null)
-                    {
-                        
-                        var legendInvolved = new LegendItemInvolved()
-                        {
-                            Type = type,
-                            Symbol = legendItemCatched.Symbol,
-                            TypeCode = legendItemCatched.TypeCode,
-                            Label = legendItemCatched.Label,
-                            PartInPercentValue = restriction.PartInPercent
-                        };
-
-                        if ((type == "Polygon" || type == "NoExtension" || (type != "Line" && type != "Polyline")) && !string.IsNullOrEmpty(restriction.AreaShare))
-                        {
-                            legendInvolved.AreaValue = Convert.ToDouble(restriction.AreaShare);
-                            legendInvolved.Type = "Polygon";
-                        }
-                        else if ((type == "Line" || type== "Polyline" || type == "NoExtension") && !string.IsNullOrEmpty(restriction.LengthShare))
-                        {
-                            legendInvolved.AreaValue = Convert.ToDouble(restriction.LengthShare);
-                            legendInvolved.Type = "Line";
-                        }
-
-                        //distinct of legend, aggregate values
-
-                        var useDistinct = ConfigurationManager.AppSettings["distinct"] == "true";
-                        var markDistinct = ConfigurationManager.AppSettings["markDistinct"] == "true";
-
-                        if (LegendItemsInvolved.Any(x => x.TypeCode == legendInvolved.TypeCode) && useDistinct)
-                        {
-                            if (!(type == "Polygon" || type == "NoExtension"))
-                            {
-                                continue;
+                                LegendItems.Add(new LegendItem()
+                                {
+                                    Symbol = GetImageAsBytes(legend.Item),
+                                    TypeCode = legend.TypeCode,
+                                    Label = legend.LegendText.FirstOrDefault(x => x.Language.ToString() == language) != null ? legend.LegendText.First(x => x.Language.ToString() == language).Text : "-"
+                                });
                             }
-
-                            var legAggregation = LegendItemsInvolved.First(x => x.TypeCode == legendInvolved.TypeCode);
-                            legAggregation.AreaValue +=  legendInvolved.AreaValue;
-                            legAggregation.PartInPercentValue = Math.Round(legAggregation.AreaValue / System.Convert.ToDouble(extract.RealEstate.LandRegistryArea) * 100,0);
-                            legAggregation.Aggregate = markDistinct;
                         }
-                        else
+
+                        var legendItemCatched = LegendItems.FirstOrDefault(x => x.TypeCode == restriction.TypeCode);
+
+                        if (legendItemCatched == null && restriction.Item != null)
                         {
-                            LegendItemsInvolved.Add(legendInvolved);
-                        }
-                    }
-
-                    #endregion
-
-                    #region legend at web
-
-                    if (restriction.Map.LegendAtWeb != null && !string.IsNullOrEmpty(restriction.Map.LegendAtWeb.Value) && LegendAtWeb.All(x => x.Url != WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value))))
-                    {
-                        LegendAtWeb.Add(new LegendAtWeb() { Label = WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)), Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)) });
-                    }
-
-                    #endregion
-
-                    #region legalprovisions
-
-                    if (restriction.LegalProvisions != null)
-                    {
-                        foreach (var document in restriction.LegalProvisions.Where(x=>x.DocumentType == DocumentBaseDocumentType.LegalProvision).Select(x=> (Oereb.Service.DataContracts.Model.v10.Document)x))
-                        {
-                            var documentItem = new Document()
+                            legendItemCatched = new LegendItem()
                             {
-                                Title = Helper.LocalisedText.GetStringFromArray(document.Title, language),
-                                Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
-                                OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
-                                OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                                Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
-                                Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
+                                Symbol = GetImageAsBytes(restriction.Item),
+                                TypeCode = restriction.TypeCode,
+                                Label = Helper.LocalisedMText.GetStringFromArray(restriction.Information, "de")
+                            };
+                        }
+
+                        var geometryExtension = restriction.Geometry.First().extensions != null ? restriction.Geometry.First().extensions.Any.FirstOrDefault(x => x.LocalName == "GeometryExtension") : null;
+                        var type = "NoExtension";
+
+                        if (geometryExtension != null)
+                        {
+                            var geometryExtentionElement = XElement.Parse(geometryExtension.OuterXml);
+                            var geometryExtention = GetGeometryExtension(geometryExtentionElement);
+                            type = geometryExtention.Type;
+                        }
+                        else if (restriction.extensions != null)
+                        {
+                            var areaShare = restriction.extensions.Any.FirstOrDefault(x => x.LocalName == "AreaShare");
+                            var lengthShare = restriction.extensions.Any.FirstOrDefault(x => x.LocalName == "LengthShare");
+
+                            if (lengthShare != null) restriction.LengthShare = lengthShare.InnerText;
+                            if (areaShare != null) restriction.AreaShare = areaShare.InnerText;
+                        }
+
+                        if (legendItemCatched != null)
+                        {
+
+                            var legendInvolved = new LegendItemInvolved()
+                            {
+                                Type = type,
+                                Symbol = legendItemCatched.Symbol,
+                                TypeCode = legendItemCatched.TypeCode,
+                                Label = legendItemCatched.Label,
+                                PartInPercentValue = restriction.PartInPercent
                             };
 
-                            DocumentSetLevelAndSort(ref documentItem);
-
-                            if (legalProvisions.Any(x => x.Id == documentItem.Id))
+                            if ((type == "Polygon" || type == "NoExtension" || (type != "Line" && type != "Polyline")) && !string.IsNullOrEmpty(restriction.AreaShare))
                             {
-                                continue;
+                                legendInvolved.AreaValue = Convert.ToDouble(restriction.AreaShare);
+                                legendInvolved.Type = "Polygon";
                             }
-                            
-                            legalProvisions.Add(documentItem);
-                        }
-
-                        if (!legalProvisions.Any())
-                        {
-                            legalProvisions.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
-                        }
-                    }
-
-                    #endregion
-
-                    #region documents
-
-                    if (restriction.LegalProvisions != null)
-                    {
-                        foreach (var documentBase in restriction.LegalProvisions.Select(x => (Service.DataContracts.Model.v10.Document)x))
-                        {
-                            documents = CreateDocumentsFromDocumentBases(documentBase, language, documents);
-                        }
-
-                        if (!documents.Any())
-                        {
-                            documents.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
-                        }
-                    }
-
-                    #endregion
-
-                    #region more informations
-
-                    if (restriction.LegalProvisions != null)
-                    {
-                        foreach (var document in restriction.LegalProvisions.Where(x => x.DocumentType == DocumentBaseDocumentType.Hint).Select(x => (Oereb.Service.DataContracts.Model.v10.Document)x))
-                        {
-                            var documentItem = new Document()
+                            else if ((type == "Line" || type == "Polyline" || type == "NoExtension") && !string.IsNullOrEmpty(restriction.LengthShare))
                             {
-                                Title = Helper.LocalisedText.GetStringFromArray(document.Title, language),
-                                Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
-                                OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
-                                OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                                Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
-                                Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
-                            };
-
-                            DocumentSetLevelAndSort(ref documentItem);
-
-                            if (moreinformations.Any(x => x.Id == documentItem.Id))
-                            {
-                                continue;
+                                legendInvolved.AreaValue = Convert.ToDouble(restriction.LengthShare);
+                                legendInvolved.Type = "Line";
                             }
 
-                            moreinformations.Add(documentItem);
+                            //distinct of legend, aggregate values
+
+                            var useDistinct = ConfigurationManager.AppSettings["distinct"] == "true";
+                            var markDistinct = ConfigurationManager.AppSettings["markDistinct"] == "true";
+
+                            if (LegendItemsInvolved.Any(x => x.TypeCode == legendInvolved.TypeCode) && useDistinct)
+                            {
+                                if (!(type == "Polygon" || type == "NoExtension"))
+                                {
+                                    continue;
+                                }
+
+                                var legAggregation = LegendItemsInvolved.First(x => x.TypeCode == legendInvolved.TypeCode);
+                                legAggregation.AreaValue += legendInvolved.AreaValue;
+                                legAggregation.PartInPercentValue = Math.Round(legAggregation.AreaValue / System.Convert.ToDouble(extract.RealEstate.LandRegistryArea) * 100, 0);
+                                legAggregation.Aggregate = markDistinct;
+                            }
+                            else
+                            {
+                                LegendItemsInvolved.Add(legendInvolved);
+                            }
                         }
+
+                        #endregion
+
+                        #region legend at web
+
+                        if (restriction.Map.LegendAtWeb != null && !string.IsNullOrEmpty(restriction.Map.LegendAtWeb.Value) && LegendAtWeb.All(x => x.Url != WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value))))
+                        {
+                            LegendAtWeb.Add(new LegendAtWeb() { Label = WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)), Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)) });
+                        }
+
+                        #endregion
+
+                        #region legalprovisions
+
+                        if (restriction.LegalProvisions != null)
+                        {
+                            foreach (var document in restriction.LegalProvisions.Where(x => x.DocumentType == DocumentBaseDocumentType.LegalProvision).Select(x => (Oereb.Service.DataContracts.Model.v10.Document)x))
+                            {
+                                var documentItem = new Document()
+                                {
+                                    Title = Helper.LocalisedText.GetStringFromArray(document.Title, language),
+                                    Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
+                                    OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
+                                    OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
+                                    Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
+                                    Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
+                                };
+
+                                DocumentSetLevelAndSort(ref documentItem);
+
+                                if (legalProvisions.Any(x => x.Id == documentItem.Id))
+                                {
+                                    continue;
+                                }
+
+                                legalProvisions.Add(documentItem);
+                            }
+
+                            if (!legalProvisions.Any())
+                            {
+                                legalProvisions.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
+                            }
+                        }
+
+                        #endregion
+
+                        #region documents
+
+                        if (restriction.LegalProvisions != null)
+                        {
+                            foreach (var documentBase in restriction.LegalProvisions.Select(x => (Service.DataContracts.Model.v10.Document)x))
+                            {
+                                documents = CreateDocumentsFromDocumentBases(documentBase, language, documents);
+                            }
+
+                            if (!documents.Any())
+                            {
+                                documents.Add(new Document() { Abbrevation = "", Level = 0, OfficialNumber = "-", OfficialTitle = "", Title = "", Url = "" });
+                            }
+                        }
+
+                        #endregion
+
+                        #region more informations
+
+                        if (restriction.LegalProvisions != null)
+                        {
+                            foreach (var document in restriction.LegalProvisions.Where(x => x.DocumentType == DocumentBaseDocumentType.Hint).Select(x => (Oereb.Service.DataContracts.Model.v10.Document)x))
+                            {
+                                var documentItem = new Document()
+                                {
+                                    Title = Helper.LocalisedText.GetStringFromArray(document.Title, language),
+                                    Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
+                                    OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
+                                    OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
+                                    Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
+                                    Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
+                                };
+
+                                DocumentSetLevelAndSort(ref documentItem);
+
+                                if (moreinformations.Any(x => x.Id == documentItem.Id))
+                                {
+                                    continue;
+                                }
+
+                                moreinformations.Add(documentItem);
+                            }
+                        }
+
+                        #endregion
+
+                        #region responsible office
+
+                        var responsibleOffice = new ResponsibleOffice()
+                        {
+                            Name = Helper.LocalisedText.GetStringFromArray(restriction.ResponsibleOffice.Name, language),
+                            Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-" : System.Web.HttpUtility.HtmlDecode(WebUtility.UrlDecode(restriction.ResponsibleOffice.OfficeAtWeb.Value))
+                        };
+
+                        if (!ResponsibleOffice.Any(x => x.Id == responsibleOffice.Id))
+                        {
+                            ResponsibleOffice.Add(responsibleOffice);
+                        }
+
+                        #endregion
                     }
-
-                    #endregion
-
-                    #region responsible office
-
-                    var responsibleOffice = new ResponsibleOffice()
-                    {
-                        Name = Helper.LocalisedText.GetStringFromArray(restriction.ResponsibleOffice.Name, language),
-                        Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-": System.Web.HttpUtility.HtmlDecode(WebUtility.UrlDecode(restriction.ResponsibleOffice.OfficeAtWeb.Value))
-                    };
-
-                    if (!ResponsibleOffice.Any(x=> x.Id == responsibleOffice.Id))
-                    {
-                        ResponsibleOffice.Add(responsibleOffice);
-                    }
-
-                    #endregion
                 }
 
                 //with legal provision and laws this should not happen, but here would be the right place

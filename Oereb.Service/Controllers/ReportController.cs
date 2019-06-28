@@ -272,28 +272,28 @@ namespace Oereb.Service.Controllers
 
             byte[] content;
 
-            try
-            {
+            //try
+            //{
                 content = Report.ReportBuilder.GeneratePdf(xmlContent.TrimStart(), complete, attached, usewms);
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"error reporting {ex.Message}");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error($"error reporting {ex.Message}");
 
-                if (logFilesXml2Pdf)
-                {
-                    File.WriteAllText(Path.Combine(pathLogFiles, $"{token}_{outGuid}.txt"), ex.ToString(), Encoding.UTF8);
-                }
+            //    if (logFilesXml2Pdf)
+            //    {
+            //        File.WriteAllText(Path.Combine(pathLogFiles, $"{token}_{outGuid}.txt"), ex.ToString(), Encoding.UTF8);
+            //    }
 
-                return this.Request.CreateResponse
-                (
-                    HttpStatusCode.BadRequest,
-                    new
-                    {
-                        Status = $"error reporting: {outGuid}"
-                    }
-                );
-            }
+            //    return this.Request.CreateResponse
+            //    (
+            //        HttpStatusCode.BadRequest,
+            //        new
+            //        {
+            //            Status = $"error reporting: {outGuid}"
+            //        }
+            //    );
+            //}
 
             if (logFilesXml2Pdf)
             {

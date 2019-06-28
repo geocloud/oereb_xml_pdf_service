@@ -16,6 +16,7 @@ namespace Oereb.Report
             Telerik.Reporting.TableGroup tableGroup4 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup1 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup2 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.Drawing.FormattingRule formattingRule3 = new Telerik.Reporting.Drawing.FormattingRule();
             Telerik.Reporting.TableGroup tableGroup5 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup6 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup7 = new Telerik.Reporting.TableGroup();
@@ -43,7 +44,9 @@ namespace Oereb.Report
             this.PAppendix = new Telerik.Reporting.Panel();
             this.AppendixShortName = new Telerik.Reporting.TextBox();
             this.AppendixDescription = new Telerik.Reporting.TextBox();
+            this.AppendixDs = new Telerik.Reporting.ObjectDataSource();
             this.shape1 = new Telerik.Reporting.Shape();
+            this.TocItemsDs = new Telerik.Reporting.ObjectDataSource();
             this.LabelAppendix = new Telerik.Reporting.TextBox();
             this.shape2 = new Telerik.Reporting.Shape();
             this.LabelPage = new Telerik.Reporting.TextBox();
@@ -54,18 +57,16 @@ namespace Oereb.Report
             this.LIThemeNotConcerned = new Telerik.Reporting.List();
             this.PThemeNotConcerned = new Telerik.Reporting.Panel();
             this.TNotCLabel = new Telerik.Reporting.TextBox();
+            this.ThemeNotConcernedDs = new Telerik.Reporting.ObjectDataSource();
             this.LIThemeWithoutData = new Telerik.Reporting.List();
             this.PThemeWithoutData = new Telerik.Reporting.Panel();
             this.TWDLabel = new Telerik.Reporting.TextBox();
+            this.ThemeWithoutDataDs = new Telerik.Reporting.ObjectDataSource();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.FootCreationDate = new Telerik.Reporting.TextBox();
             this.FootExtractIdentifier = new Telerik.Reporting.TextBox();
             this.shape9 = new Telerik.Reporting.Shape();
             this.FootPageInformation = new Telerik.Reporting.TextBox();
-            this.AppendixDs = new Telerik.Reporting.ObjectDataSource();
-            this.TocItemsDs = new Telerik.Reporting.ObjectDataSource();
-            this.ThemeNotConcernedDs = new Telerik.Reporting.ObjectDataSource();
-            this.ThemeWithoutDataDs = new Telerik.Reporting.ObjectDataSource();
             this.ExtractDs = new Telerik.Reporting.ObjectDataSource();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -312,6 +313,11 @@ namespace Oereb.Report
             this.AppendixDescription.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.AppendixDescription, "AppendixDescription");
             // 
+            // AppendixDs
+            // 
+            this.AppendixDs.DataSource = typeof(Oereb.Report.ReportExtract.TocAppendix);
+            this.AppendixDs.Name = "AppendixDs";
+            // 
             // shape1
             // 
             this.shape1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.50029999017715454D));
@@ -319,6 +325,11 @@ namespace Oereb.Report
             this.shape1.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.399999618530273D), Telerik.Reporting.Drawing.Unit.Cm(0.10000000149011612D));
             this.shape1.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(0.20000000298023224D);
+            // 
+            // TocItemsDs
+            // 
+            this.TocItemsDs.DataSource = typeof(Oereb.Report.ReportExtract.TocItem);
+            this.TocItemsDs.Name = "TocItemsDs";
             // 
             // LabelAppendix
             // 
@@ -341,6 +352,10 @@ namespace Oereb.Report
             // 
             // LabelPage
             // 
+            formattingRule3.Filters.Add(new Telerik.Reporting.Filter("= Fields.BodySectionCount", Telerik.Reporting.FilterOperator.Equal, "0"));
+            formattingRule3.Style.Visible = false;
+            this.LabelPage.ConditionalFormatting.AddRange(new Telerik.Reporting.Drawing.FormattingRule[] {
+            formattingRule3});
             this.LabelPage.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.00927551556378603D), Telerik.Reporting.Drawing.Unit.Cm(0.65912771224975586D));
             this.LabelPage.Name = "LabelPage";
             this.LabelPage.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.1907246112823486D), Telerik.Reporting.Drawing.Unit.Cm(0.29999998211860657D));
@@ -419,6 +434,11 @@ namespace Oereb.Report
             this.TNotCLabel.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.TNotCLabel, "TNotCLabel");
             // 
+            // ThemeNotConcernedDs
+            // 
+            this.ThemeNotConcernedDs.DataSource = typeof(Oereb.Report.ReportExtract.TocItemTheme);
+            this.ThemeNotConcernedDs.Name = "ThemeNotConcernedDs";
+            // 
             // LIThemeWithoutData
             // 
             this.LIThemeWithoutData.Bindings.Add(new Telerik.Reporting.Binding("DataSource", "= Fields.Toc.ThemeWithoutData"));
@@ -452,6 +472,11 @@ namespace Oereb.Report
             this.TWDLabel.Style.Font.Name = "Cadastra";
             this.TWDLabel.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             resources.ApplyResources(this.TWDLabel, "TWDLabel");
+            // 
+            // ThemeWithoutDataDs
+            // 
+            this.ThemeWithoutDataDs.DataSource = typeof(Oereb.Report.ReportExtract.TocItemTheme);
+            this.ThemeWithoutDataDs.Name = "ThemeWithoutDataDs";
             // 
             // pageFooterSection1
             // 
@@ -498,26 +523,6 @@ namespace Oereb.Report
             this.FootPageInformation.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(6.5D);
             this.FootPageInformation.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             resources.ApplyResources(this.FootPageInformation, "FootPageInformation");
-            // 
-            // AppendixDs
-            // 
-            this.AppendixDs.DataSource = typeof(Oereb.Report.ReportExtract.TocAppendix);
-            this.AppendixDs.Name = "AppendixDs";
-            // 
-            // TocItemsDs
-            // 
-            this.TocItemsDs.DataSource = typeof(Oereb.Report.ReportExtract.TocItem);
-            this.TocItemsDs.Name = "TocItemsDs";
-            // 
-            // ThemeNotConcernedDs
-            // 
-            this.ThemeNotConcernedDs.DataSource = typeof(Oereb.Report.ReportExtract.TocItemTheme);
-            this.ThemeNotConcernedDs.Name = "ThemeNotConcernedDs";
-            // 
-            // ThemeWithoutDataDs
-            // 
-            this.ThemeWithoutDataDs.DataSource = typeof(Oereb.Report.ReportExtract.TocItemTheme);
-            this.ThemeWithoutDataDs.Name = "ThemeWithoutDataDs";
             // 
             // ExtractDs
             // 
