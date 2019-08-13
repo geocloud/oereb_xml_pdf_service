@@ -788,7 +788,7 @@ namespace Oereb.Report
                             var geometryExtention = GetGeometryExtension(geometryExtentionElement);
                             type = geometryExtention.Type;
                         }
-                        else if (restriction.extensions != null)
+                        else if (restriction.extensions != null && restriction.extensions.Any != null)
                         {
                             var areaShare = restriction.extensions.Any.FirstOrDefault(x => x.LocalName == "AreaShare");
                             var lengthShare = restriction.extensions.Any.FirstOrDefault(x => x.LocalName == "LengthShare");
