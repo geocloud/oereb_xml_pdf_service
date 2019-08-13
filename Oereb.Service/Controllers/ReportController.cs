@@ -18,7 +18,7 @@ using log4net;
 using Oereb.Service.Helper;
 
 namespace Oereb.Service.Controllers
-{    
+{
     public class ReportController : ApiController
     {
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -32,7 +32,7 @@ namespace Oereb.Service.Controllers
         /// <param name="language">at this time only support for german, values are de | fr | it</param>
         /// <returns></returns>
         [HttpPost]
-        public HttpResponseMessage Create([FromUri] string flavour = "reduced", [FromUri] bool validate = true,[FromUri] bool usewms = false, [FromUri] string language = "de")
+        public HttpResponseMessage Create([FromUri] string flavour = "reduced", [FromUri] bool validate = true, [FromUri] bool usewms = false, [FromUri] string language = "de")
         {
             var httpRequest = HttpContext.Current.Request;
             bool validToken = false;
@@ -120,7 +120,7 @@ namespace Oereb.Service.Controllers
                 );
             }
 
-            var validLanguages = new string[] {"de", "fr", "it" };
+            var validLanguages = new string[] { "de", "fr", "it" };
 
             if (!validLanguages.Contains(language))
             {
@@ -242,7 +242,7 @@ namespace Oereb.Service.Controllers
                 {
                     if (logFilesXml2Pdf)
                     {
-                        File.WriteAllText(Path.Combine(pathLogFiles, $"{token}_{outGuid}.xml"), "error validation: "+ xmlValidation.Messages.Aggregate((i, j) => i + "," + j), Encoding.UTF8);
+                        File.WriteAllText(Path.Combine(pathLogFiles, $"{token}_{outGuid}.xml"), "error validation: " + xmlValidation.Messages.Aggregate((i, j) => i + "," + j), Encoding.UTF8);
                     }
 
                     return this.Request.CreateResponse
@@ -274,7 +274,7 @@ namespace Oereb.Service.Controllers
 
             //try
             //{
-                content = Report.ReportBuilder.GeneratePdf(xmlContent.TrimStart(), complete, attached, usewms);
+            content = Report.ReportBuilder.GeneratePdf(xmlContent.TrimStart(), complete, attached, usewms);
             //}
             //catch (Exception ex)
             //{
@@ -326,6 +326,17 @@ namespace Oereb.Service.Controllers
             response.Content = new StringContent(htmlContent);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
             return response;
+        }
+
+
+        [HttpGet]
+        public string GetVersion()
+        {
+            var currentCommit = Properties.Resources.CurrentCommit;
+            var HasUnpushedChanges = System.Text.RegularExpressions.Regex.Replace(Properties.Resources.UnpushedChanges, @"[\r\n ]", "").Length > 0;
+            if (HasUnpushedChanges) currentCommit += "+";
+
+            return currentCommit + " " + Properties.Resources.BuildDate;
         }
     }
 }

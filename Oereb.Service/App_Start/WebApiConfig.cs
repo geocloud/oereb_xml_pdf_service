@@ -22,6 +22,12 @@ namespace Oereb.Service
                 routeTemplate: "oereb/report/form",
                 defaults: new { controller = "report", action = "form" }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "GetVersion",
+                routeTemplate: "oereb/report/getVersion",
+                defaults: new { controller = "report", action = "getVersion" }
+            );
         }
     }
 }
