@@ -33,7 +33,7 @@ namespace Oereb.Service.Tests
 
             Assert.AreEqual(controller.GetType(), routeTester.GetControllerType());
 
-            var actionName = ReflectionHelpers.GetMethodName((ReportController p) => p.Create("",false, false));
+            var actionName = ReflectionHelpers.GetMethodName((ReportController p) => p.Create("",false, false, "de"));
             Assert.AreEqual(actionName, routeTester.GetActionName());
         }
     }
