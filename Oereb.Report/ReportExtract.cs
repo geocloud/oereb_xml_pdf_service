@@ -562,6 +562,7 @@ namespace Oereb.Report
                 var groupedBodyItems = Extract.RealEstate.RestrictionOnLandownership.GroupBy(x => x.Theme.Code + "|" + x.SubTheme ?? "").ToList();
 
                 int section = -1;
+                int appendixCounter = 1;
 
                 foreach (var bodyItem in groupedBodyItems)
                 {
@@ -572,7 +573,9 @@ namespace Oereb.Report
                         continue;
                     }
 
-                    ReportBodyItems.Add(new BodyItem(Extract, bodyItem.ToList(), Language, ImageRestrictionOnLandownership, AdditionalLayers, UseWms));
+                    var reportBodyItem = new BodyItem(Extract, bodyItem.ToList(), Language, ImageRestrictionOnLandownership, AdditionalLayers, UseWms, appendixCounter, ExtractComplete);
+                    appendixCounter += reportBodyItem.Appendixes.Count;
+                    ReportBodyItems.Add(reportBodyItem);
                 }
             }
         }
@@ -618,8 +621,9 @@ namespace Oereb.Report
             public List<ResponsibleOffice> ResponsibleOffice { get; set; }
             public string ExtractIdentifier { get; set; }
             public DateTime CreationDate { get; set; }
+            public List<TocAppendix> Appendixes { get; set; }
 
-            public BodyItem(Service.DataContracts.Model.v10.Extract extract, List<Service.DataContracts.Model.v10.RestrictionOnLandownership> restrictionOnLandownership, string language, ImageExtension baselayer, List<ImageExtension> additionalLayers, bool useWms = false)
+            public BodyItem(Service.DataContracts.Model.v10.Extract extract, List<Service.DataContracts.Model.v10.RestrictionOnLandownership> restrictionOnLandownership, string language, ImageExtension baselayer, List<ImageExtension> additionalLayers, bool useWms = false, int appendixCounter = 1, bool hasAppendixes = false)
             {
                 #region initialization
 
@@ -636,6 +640,7 @@ namespace Oereb.Report
                 //};
 
                 ResponsibleOffice = new List<ResponsibleOffice>();
+                Appendixes = new List<TocAppendix>();
 
                 #endregion
 
@@ -961,6 +966,33 @@ namespace Oereb.Report
                 LegalProvisions.AddRange(legalProvisions.OrderBy(x => x.Sort));
                 Documents.AddRange(documents.OrderBy(x => x.Sort));
                 MoreInformations.AddRange(moreinformations.OrderBy(x => x.Sort));
+
+
+                #region Anhaenge
+
+                if (hasAppendixes)
+                {
+                    foreach (var documentItem in legalProvisions.OrderBy(x => x.Sort))
+                    {
+                        var tocAppendix = new TocAppendix()
+                        {
+                            Key = documentItem.Title,
+                            Shortname = $"A{appendixCounter++}",
+                            Description = documentItem.Title,
+                            FileDescription = documentItem.Title,
+                            Url = documentItem.Url
+                        };
+
+                        if (!Appendixes.Any(x => x.Url == tocAppendix.Url && x.Key == tocAppendix.Key))
+                        {
+                            Appendixes.Add(tocAppendix);
+                        }
+                    }
+                }
+
+                #endregion
+
+
             }
 
             protected List<Document> CreateDocumentsFromDocumentBases(Oereb.Service.DataContracts.Model.v10.Document document, string language, List<Document> documents)

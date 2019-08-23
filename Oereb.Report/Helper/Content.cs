@@ -25,7 +25,16 @@ namespace Oereb.Report.Helper
             request.ProtocolVersion = HttpVersion.Version10;
             request.ServicePoint.ConnectionLimit = 1;
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            HttpWebResponse response = null;
+            try
+            {
+                response = (HttpWebResponse)request.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                return new Result() { Successful = false };
+
+            }
 
             //at this time we support only pdf content
 

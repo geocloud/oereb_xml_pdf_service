@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BufferBox.Value" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LAppendixes.Value" xml:space="preserve">
+    <value>Anhänge</value>
+  </data>
+  <data name="HBAppendix.Value" xml:space="preserve">
+    <value>= Fields.Shortname + ": " + Fields.Description</value>
+  </data>
   <data name="Title.Value" xml:space="preserve">
     <value>= Fields.Theme</value>
   </data>
@@ -171,16 +180,16 @@
     <value>Weitere Informationen und Hinweise</value>
   </data>
   <data name="htmlTextBox1.Value" xml:space="preserve">
-    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + IIf(Fields.Url = "", "", IIf(Fields.Url = "-", "", ":&lt;a href='' style='font-size: 6.5pt; text-decoration: none; color: #4c8fba; padding-left: 3mm; text-indent: -3mm'&gt;" + Fields.Url + "&lt;/a&gt;")))</value>
+    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + ":&lt;a href='"+ Fields.Url+"' style='font-size:6.5pt;text-decoration:none;text-indent:-3mm;padding-left:3mm;color:#4c8fba;'&gt;" + Fields.Url + "&lt;/a&gt;")
+
+
+</value>
   </data>
   <data name="LResponsibleOffice.Value" xml:space="preserve">
     <value>Zuständige Stelle</value>
   </data>
   <data name="HBResponsibleOffice.Value" xml:space="preserve">
-    <value>= Fields.Name + ":&lt;a href='"+ Fields.Url+"' style='font-size:6.5pt;text-decoration:none;text-indent:-3mm;padding-left:3mm;color:#4c8fba;'&gt;" + Fields.Url + "&lt;/a&gt;"</value>
-  </data>
-  <data name="BufferBox.Value" xml:space="preserve">
-    <value />
+    <value>= Fields.Name + ":&lt;a href='' style='font-size: 6.5pt; text-decoration: none; color: #4c8fba; padding-left: 3mm; text-indent: -3mm'&gt;" + Fields.Url + "&lt;/a&gt;"</value>
   </data>
   <data name="FootCreationDate.Value" xml:space="preserve">
     <value>= Fields.CreationDate</value>
