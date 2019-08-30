@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oereb.Report.Helper.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -73,7 +74,14 @@ namespace Oereb.Report.Helper
         {
             using (var ms = new MemoryStream(byteArray))
             {
-                return Image.FromStream(ms);
+                try
+                {
+                    return Image.FromStream(ms);
+                }
+                catch (Exception ex)
+                {
+                    throw new ImageConversionException("Cannot convert to Image", "Trying to convert to bitmap failed. Only pixel images (PNG, TIFF, JPG, BMP, etc.) are allowed.");
+                }
             }
         }
 
@@ -105,7 +113,7 @@ namespace Oereb.Report.Helper
             }
             catch (Exception ex)
             {
-                throw;
+                throw new ImageConversionException("Setting new Opacity on Image failed.", "Trying to convert to bitmap failed. Only pixel images (PNG, TIFF, JPG, BMP, etc.) are allowed.");
             }
         }
     }

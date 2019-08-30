@@ -15,6 +15,7 @@ using System.Configuration;
 using System.Drawing.Drawing2D;
 using System.Web;
 using DocumentFormat.OpenXml.Wordprocessing;
+using Oereb.Report.Helper.Exceptions;
 
 namespace Oereb.Report
 {
@@ -119,7 +120,7 @@ namespace Oereb.Report
             AdditionalLayers = new List<ImageExtension>();
 
             //ini title image
-
+            if (!UseWms && Extract.RealEstate.PlanForLandRegisterMainPage.Image == null) throw new ImageFromXmlException("The image embedded in XML under <Extract><RealEstate><PlanForLandRegisterMainPage><Image> is missing or cannot be read (vector formats are not yet supported).");
             var imageBg = UseWms ? Helper.Wms.GetMap(Extract.RealEstate.PlanForLandRegisterMainPage.ReferenceWMS)  : PreProcessing.GetImageFromByteArray(Extract.RealEstate.PlanForLandRegisterMainPage.Image);
             var image = new Bitmap(imageBg.Width, imageBg.Height, PixelFormat.Format32bppArgb);
 
@@ -454,11 +455,19 @@ namespace Oereb.Report
                             else if (AttacheFiles && !result.Successful)
                             {
                                 // tocAppendix.Description += " (nicht anhängbar)";
+                                throw new AttachmentRequestException(urlFile, "Attachment failed.");
                             }
                             else if (result.Successful)
                             {
-                                var files = Oereb.Report.Helper.Pdf.GetImagesFromPpdf(filepath);
-                                tocAppendix.Pages.AddRange(files);
+                                try
+                                {
+                                    var files = Oereb.Report.Helper.Pdf.GetImagesFromPpdf(filepath);
+                                    tocAppendix.Pages.AddRange(files);
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw new ImageConversionException(filepath, "Cannot extract images from PDF. Attachment failed.");
+                                }
                             }
 
                             tocItem.Appendixes.Add(tocAppendix);
@@ -657,6 +666,7 @@ namespace Oereb.Report
                 if (restrictionOnLandownership != null && restrictionOnLandownership.Count > 0)
                 {
                     Theme = restrictionOnLandownership.First().Theme.Text.Text;
+                    if (!useWms && restrictionOnLandownership.First().Map.Image == null) throw new ImageFromXmlException("The image embedded in XML under <RestrictionOnLandownership><Map><Image> is missing or cannot be read (vector formats are not yet supported).");
                     var image = useWms ? Helper.Wms.GetMap(restrictionOnLandownership.First().Map.ReferenceWMS) : PreProcessing.GetImageFromByteArray(restrictionOnLandownership.First().Map.Image); //take only with and height from image
                     Image = new Bitmap(image.Width, image.Height, PixelFormat.Format32bppArgb);
 
@@ -708,6 +718,7 @@ namespace Oereb.Report
                         //    transparency = restrictionExtensionElement.Element("Transparency") == null ? 0.5 : System.Convert.ToDouble(restrictionExtensionElement.Element("Transparency").Value);
                         //}
 
+                        if (!useWms && restriction.Map.Image == null) throw new ImageFromXmlException("The image embedded in XML under <Restriction><Map><Image> is missing or cannot be read (vector formats are not yet supported).");
                         var imageExtension = new ImageExtension()
                         {
                             Image = useWms ? Helper.Wms.GetMap(restriction.Map.ReferenceWMS) : PreProcessing.GetImageFromByteArray(restriction.Map.Image),
@@ -1041,7 +1052,14 @@ namespace Oereb.Report
                     {
                         using (var webClient = new WebClient())
                         {
-                            return webClient.DownloadData(uriResult);
+                            try
+                            {
+                                return webClient.DownloadData(uriResult);
+                            }
+                            catch (System.Net.WebException ex)
+                            {
+                                throw new ImageLoadingException(url, ex.Message);
+                            }
                         }
                     }
                 }
@@ -1085,7 +1103,15 @@ namespace Oereb.Report
                 {
                     using (var ms = new MemoryStream(symbol))
                     {
-                        var bmp = new Bitmap(ms);
+                        Bitmap bmp;
+                        try
+                        {
+                            bmp = new Bitmap(ms);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new ImageConversionException("LegendItem type " + TypeCode, "Trying to convert to bitmap failed. Only pixel images (PNG, TIFF, JPG, BMP, etc.) are allowed.");
+                        }
                         var height = bmp.Height;
                         var width = bmp.Width;
 
@@ -1103,10 +1129,17 @@ namespace Oereb.Report
                         }
 
                         Bitmap result = new Bitmap(width, height);
-                        using (Graphics g = Graphics.FromImage(result))
+                        try
                         {
-                            g.InterpolationMode = InterpolationMode.Bicubic;
-                            g.DrawImage(bmp, (width-bmp.Width)/2, (height-bmp.Height)/2, bmp.Width, bmp.Height);
+                            using (Graphics g = Graphics.FromImage(result))
+                            {
+                                g.InterpolationMode = InterpolationMode.Bicubic;
+                                g.DrawImage(bmp, (width - bmp.Width) / 2, (height - bmp.Height) / 2, bmp.Width, bmp.Height);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new ImageConversionException("LegendItem type " + TypeCode, "Trying to convert to Graphics after resize failed. " + ex.Message);
                         }
 
                         using (MemoryStream m = new MemoryStream())

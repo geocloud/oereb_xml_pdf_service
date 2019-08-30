@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using log4net;
+using Oereb.Report.Helper.Exceptions;
 
 namespace Oereb.Report.Helper
 {
@@ -34,7 +35,7 @@ namespace Oereb.Report.Helper
                     if (!(webResponse.ContentType.ToLower().StartsWith("image/png") || webResponse.ContentType.ToLower().StartsWith("image/jpeg") || webResponse.ContentType.ToLower().StartsWith("image/jpg")))
                     {
                         Log.Error($"error response wms server: {imageUrl}, mimetype {webResponse.ContentType}");
-                        return null;
+                        throw new WmsRequestException(decodedImageUrl, "Url has been decoded. Original URL in XML was " + imageUrl + " - Error: expected png or jpg but received " + webResponse.ContentType);
                     }
                     
                     using (var stream = webResponse.GetResponseStream())
@@ -46,7 +47,7 @@ namespace Oereb.Report.Helper
             catch (Exception ex)
             {
                 Log.Error($"error request wms server: {imageUrl}, error {ex.Message}");
-                return null;
+                throw new WmsRequestException(decodedImageUrl, "Url has been decoded. Original URL in XML was " + imageUrl + " - Error: " + ex.Message);
             }
 
             return image;

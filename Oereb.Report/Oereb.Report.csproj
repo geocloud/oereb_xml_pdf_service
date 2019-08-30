@@ -99,6 +99,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\Content.cs" />
+    <Compile Include="Helper\Exceptions\ImageFromXmlException.cs" />
+    <Compile Include="Helper\Exceptions\ImageConversionException.cs" />
+    <Compile Include="Helper\Exceptions\AttachmentRequestException.cs" />
+    <Compile Include="Helper\Exceptions\WmsRequestException.cs" />
+    <Compile Include="Helper\Exceptions\ImageLoadingException.cs" />
     <Compile Include="Helper\FileContainer.cs" />
     <Compile Include="Helper\Geometry.cs" />
     <Compile Include="Helper\HImage.cs" />
