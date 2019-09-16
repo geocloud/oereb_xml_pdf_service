@@ -665,7 +665,7 @@ namespace Oereb.Report
 
                 if (restrictionOnLandownership != null && restrictionOnLandownership.Count > 0)
                 {
-                    Theme = restrictionOnLandownership.First().Theme.Text.Text;
+                    Theme = string.IsNullOrEmpty(restrictionOnLandownership.First().SubTheme) ? restrictionOnLandownership.First().Theme.Text.Text : restrictionOnLandownership.First().Theme.Text.Text + ": " + restrictionOnLandownership.First().SubTheme;
                     if (!useWms && restrictionOnLandownership.First().Map.Image == null) throw new ImageFromXmlException("The image embedded in XML under <RestrictionOnLandownership><Map><Image> is missing or cannot be read (vector formats are not yet supported).");
                     var image = useWms ? Helper.Wms.GetMap(restrictionOnLandownership.First().Map.ReferenceWMS) : PreProcessing.GetImageFromByteArray(restrictionOnLandownership.First().Map.Image); //take only with and height from image
                     Image = new Bitmap(image.Width, image.Height, PixelFormat.Format32bppArgb);
