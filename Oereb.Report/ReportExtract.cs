@@ -1166,8 +1166,8 @@ namespace Oereb.Report
                 get
                 {
                     var area = "";
-
-                    if (Type == "Polygon" || Type == "NoExtension")
+                    
+                    if (Type == "Polygon")
                     {
                         area = Math.Round(AreaValue, 0) + " m²";
                     }
@@ -1186,7 +1186,7 @@ namespace Oereb.Report
                 {
                     string partInPercent = "";
 
-                    if (Type == "Polygon" || Type == "NoExtension")
+                    if (Type == "Polygon")
                     {
                         if (Math.Abs(PartInPercentValue) < 1)
                         {
