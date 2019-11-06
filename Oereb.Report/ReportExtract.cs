@@ -863,9 +863,9 @@ namespace Oereb.Report
 
                         #region legend at web
 
-                        if (restriction.Map.LegendAtWeb != null && !string.IsNullOrEmpty(restriction.Map.LegendAtWeb.Value) && LegendAtWeb.All(x => x.Url != WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value))))
+                        if (restriction.Map.LegendAtWeb != null && !string.IsNullOrEmpty(restriction.Map.LegendAtWeb.Value) && LegendAtWeb.All(x => x.Url != WebUtility.HtmlEncode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value))))
                         {
-                            LegendAtWeb.Add(new LegendAtWeb() { Label = WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)), Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)) });
+                            LegendAtWeb.Add(new LegendAtWeb() { Label = WebUtility.HtmlEncode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)), Url = WebUtility.HtmlEncode(WebUtility.UrlDecode(restriction.Map.LegendAtWeb.Value)) });
                         }
 
                         #endregion
@@ -882,7 +882,7 @@ namespace Oereb.Report
                                     Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
                                     OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
                                     OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                                    Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
+                                    Url = WebUtility.HtmlEncode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
                                     Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
                                 };
 
@@ -955,7 +955,7 @@ namespace Oereb.Report
                         var responsibleOffice = new ResponsibleOffice()
                         {
                             Name = Helper.LocalisedText.GetStringFromArray(restriction.ResponsibleOffice.Name, language),
-                            Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-" : System.Web.HttpUtility.HtmlDecode(WebUtility.UrlDecode(restriction.ResponsibleOffice.OfficeAtWeb.Value))
+                            Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-" : System.Web.HttpUtility.HtmlEncode(WebUtility.UrlDecode(restriction.ResponsibleOffice.OfficeAtWeb.Value))
                         };
 
                         if (!ResponsibleOffice.Any(x => x.Id == responsibleOffice.Id))
@@ -1018,7 +1018,7 @@ namespace Oereb.Report
                             ? ""
                             : document.OfficialNumber + " ",
                         OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                        Url = WebUtility.HtmlDecode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
+                        Url = WebUtility.HtmlEncode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
                         Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0
                     };
 
