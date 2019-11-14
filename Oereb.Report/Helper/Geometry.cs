@@ -40,13 +40,13 @@ namespace Oereb.Report.Helper
 
             double conversionFactor = (extent[2] - extent[0]) / width; //scale is the same in both directions, meter per pixel
 
-            // If exterior and interior exist, drop interior
-            var exteriorRegex = new Regex(@"\<(\/)?gml:exterior\>");
-            if (exteriorRegex.Matches(geometryGml).Count > 0)
-            {
-                var interiorRegex = new Regex(@"\<gml:interior\>(.|\n)*\<\/gml:interior\>");
-                geometryGml = interiorRegex.Replace(geometryGml, "");
-            }
+            //// If exterior and interior exist, drop interior
+            //var exteriorRegex = new Regex(@"\<(\/)?gml:exterior\>");
+            //if (exteriorRegex.Matches(geometryGml).Count > 0)
+            //{
+            //    var interiorRegex = new Regex(@"\<gml:interior\>(.|\n)*\<\/gml:interior\>");
+            //    geometryGml = interiorRegex.Replace(geometryGml, "");
+            //}
 
             geometryGml = BufferGeomtry(geometryGml, offset * conversionFactor * width / 2055);
 
