@@ -425,7 +425,7 @@ namespace Oereb.Report
                                 Shortname = $"A{AppendixCounter}",
                                 Description = legalProvision.Title,
                                 FileDescription = legalProvision.Title,
-                                Url = legalProvision.Url
+                                Url = WebUtility.HtmlEncode(WebUtility.UrlDecode(legalProvision.Url))
                             };
 
                             if (TocAppendixes.Any(x => x.Url == tocAppendix.Url && x.Key == tocAppendix.Key))
@@ -882,7 +882,7 @@ namespace Oereb.Report
                                     Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
                                     OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
                                     OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                                    Url = WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language)),
+                                    Url = WebUtility.HtmlEncode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
                                     Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
                                 };
 
@@ -933,7 +933,7 @@ namespace Oereb.Report
                                     Abbrevation = Helper.LocalisedText.GetStringFromArray(document.Abbreviation, language),
                                     OfficialNumber = string.IsNullOrEmpty(document.OfficialNumber) ? "" : document.OfficialNumber + " ",
                                     OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                                    Url = WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language)),
+                                    Url = WebUtility.HtmlEncode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
                                     Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0,
                                 };
 
@@ -955,7 +955,7 @@ namespace Oereb.Report
                         var responsibleOffice = new ResponsibleOffice()
                         {
                             Name = Helper.LocalisedText.GetStringFromArray(restriction.ResponsibleOffice.Name, language),
-                            Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-" : WebUtility.UrlDecode(restriction.ResponsibleOffice.OfficeAtWeb.Value)
+                            Url = restriction.ResponsibleOffice.OfficeAtWeb == null ? "-" : WebUtility.HtmlEncode(WebUtility.UrlDecode(restriction.ResponsibleOffice.OfficeAtWeb.Value))
                         };
 
                         if (!ResponsibleOffice.Any(x => x.Id == responsibleOffice.Id))
@@ -991,7 +991,7 @@ namespace Oereb.Report
                             Shortname = $"A{appendixCounter++}",
                             Description = documentItem.Title,
                             FileDescription = documentItem.Title,
-                            Url = documentItem.Url
+                            Url = WebUtility.HtmlEncode(WebUtility.UrlDecode(documentItem.Url))
                         };
 
                         if (!Appendixes.Any(x => x.Url == tocAppendix.Url && x.Key == tocAppendix.Key))
@@ -1018,7 +1018,7 @@ namespace Oereb.Report
                             ? ""
                             : document.OfficialNumber + " ",
                         OfficialTitle = Helper.LocalisedText.GetStringFromArray(document.OfficialTitle, language),
-                        Url = WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language)),
+                        Url = WebUtility.HtmlEncode(WebUtility.UrlDecode(Helper.LocalisedUri.GetStringFromArray(document.TextAtWeb, language))),
                         Level = !String.IsNullOrEmpty(document.Municipality) ? 2 : document.CantonSpecified ? 1 : 0
                     };
 
@@ -1044,7 +1044,7 @@ namespace Oereb.Report
             {
                 if (data is string)
                 {
-                    var url = HttpUtility.UrlDecode(WebUtility.HtmlDecode(data.ToString()));
+                    var url = HttpUtility.UrlDecode(data.ToString());
                     Uri uriResult;
                     bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
 

@@ -148,13 +148,13 @@
     <value>Rechtsvorschriften</value>
   </data>
   <data name="HBLegalProvisions.Value" xml:space="preserve">
-    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + IIf(Fields.Url = "", "", ":&lt;a href='" + Fields.Url + "' style='font-size: 6.5pt; text-decoration: none; color: #4c8fba; padding-left: 3mm; text-indent: -3mm;'&gt;" + Fields.Url + "&lt;/a&gt;"))</value>
+    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + IIf(Fields.Url = "", "", ":&lt;a href='" + Fields.Url + "' style='font-size: 6.5pt; text-decoration: none; color: #4c8fba; padding-left: 3mm; text-indent: -3mm'&gt;" + Fields.Url + "&lt;/a&gt;"))</value>
   </data>
   <data name="LDocuments.Value" xml:space="preserve">
     <value>Gesetzliche Grundlagen</value>
   </data>
   <data name="HBDocument.Value" xml:space="preserve">
-    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + IIf(Fields.Url = "", "", ":&lt;a href='" + Fields.Url + "' style='font-size: 6.5pt; text-decoration: none; color: #4c8fba; padding-left: 3mm; text-indent: -3mm;'&gt;" + Fields.Url + "&lt;/a&gt;"))</value>
+    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + IIf(Fields.Url = "", "", ":&lt;a href='" + Fields.Url + "' style='font-size: 6.5pt; text-decoration: none; color: #4c8fba; padding-left: 3mm; text-indent: -3mm'&gt;" + Fields.Url + "&lt;/a&gt;"))</value>
   </data>
   <data name="LITitle.Value" xml:space="preserve">
     <value>Legende beteiligter Objekte</value>
@@ -178,10 +178,7 @@
     <value>Weitere Informationen und Hinweise</value>
   </data>
   <data name="htmlTextBox1.Value" xml:space="preserve">
-    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + IIf(Fields.Url = "", "", ":&lt;a href='" + Fields.Url + "' style='font-size: 6.5pt; text-decoration: none; color: #4c8fba; padding-left: 3mm; text-indent: -3mm;'&gt;" + Fields.Url + "&lt;/a&gt;"))
-
-
-</value>
+    <value>= IIf(Fields.OfficialNumber = "-", "-", Fields.OfficialNumber + Fields.Title + IIf(Fields.Url = "", "", ":&lt;a href='" + Fields.Url + "' style='font-size: 6.5pt; text-decoration: none; color: #4c8fba; padding-left: 3mm; text-indent: -3mm'&gt;" + Fields.Url + "&lt;/a&gt;"))</value>
   </data>
   <data name="LResponsibleOffice.Value" xml:space="preserve">
     <value>Zuständige Stelle</value>
